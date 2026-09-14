@@ -51,9 +51,7 @@ button,input{
     display:flex
 }
 
-/* =========================
-   MENÚ
-   ========================= */
+/* MENÚ */
 
 #menu{
     padding:max(7px,env(safe-area-inset-top))
@@ -296,9 +294,7 @@ button,input{
     font-weight:900
 }
 
-/* =========================
-   JUEGO
-   ========================= */
+/* JUEGO */
 
 #game{
     padding:max(3px,env(safe-area-inset-top))
@@ -435,7 +431,7 @@ button,input{
     line-height:1;
     box-shadow:0 3px 5px #000b,inset 0 0 5px #fff8;
     transform:translate(-50%,-50%);
-    transition:left .1s linear,top .1s linear
+    transition:left .08s linear,top .08s linear
 }
 
 .bottom{
@@ -525,9 +521,7 @@ button,input{
     text-overflow:ellipsis
 }
 
-/* =========================
-   GANADOR
-   ========================= */
+/* GANADOR */
 
 #win{
     align-items:center;
@@ -632,17 +626,10 @@ button,input{
 
 <div class="app">
 
-<!-- =========================
-     MENÚ
-     ========================= -->
-
 <section id="menu" class="screen active">
 
     <div class="logo">
-
-        <div class="emoji">
-            🐍🪜
-        </div>
+        <div class="emoji">🐍🪜</div>
 
         <h1>
             Serpientes & Escaleras
@@ -651,67 +638,29 @@ button,input{
         <p>
             El clásico juego donde una serpiente arruina tus planes.
         </p>
-
     </div>
-
 
     <div class="card">
 
-        <h2>
-            👥 Jugadores
-        </h2>
-
+        <h2>👥 Jugadores</h2>
 
         <div class="countOptions">
 
-            <button
-                class="countButton selected"
-                data-count="2">
-                2
-            </button>
-
-            <button
-                class="countButton"
-                data-count="3">
-                3
-            </button>
-
-            <button
-                class="countButton"
-                data-count="4">
-                4
-            </button>
-
-            <button
-                class="countButton"
-                data-count="5">
-                5
-            </button>
+            <button class="countButton selected" data-count="2">2</button>
+            <button class="countButton" data-count="3">3</button>
+            <button class="countButton" data-count="4">4</button>
+            <button class="countButton" data-count="5">5</button>
 
         </div>
 
+        <div id="playerSetup" class="playerSetup"></div>
 
-        <div
-            id="playerSetup"
-            class="playerSetup">
-        </div>
-
-
-        <button
-            id="startButton"
-            class="mainButton">
-
+        <button id="startButton" class="mainButton">
             🎲 EMPEZAR PARTIDA
-
         </button>
 
-
-        <button
-            id="fullscreenButton"
-            class="secondaryButton">
-
+        <button id="fullscreenButton" class="secondaryButton">
             ⛶ PANTALLA COMPLETA
-
         </button>
 
     </div>
@@ -719,22 +668,13 @@ button,input{
 </section>
 
 
-<!-- =========================
-     JUEGO
-     ========================= -->
-
 <section id="game" class="screen">
 
     <div class="top">
 
-        <button
-            id="backMenu"
-            class="icon">
-
+        <button id="backMenu" class="icon">
             ☰
-
         </button>
-
 
         <div class="turn">
 
@@ -748,61 +688,36 @@ button,input{
 
         </div>
 
-
-        <button
-            id="newMapButton"
-            class="icon">
-
+        <button id="newMapButton" class="icon">
             🔄
-
         </button>
 
     </div>
 
 
     <div id="boardArea">
-
         <div id="board"></div>
-
     </div>
 
 
     <div class="bottom">
 
-        <div
-            id="playersPanel"
-            class="players">
-        </div>
-
+        <div id="playersPanel" class="players"></div>
 
         <div class="controls">
 
-            <div
-                id="dice"
-                class="dice">
-
+            <div id="dice" class="dice">
                 ⚀
-
             </div>
 
-
-            <button
-                id="rollButton"
-                class="mainButton roll">
-
+            <button id="rollButton" class="mainButton roll">
                 🎲 TIRAR DADO
-
             </button>
 
         </div>
 
-
-        <div
-            id="status"
-            class="status">
-
+        <div id="status" class="status">
             ¡Que empiece la partida!
-
         </div>
 
     </div>
@@ -810,52 +725,28 @@ button,input{
 </section>
 
 
-<!-- =========================
-     GANADOR
-     ========================= -->
-
 <section id="win" class="screen">
 
     <div class="trophy">
         🏆
     </div>
 
-
-    <div
-        id="winTitle"
-        class="winTitle">
-
+    <div id="winTitle" class="winTitle">
         ¡Ganaste!
-
     </div>
 
-
-    <div
-        id="winText"
-        class="winText">
-
+    <div id="winText" class="winText">
         Llegaste al 100.
-
     </div>
-
 
     <div class="winButtons">
 
-        <button
-            id="playAgain"
-            class="mainButton">
-
+        <button id="playAgain" class="mainButton">
             🎲 JUGAR OTRA VEZ
-
         </button>
 
-
-        <button
-            id="winMenu"
-            class="secondaryButton">
-
+        <button id="winMenu" class="secondaryButton">
             🏠 VOLVER AL MENÚ
-
         </button>
 
     </div>
@@ -867,10 +758,6 @@ button,input{
 
 <script>
 
-/* =========================
-   CONFIGURACIÓN
-   ========================= */
-
 const colors=[
     "#ff5368",
     "#54a7ff",
@@ -881,7 +768,6 @@ const colors=[
 
 
 const avatars=[
-
 "😀","😃","😄","😁","😆","😅","😂","🤣",
 "😊","😇","🙂","🙃","😉","😌","😍","🥰",
 "😘","😗","😙","😚","😋","😛","😝","😜",
@@ -927,13 +813,10 @@ const avatars=[
 
 "❤️","🧡","💛","💚","💙","💜","🖤","🤍",
 "🤎","💖","💗","💓","💞","💕","💯","✨"
-
 ];
 
 
-let selectedAvatar=[
-    0,1,2,3,4
-];
+let selectedAvatar=[0,1,2,3,4];
 
 let botPlayers=[
     false,
@@ -958,25 +841,17 @@ let rolling=false;
 let gameFinished=false;
 
 
-/* =========================
-   UTILIDADES
-   ========================= */
-
 function sleep(ms){
-
     return new Promise(
         resolve=>setTimeout(resolve,ms)
     );
-
 }
 
 
 function random(min,max){
-
     return Math.floor(
         Math.random()*(max-min+1)
     )+min;
-
 }
 
 
@@ -992,10 +867,6 @@ function escapeHTML(text){
 }
 
 
-/* =========================
-   PANTALLAS
-   ========================= */
-
 function showScreen(id){
 
     document
@@ -1004,17 +875,12 @@ function showScreen(id){
         screen.classList.remove("active");
     });
 
-
     document
     .getElementById(id)
     .classList.add("active");
 
 }
 
-
-/* =========================
-   JUGADORES
-   ========================= */
 
 document
 .querySelectorAll(".countButton")
@@ -1027,20 +893,13 @@ document
             playerCount=
                 Number(button.dataset.count);
 
-
             document
             .querySelectorAll(".countButton")
             .forEach(x=>{
-                x.classList.remove(
-                    "selected"
-                );
+                x.classList.remove("selected");
             });
 
-
-            button.classList.add(
-                "selected"
-            );
-
+            button.classList.add("selected");
 
             createPlayerSetup();
 
@@ -1056,7 +915,6 @@ function createPlayerSetup(){
         document.getElementById(
             "playerSetup"
         );
-
 
     container.innerHTML="";
 
@@ -1121,12 +979,10 @@ function createPlayerSetup(){
                 botPlayers[i]=
                     !botPlayers[i];
 
-
                 bot.textContent=
                     botPlayers[i]
                     ?"BOT"
                     :"HUM";
-
 
                 bot.classList.toggle(
                     "active",
@@ -1158,7 +1014,6 @@ function createPlayerSetup(){
                     document.createElement(
                         "button"
                     );
-
 
                 option.type="button";
 
@@ -1326,10 +1181,6 @@ function createPlayerSetup(){
 }
 
 
-/* =========================
-   TABLERO
-   ========================= */
-
 function getRow(cell){
 
     return Math.floor(
@@ -1355,7 +1206,7 @@ function getCol(cell){
 
 
 /* =========================
-   MAPA
+   GENERAR MAPA
    ========================= */
 
 function generateMap(){
@@ -1371,15 +1222,11 @@ function generateMap(){
     /*
        ESCALERAS
 
-       REGLAS:
-       - 5 escaleras
-       - nunca llegan a 100
-       - mínimo 8 casillas
-       - no misma fila
-       - no misma columna
-       - mínimo 2 columnas de diferencia
-       - mínimo 2 filas de diferencia
-       - por lo tanto no pueden quedar horizontales
+       NO PUEDEN:
+       - ser horizontales
+       - ser casi horizontales
+       - ser verticales
+       - usar casillas ocupadas
     */
 
     while(
@@ -1398,13 +1245,16 @@ function generateMap(){
             random(from+8,99);
 
 
-        if(to<=from)continue;
+        if(to<=from)
+            continue;
 
-        if(to===100)continue;
 
-        if(
-            Math.abs(to-from)<8
-        )continue;
+        if(to===100)
+            continue;
+
+
+        if(Math.abs(to-from)<8)
+            continue;
 
 
         const fromCol=
@@ -1421,25 +1271,19 @@ function generateMap(){
             getRow(to);
 
 
-        /*
-           NUNCA HORIZONTAL
-        */
+        /* NUNCA HORIZONTAL */
 
         if(fromRow===toRow)
             continue;
 
 
-        /*
-           NUNCA VERTICAL
-        */
+        /* NUNCA VERTICAL */
 
         if(fromCol===toCol)
             continue;
 
 
-        /*
-           EVITAR CASI HORIZONTAL
-        */
+        /* MÍNIMO 2 COLUMNAS */
 
         if(
             Math.abs(fromCol-toCol)<2
@@ -1447,10 +1291,7 @@ function generateMap(){
             continue;
 
 
-        /*
-           DEBE TENER SUFICIENTE
-           DIFERENCIA VERTICAL
-        */
+        /* MÍNIMO 2 FILAS */
 
         if(
             Math.abs(fromRow-toRow)<2
@@ -1488,9 +1329,7 @@ function generateMap(){
     }
 
 
-    /*
-       SERPIENTES
-    */
+    /* SERPIENTES */
 
     attempts=0;
 
@@ -1519,9 +1358,7 @@ function generateMap(){
             continue;
 
 
-        if(
-            Math.abs(from-to)<8
-        )
+        if(Math.abs(from-to)<8)
             continue;
 
 
@@ -1589,22 +1426,18 @@ function generateMap(){
     }
 
 
-    /*
-       RESPALDO
-    */
+    /* RESPALDO */
 
     if(
         Object.keys(ladders).length<5
     ){
 
         ladders={
-
             4:14,
             9:31,
             20:38,
             28:54,
             51:72
-
         };
 
     }
@@ -1615,24 +1448,18 @@ function generateMap(){
     ){
 
         snakes={
-
             17:7,
             36:16,
             48:26,
             62:43,
             79:59,
             96:74
-
         };
 
     }
 
 }
 
-
-/* =========================
-   POSICIONES
-   ========================= */
 
 function cellPosition(cell){
 
@@ -1644,11 +1471,8 @@ function cellPosition(cell){
 
 
     return{
-
         x:col*10+5,
-
         y:(9-row)*10+5
-
     };
 
 }
@@ -1738,9 +1562,7 @@ function buildBoard(){
     );
 
 
-    board.appendChild(
-        svg
-    );
+    board.appendChild(svg);
 
 
     Object.entries(ladders)
@@ -1804,7 +1626,7 @@ function buildBoard(){
 
 
 /* =========================
-   DIBUJAR ESCALERA
+   ESCALERA
    ========================= */
 
 function drawLadder(
@@ -1834,7 +1656,8 @@ function drawLadder(
         );
 
 
-    if(!length)return;
+    if(!length)
+        return;
 
 
     const nx=
@@ -1863,59 +1686,55 @@ function drawLadder(
     ];
 
 
-    rails.forEach(
-        r=>{
+    rails.forEach(r=>{
 
-            const line=
-                document.createElementNS(
-                    "http://www.w3.org/2000/svg",
-                    "line"
-                );
-
-
-            line.setAttribute(
-                "x1",
-                r[0]
-            );
-
-            line.setAttribute(
-                "y1",
-                r[1]
-            );
-
-            line.setAttribute(
-                "x2",
-                r[2]
-            );
-
-            line.setAttribute(
-                "y2",
-                r[3]
+        const line=
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "line"
             );
 
 
-            line.setAttribute(
-                "stroke",
-                "#754b18"
-            );
+        line.setAttribute(
+            "x1",
+            r[0]
+        );
 
-            line.setAttribute(
-                "stroke-width",
-                "1.4"
-            );
+        line.setAttribute(
+            "y1",
+            r[1]
+        );
 
-            line.setAttribute(
-                "stroke-linecap",
-                "round"
-            );
+        line.setAttribute(
+            "x2",
+            r[2]
+        );
+
+        line.setAttribute(
+            "y2",
+            r[3]
+        );
 
 
-            svg.appendChild(
-                line
-            );
+        line.setAttribute(
+            "stroke",
+            "#754b18"
+        );
 
-        }
-    );
+        line.setAttribute(
+            "stroke-width",
+            "1.4"
+        );
+
+        line.setAttribute(
+            "stroke-linecap",
+            "round"
+        );
+
+
+        svg.appendChild(line);
+
+    });
 
 
     const rungs=
@@ -1985,9 +1804,7 @@ function drawLadder(
         );
 
 
-        svg.appendChild(
-            rung
-        );
+        svg.appendChild(rung);
 
     }
 
@@ -1995,7 +1812,7 @@ function drawLadder(
 
 
 /* =========================
-   DIBUJAR SERPIENTE
+   SERPIENTE
    ========================= */
 
 function drawSnake(
@@ -2028,9 +1845,7 @@ function drawSnake(
     const steps=
         Math.max(
             8,
-            Math.floor(
-                distance/3
-            )
+            Math.floor(distance/3)
         );
 
 
@@ -2135,9 +1950,7 @@ function drawSnake(
     );
 
 
-    svg.appendChild(
-        shadow
-    );
+    svg.appendChild(shadow);
 
 
     const body=
@@ -2188,56 +2001,7 @@ function drawSnake(
     );
 
 
-    svg.appendChild(
-        body
-    );
-
-
-    const highlight=
-        document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "polyline"
-        );
-
-
-    highlight.setAttribute(
-        "points",
-        points
-        .map(
-            p=>
-                `${p.x-.25},${p.y-.3}`
-        )
-        .join(" ")
-    );
-
-
-    highlight.setAttribute(
-        "fill",
-        "none"
-    );
-
-
-    highlight.setAttribute(
-        "stroke",
-        "#54a84c"
-    );
-
-
-    highlight.setAttribute(
-        "stroke-width",
-        ".5"
-    );
-
-
-    highlight.setAttribute(
-        "stroke-linecap",
-        "round"
-    );
-
-
-    svg.appendChild(
-        highlight
-    );
+    svg.appendChild(body);
 
 
     const head=
@@ -2258,30 +2022,25 @@ function drawSnake(
         head.x
     );
 
-
     headCircle.setAttribute(
         "cy",
         head.y
     );
-
 
     headCircle.setAttribute(
         "r",
         "1.7"
     );
 
-
     headCircle.setAttribute(
         "fill",
         "#24732e"
     );
 
-
     headCircle.setAttribute(
         "stroke",
         "#163d1b"
     );
-
 
     headCircle.setAttribute(
         "stroke-width",
@@ -2306,18 +2065,15 @@ function drawSnake(
         head.x-.55
     );
 
-
     eye1.setAttribute(
         "cy",
         head.y-.55
     );
 
-
     eye1.setAttribute(
         "r",
         ".45"
     );
-
 
     eye1.setAttribute(
         "fill",
@@ -2325,9 +2081,7 @@ function drawSnake(
     );
 
 
-    svg.appendChild(
-        eye1
-    );
+    svg.appendChild(eye1);
 
 
     const eye2=
@@ -2342,18 +2096,15 @@ function drawSnake(
         head.x+.55
     );
 
-
     eye2.setAttribute(
         "cy",
         head.y-.55
     );
 
-
     eye2.setAttribute(
         "r",
         ".45"
     );
-
 
     eye2.setAttribute(
         "fill",
@@ -2361,9 +2112,7 @@ function drawSnake(
     );
 
 
-    svg.appendChild(
-        eye2
-    );
+    svg.appendChild(eye2);
 
 
     const pupil1=
@@ -2378,18 +2127,15 @@ function drawSnake(
         head.x-.55
     );
 
-
     pupil1.setAttribute(
         "cy",
         head.y-.55
     );
 
-
     pupil1.setAttribute(
         "r",
         ".2"
     );
-
 
     pupil1.setAttribute(
         "fill",
@@ -2397,9 +2143,7 @@ function drawSnake(
     );
 
 
-    svg.appendChild(
-        pupil1
-    );
+    svg.appendChild(pupil1);
 
 
     const pupil2=
@@ -2414,18 +2158,15 @@ function drawSnake(
         head.x+.55
     );
 
-
     pupil2.setAttribute(
         "cy",
         head.y-.55
     );
 
-
     pupil2.setAttribute(
         "r",
         ".2"
     );
-
 
     pupil2.setAttribute(
         "fill",
@@ -2433,95 +2174,7 @@ function drawSnake(
     );
 
 
-    svg.appendChild(
-        pupil2
-    );
-
-
-    const tongue=
-        document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "polyline"
-        );
-
-
-    tongue.setAttribute(
-        "points",
-        `${head.x},${head.y+1.1}
-         ${head.x},${head.y+2.2}
-         ${head.x-.7},${head.y+3}`
-    );
-
-
-    tongue.setAttribute(
-        "fill",
-        "none"
-    );
-
-
-    tongue.setAttribute(
-        "stroke",
-        "#d22"
-    );
-
-
-    tongue.setAttribute(
-        "stroke-width",
-        ".3"
-    );
-
-
-    svg.appendChild(
-        tongue
-    );
-
-
-    const fork=
-        document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "line"
-        );
-
-
-    fork.setAttribute(
-        "x1",
-        head.x
-    );
-
-
-    fork.setAttribute(
-        "y1",
-        head.y+2.2
-    );
-
-
-    fork.setAttribute(
-        "x2",
-        head.x+.7
-    );
-
-
-    fork.setAttribute(
-        "y2",
-        head.y+3
-    );
-
-
-    fork.setAttribute(
-        "stroke",
-        "#d22"
-    );
-
-
-    fork.setAttribute(
-        "stroke-width",
-        ".3"
-    );
-
-
-    svg.appendChild(
-        fork
-    );
+    svg.appendChild(pupil2);
 
 }
 
@@ -2548,7 +2201,8 @@ function placeToken(index){
         );
 
 
-    if(!token)return;
+    if(!token)
+        return;
 
 
     token.style.left=
@@ -2633,9 +2287,7 @@ function updatePanel(){
             `;
 
 
-            panel.appendChild(
-                box
-            );
+            panel.appendChild(box);
 
         }
     );
@@ -2644,7 +2296,7 @@ function updatePanel(){
 
 
 /* =========================
-   INICIAR PARTIDA
+   INICIAR
    ========================= */
 
 document
@@ -2680,10 +2332,7 @@ function startGame(){
 
 
             if(!name){
-
-                name=
-                    `Jugador ${i+1}`;
-
+                name=`Jugador ${i+1}`;
             }
 
 
@@ -2718,21 +2367,16 @@ function startGame(){
 
     buildBoard();
 
-
     showScreen("game");
-
 
     updatePanel();
 
     updateTurn();
 
-
     activarFullscreen();
 
 
-    if(
-        players[0].bot
-    ){
+    if(players[0].bot){
 
         setTimeout(
             ()=>{
@@ -2752,11 +2396,8 @@ function startGame(){
 
 function updateTurn(){
 
-    if(
-        !players[currentPlayer]
-    ){
+    if(!players[currentPlayer])
         return;
-    }
 
 
     document
@@ -2835,22 +2476,12 @@ async function movePlayer(
             direction;
 
 
-        if(
-            player.position<1
-        ){
-
+        if(player.position<1)
             player.position=1;
 
-        }
 
-
-        if(
-            player.position>100
-        ){
-
+        if(player.position>100)
             player.position=100;
-
-        }
 
 
         updateTokens();
@@ -2859,10 +2490,11 @@ async function movePlayer(
 
 
         /*
-           100 ms por casilla
+           VELOCIDAD NORMAL
+           DE LA FICHA
         */
 
-        await sleep(100);
+        await sleep(45);
 
     }
 
@@ -2870,7 +2502,7 @@ async function movePlayer(
 
 
 /* =========================
-   ESCALERA / SERPIENTE
+   ESCALERAS Y SERPIENTES
    ========================= */
 
 async function checkConnection(
@@ -2934,7 +2566,12 @@ async function checkConnection(
             updatePanel();
 
 
-            await sleep(50);
+            /*
+               VELOCIDAD NORMAL
+               DE LA ESCALERA
+            */
+
+            await sleep(35);
 
         }
 
@@ -3016,7 +2653,12 @@ async function checkConnection(
             updatePanel();
 
 
-            await sleep(45);
+            /*
+               VELOCIDAD NORMAL
+               DE LA SERPIENTE
+            */
+
+            await sleep(30);
 
         }
 
@@ -3072,6 +2714,11 @@ async function animateDice(){
         );
 
 
+    /*
+       SOLAMENTE EL DADO
+       ES MÁS RÁPIDO
+    */
+
     for(
         let i=0;
         i<8;
@@ -3088,7 +2735,7 @@ async function animateDice(){
             ];
 
 
-        await sleep(45);
+        await sleep(20);
 
     }
 
@@ -3096,7 +2743,7 @@ async function animateDice(){
 
 
 /* =========================
-   TIRADA HUMANA
+   TIRADA
    ========================= */
 
 document
@@ -3192,7 +2839,7 @@ async function executeMove(
         value;
 
 
-    /* LLEGA EXACTAMENTE A 100 */
+    /* LLEGA A 100 */
 
     if(
         target===100
@@ -3313,7 +2960,6 @@ function nextTurn(){
         );
 
     }
-
     else{
 
         document
@@ -3472,7 +3118,7 @@ document
 
 
 /* =========================
-   VOLVER AL MENÚ
+   MENÚ
    ========================= */
 
 document
@@ -3531,9 +3177,7 @@ document
 
         buildBoard();
 
-
         showScreen("game");
-
 
         updatePanel();
 
@@ -3603,7 +3247,7 @@ async function activarFullscreen(){
 
 
 /* =========================
-   ARRANQUE
+   INICIO
    ========================= */
 
 createPlayerSetup();
