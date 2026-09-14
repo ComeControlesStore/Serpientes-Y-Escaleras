@@ -2,19 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#070a10">
-
 <title>Serpientes & Escaleras</title>
 
 <style>
-
 *{
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color:transparent
 }
 
 html,body{
@@ -25,11 +20,11 @@ html,body{
     overflow:hidden;
     background:#070a10;
     color:white;
-    font-family:Arial,sans-serif;
+    font-family:Arial,sans-serif
 }
 
 button,input{
-    font:inherit;
+    font:inherit
 }
 
 .app{
@@ -39,13 +34,7 @@ button,input{
     margin:0 auto;
     position:relative;
     overflow:hidden;
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            #31456c,
-            #111827 48%,
-            #070a10
-        );
+    background:radial-gradient(circle at 50% -10%,#31456c,#111827 48%,#070a10)
 }
 
 .screen{
@@ -55,55 +44,52 @@ button,input{
     flex-direction:column;
     width:100%;
     height:100%;
-    min-height:0;
+    min-height:0
 }
 
 .screen.active{
-    display:flex;
+    display:flex
 }
-
 
 /* =========================
    MENÚ
-========================= */
+   ========================= */
 
 #menu{
-    padding:
-        max(7px,env(safe-area-inset-top))
-        max(7px,env(safe-area-inset-right))
-        max(7px,env(safe-area-inset-bottom))
-        max(7px,env(safe-area-inset-left));
-
+    padding:max(7px,env(safe-area-inset-top))
+            max(7px,env(safe-area-inset-right))
+            max(7px,env(safe-area-inset-bottom))
+            max(7px,env(safe-area-inset-left));
     overflow-y:auto;
     overflow-x:hidden;
-    scrollbar-width:none;
+    scrollbar-width:none
 }
 
 #menu::-webkit-scrollbar{
-    display:none;
+    display:none
 }
 
 .logo{
     text-align:center;
-    flex-shrink:0;
+    flex-shrink:0
 }
 
 .logo .emoji{
     font-size:clamp(25px,8vw,32px);
-    line-height:1;
+    line-height:1
 }
 
 .logo h1{
     margin:3px 0 0;
     font-size:clamp(17px,5.5vw,21px);
     line-height:1.05;
-    font-weight:1000;
+    font-weight:1000
 }
 
 .logo p{
     margin:4px 0 7px;
     color:#9eabc0;
-    font-size:8px;
+    font-size:8px
 }
 
 .card{
@@ -112,19 +98,19 @@ button,input{
     border:1px solid #2e3b54;
     border-radius:12px;
     padding:7px;
-    box-shadow:0 8px 20px #0007;
+    box-shadow:0 8px 20px #0007
 }
 
 .card h2{
     margin:0 0 5px;
-    font-size:12px;
+    font-size:12px
 }
 
 .countOptions{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:4px;
-    margin-bottom:6px;
+    margin-bottom:6px
 }
 
 .countButton{
@@ -134,18 +120,18 @@ button,input{
     background:#202a3d;
     color:white;
     font-size:11px;
-    font-weight:1000;
+    font-weight:1000
 }
 
 .countButton.selected{
     background:#ffd84d;
     color:#17120a;
-    border-color:#ffd84d;
+    border-color:#ffd84d
 }
 
 .playerSetup{
     display:grid;
-    gap:4px;
+    gap:4px
 }
 
 .setupPlayer{
@@ -156,7 +142,7 @@ button,input{
     background:#202a3d;
     padding:3px;
     border-radius:7px;
-    min-width:0;
+    min-width:0
 }
 
 .setupAvatar{
@@ -171,7 +157,7 @@ button,input{
     justify-content:center;
     font-size:18px;
     line-height:1;
-    overflow:hidden;
+    overflow:hidden
 }
 
 .nameInput{
@@ -183,7 +169,7 @@ button,input{
     color:white;
     border-radius:6px;
     padding:6px;
-    font-size:10px;
+    font-size:10px
 }
 
 .botButton{
@@ -195,12 +181,12 @@ button,input{
     background:#29344a;
     color:white;
     font-size:9px;
-    font-weight:1000;
+    font-weight:1000
 }
 
 .botButton.active{
     background:#8c5cff;
-    border-color:#b89cff;
+    border-color:#b89cff
 }
 
 .avatarWrap{
@@ -208,7 +194,7 @@ button,input{
     min-width:0;
     display:flex;
     align-items:center;
-    gap:3px;
+    gap:3px
 }
 
 .avatarOptions{
@@ -226,13 +212,13 @@ button,input{
     -ms-overflow-style:none;
     touch-action:pan-x;
     overscroll-behavior-x:contain;
-    -webkit-overflow-scrolling:touch;
+    -webkit-overflow-scrolling:touch
 }
 
 .avatarOptions::-webkit-scrollbar{
     display:none;
     width:0;
-    height:0;
+    height:0
 }
 
 .avatarOption{
@@ -251,23 +237,18 @@ button,input{
     line-height:1;
     white-space:nowrap;
     overflow:hidden;
-
-    font-family:
-        "Apple Color Emoji",
-        "Segoe UI Emoji",
-        "Noto Color Emoji",
-        sans-serif;
+    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif
 }
 
 .avatarOption.selected{
     border:2px solid #ffd84d;
-    background:#46536b;
+    background:#46536b
 }
 
 .avatarArrows{
     display:flex;
     gap:2px;
-    flex:0 0 auto;
+    flex:0 0 auto
 }
 
 .avatarArrow{
@@ -282,12 +263,12 @@ button,input{
     font-weight:1000;
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:center
 }
 
 .avatarArrow:active{
     transform:scale(.9);
-    background:#46536b;
+    background:#46536b
 }
 
 .mainButton{
@@ -300,7 +281,7 @@ button,input{
     color:#17120a;
     font-size:10px;
     font-weight:1000;
-    box-shadow:0 2px 0 #b99520;
+    box-shadow:0 2px 0 #b99520
 }
 
 .secondaryButton{
@@ -312,22 +293,19 @@ button,input{
     background:#202b41;
     color:white;
     font-size:9px;
-    font-weight:900;
+    font-weight:900
 }
-
 
 /* =========================
    JUEGO
-========================= */
+   ========================= */
 
 #game{
-    padding:
-        max(3px,env(safe-area-inset-top))
-        max(3px,env(safe-area-inset-right))
-        max(3px,env(safe-area-inset-bottom))
-        max(3px,env(safe-area-inset-left));
-
-    min-height:0;
+    padding:max(3px,env(safe-area-inset-top))
+            max(3px,env(safe-area-inset-right))
+            max(3px,env(safe-area-inset-bottom))
+            max(3px,env(safe-area-inset-left));
+    min-height:0
 }
 
 .top{
@@ -336,7 +314,7 @@ button,input{
     display:flex;
     align-items:center;
     gap:3px;
-    flex:0 0 31px;
+    flex:0 0 31px
 }
 
 .icon{
@@ -347,7 +325,7 @@ button,input{
     border-radius:7px;
     background:#202b41;
     color:white;
-    font-size:13px;
+    font-size:13px
 }
 
 .turn{
@@ -363,17 +341,17 @@ button,input{
     font-size:8px;
     font-weight:1000;
     overflow:hidden;
-    white-space:nowrap;
+    white-space:nowrap
 }
 
 #turnAvatar{
     flex:0 0 auto;
-    font-size:12px;
+    font-size:12px
 }
 
 #turnText{
     overflow:hidden;
-    text-overflow:ellipsis;
+    text-overflow:ellipsis
 }
 
 #boardArea{
@@ -384,28 +362,19 @@ button,input{
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:2px 0;
+    padding:2px 0
 }
 
 #board{
-    width:min(
-        100%,
-        calc(100dvh - 155px),
-        350px
-    );
-
+    width:min(100%,calc(100dvh - 155px),350px);
     max-width:100%;
     max-height:100%;
     aspect-ratio:1/1;
     position:relative;
     overflow:hidden;
     border-radius:10px;
-
     background:#e7d09c;
-
-    box-shadow:
-        0 8px 18px #000b,
-        inset 0 0 0 2px #765e35;
+    box-shadow:8px 18px 18px #000b,inset 0 0 0 2px #765e35
 }
 
 .cell{
@@ -420,23 +389,23 @@ button,input{
     color:#322817;
     font-size:clamp(5px,1.7vw,7px);
     font-weight:1000;
-    z-index:1;
+    z-index:1
 }
 
 .cell:nth-child(odd){
-    background:#fff1c7;
+    background:#fff1c7
 }
 
 .cell:nth-child(even){
-    background:#e5cc94;
+    background:#e5cc94
 }
 
 .start{
-    background:#92e39a!important;
+    background:#92e39a!important
 }
 
 .finish{
-    background:#ffd84d!important;
+    background:#ffd84d!important
 }
 
 .connections{
@@ -445,54 +414,29 @@ button,input{
     width:100%;
     height:100%;
     z-index:5;
-    pointer-events:none;
+    pointer-events:none
 }
-
-
-/* JUGADORES */
 
 .token{
     position:absolute;
-
     width:6.5%;
     height:6.5%;
-
     max-width:22px;
     max-height:22px;
-
     min-width:12px;
     min-height:12px;
-
     border:1.5px solid white;
     border-radius:50%;
-
     z-index:20;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:clamp(7px,2.8vw,11px);
     line-height:1;
-
-    box-shadow:
-        0 3px 5px #000b,
-        inset 0 0 5px #fff8;
-
-    /*
-       Ahora el centro del token coincide
-       exactamente con el centro de la casilla.
-    */
+    box-shadow:0 3px 5px #000b,inset 0 0 5px #fff8;
     transform:translate(-50%,-50%);
-
-    transition:
-        left .1s,
-        top .1s,
-        transform .1s;
+    transition:left .1s linear,top .1s linear
 }
-
-
-/* PANEL INFERIOR */
 
 .bottom{
     width:100%;
@@ -500,14 +444,14 @@ button,input{
     background:#151e2e;
     border:1px solid #2e3b54;
     border-radius:10px;
-    padding:3px;
+    padding:3px
 }
 
 .players{
     width:100%;
     display:grid;
     grid-template-columns:repeat(5,minmax(0,1fr));
-    gap:2px;
+    gap:2px
 }
 
 .playerBox{
@@ -516,16 +460,16 @@ button,input{
     border:1px solid transparent;
     border-radius:6px;
     padding:2px;
-    text-align:center;
+    text-align:center
 }
 
 .playerBox.active{
-    border-color:#ffd84d;
+    border-color:#ffd84d
 }
 
 .avatar{
     font-size:11px;
-    line-height:12px;
+    line-height:12px
 }
 
 .playerName{
@@ -534,19 +478,19 @@ button,input{
     font-weight:1000;
     overflow:hidden;
     white-space:nowrap;
-    text-overflow:ellipsis;
+    text-overflow:ellipsis
 }
 
 .position{
     color:#98a5bb;
     font-size:5px;
-    line-height:6px;
+    line-height:6px
 }
 
 .controls{
     display:flex;
     gap:3px;
-    margin-top:3px;
+    margin-top:3px
 }
 
 .dice{
@@ -556,21 +500,18 @@ button,input{
     border-radius:8px;
     background:white;
     color:#111;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:19px;
-
-    box-shadow:0 2px 0 #aeb3bd;
+    box-shadow:0 2px 0 #aeb3bd
 }
 
 .roll{
     flex:1;
     margin:0;
     padding:7px;
-    font-size:10px;
+    font-size:10px
 }
 
 .status{
@@ -581,133 +522,119 @@ button,input{
     font-size:7px;
     overflow:hidden;
     white-space:nowrap;
-    text-overflow:ellipsis;
+    text-overflow:ellipsis
 }
-
 
 /* =========================
    GANADOR
-========================= */
+   ========================= */
 
 #win{
     align-items:center;
     justify-content:center;
     padding:15px;
-    text-align:center;
+    text-align:center
 }
 
 .trophy{
     font-size:55px;
-    animation:bounce 1s infinite alternate;
+    animation:bounce 1s infinite alternate
 }
 
 @keyframes bounce{
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(-8px);
-    }
+    from{transform:translateY(0)}
+    to{transform:translateY(-8px)}
 }
 
 .winTitle{
     font-size:24px;
     font-weight:1000;
-    margin:5px 0;
+    margin:5px 0
 }
 
 .winText{
     color:#aeb9cc;
-    font-size:10px;
+    font-size:10px
 }
 
 .winButtons{
     width:100%;
     max-width:280px;
-    margin-top:8px;
+    margin-top:8px
 }
-
-
-/* =========================
-   PANTALLAS BAJAS
-========================= */
 
 @media(max-height:600px){
 
     .logo .emoji{
-        font-size:24px;
+        font-size:24px
     }
 
     .logo h1{
-        font-size:17px;
+        font-size:17px
     }
 
     .logo p{
-        margin:2px 0 4px;
+        margin:2px 0 4px
     }
 
     .card{
-        padding:5px;
+        padding:5px
     }
 
     .setupPlayer{
-        padding:2px;
+        padding:2px
     }
 
     .setupAvatar{
         width:29px;
         height:29px;
         flex-basis:29px;
-        font-size:16px;
+        font-size:16px
     }
 
     .avatarOptions{
-        height:28px;
+        height:28px
     }
 
     .avatarOption{
         width:28px;
         height:24px;
         flex-basis:28px;
-        font-size:15px;
+        font-size:15px
     }
 
     .avatarArrow{
         height:24px;
         width:20px;
-        flex-basis:20px;
+        flex-basis:20px
     }
 
     .mainButton{
-        padding:6px;
+        padding:6px
     }
 
     .secondaryButton{
-        padding:5px;
+        padding:5px
     }
 }
 
 @media(min-width:500px){
 
     .app{
-        max-width:390px;
+        max-width:390px
     }
 
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-
 <!-- =========================
      MENÚ
-========================= -->
+     ========================= -->
 
 <section id="menu" class="screen active">
 
@@ -792,13 +719,11 @@ button,input{
 </section>
 
 
-
 <!-- =========================
      JUEGO
-========================= -->
+     ========================= -->
 
 <section id="game" class="screen">
-
 
     <div class="top">
 
@@ -835,7 +760,6 @@ button,input{
     </div>
 
 
-
     <div id="boardArea">
 
         <div id="board"></div>
@@ -843,9 +767,7 @@ button,input{
     </div>
 
 
-
     <div class="bottom">
-
 
         <div
             id="playersPanel"
@@ -854,7 +776,6 @@ button,input{
 
 
         <div class="controls">
-
 
             <div
                 id="dice"
@@ -889,13 +810,11 @@ button,input{
 </section>
 
 
-
 <!-- =========================
      GANADOR
-========================= -->
+     ========================= -->
 
 <section id="win" class="screen">
-
 
     <div class="trophy">
         🏆
@@ -922,7 +841,6 @@ button,input{
 
     <div class="winButtons">
 
-
         <button
             id="playAgain"
             class="mainButton">
@@ -944,17 +862,14 @@ button,input{
 
 </section>
 
-
 </div>
-
 
 
 <script>
 
-
 /* =========================
-   COLORES
-========================= */
+   CONFIGURACIÓN
+   ========================= */
 
 const colors=[
     "#ff5368",
@@ -964,10 +879,6 @@ const colors=[
     "#ff9f43"
 ];
 
-
-/* =========================
-   AVATARES
-========================= */
 
 const avatars=[
 
@@ -1020,16 +931,8 @@ const avatars=[
 ];
 
 
-/* =========================
-   VARIABLES
-========================= */
-
 let selectedAvatar=[
-    0,
-    1,
-    2,
-    3,
-    4
+    0,1,2,3,4
 ];
 
 let botPlayers=[
@@ -1057,7 +960,7 @@ let gameFinished=false;
 
 /* =========================
    UTILIDADES
-========================= */
+   ========================= */
 
 function sleep(ms){
 
@@ -1089,57 +992,71 @@ function escapeHTML(text){
 }
 
 
+/* =========================
+   PANTALLAS
+   ========================= */
+
 function showScreen(id){
 
     document
-        .querySelectorAll(".screen")
-        .forEach(screen=>{
-            screen.classList.remove("active");
-        });
+    .querySelectorAll(".screen")
+    .forEach(screen=>{
+        screen.classList.remove("active");
+    });
+
 
     document
-        .getElementById(id)
-        .classList.add("active");
+    .getElementById(id)
+    .classList.add("active");
 
 }
 
 
 /* =========================
-   CANTIDAD DE JUGADORES
-========================= */
+   JUGADORES
+   ========================= */
 
 document
 .querySelectorAll(".countButton")
 .forEach(button=>{
 
-    button.addEventListener("click",()=>{
+    button.addEventListener(
+        "click",
+        ()=>{
 
-        playerCount=
-            Number(button.dataset.count);
+            playerCount=
+                Number(button.dataset.count);
 
-        document
-        .querySelectorAll(".countButton")
-        .forEach(x=>{
-            x.classList.remove("selected");
-        });
 
-        button.classList.add("selected");
+            document
+            .querySelectorAll(".countButton")
+            .forEach(x=>{
+                x.classList.remove(
+                    "selected"
+                );
+            });
 
-        createPlayerSetup();
 
-    });
+            button.classList.add(
+                "selected"
+            );
+
+
+            createPlayerSetup();
+
+        }
+    );
 
 });
 
 
-/* =========================
-   CONFIGURAR JUGADORES
-========================= */
-
 function createPlayerSetup(){
 
     const container=
-        document.getElementById("playerSetup");
+        document.getElementById(
+            "playerSetup"
+        );
+
 
     container.innerHTML="";
 
@@ -1160,7 +1077,9 @@ function createPlayerSetup(){
         avatar.type="button";
 
         avatar.textContent=
-            avatars[selectedAvatar[i]];
+            avatars[
+                selectedAvatar[i]
+            ];
 
 
         const input=
@@ -1185,7 +1104,9 @@ function createPlayerSetup(){
         bot.type="button";
 
         bot.textContent=
-            botPlayers[i]?"BOT":"HUM";
+            botPlayers[i]
+            ?"BOT"
+            :"HUM";
 
 
         if(botPlayers[i]){
@@ -1193,22 +1114,27 @@ function createPlayerSetup(){
         }
 
 
-        bot.addEventListener("click",()=>{
+        bot.addEventListener(
+            "click",
+            ()=>{
 
-            botPlayers[i]=
-                !botPlayers[i];
+                botPlayers[i]=
+                    !botPlayers[i];
 
-            bot.textContent=
-                botPlayers[i]?
-                "BOT":
-                "HUM";
 
-            bot.classList.toggle(
-                "active",
-                botPlayers[i]
-            );
+                bot.textContent=
+                    botPlayers[i]
+                    ?"BOT"
+                    :"HUM";
 
-        });
+
+                bot.classList.toggle(
+                    "active",
+                    botPlayers[i]
+                );
+
+            }
+        );
 
 
         const avatarWrap=
@@ -1225,67 +1151,77 @@ function createPlayerSetup(){
             "avatarOptions";
 
 
-        avatars.forEach((emoji,a)=>{
+        avatars.forEach(
+            (emoji,a)=>{
 
-            const option=
-                document.createElement("button");
-
-            option.type="button";
-
-            option.className=
-                "avatarOption";
-
-            option.textContent=emoji;
+                const option=
+                    document.createElement(
+                        "button"
+                    );
 
 
-            if(selectedAvatar[i]===a){
+                option.type="button";
 
-                option.classList.add(
-                    "selected"
-                );
+                option.className=
+                    "avatarOption";
 
-            }
+                option.textContent=emoji;
 
 
-            option.addEventListener(
-                "click",
-                ()=>{
-
-                    selectedAvatar[i]=a;
-
-                    avatar.textContent=
-                        avatars[a];
-
-                    options
-                    .querySelectorAll(
-                        ".avatarOption"
-                    )
-                    .forEach(x=>{
-                        x.classList.remove(
-                            "selected"
-                        );
-                    });
+                if(
+                    selectedAvatar[i]===a
+                ){
 
                     option.classList.add(
                         "selected"
                     );
 
-                    option.scrollIntoView({
-                        behavior:"smooth",
-                        block:"nearest",
-                        inline:"center"
-                    });
-
                 }
-            );
 
 
-            options.appendChild(option);
+                option.addEventListener(
+                    "click",
+                    ()=>{
 
-        });
+                        selectedAvatar[i]=a;
+
+                        avatar.textContent=
+                            avatars[a];
 
 
-        /* FLECHAS */
+                        options
+                        .querySelectorAll(
+                            ".avatarOption"
+                        )
+                        .forEach(x=>{
+                            x.classList.remove(
+                                "selected"
+                            );
+                        });
+
+
+                        option.classList.add(
+                            "selected"
+                        );
+
+
+                        option.scrollIntoView({
+                            behavior:"smooth",
+                            block:"nearest",
+                            inline:"center"
+                        });
+
+                    }
+                );
+
+
+                options.appendChild(
+                    option
+                );
+
+            }
+        );
+
 
         const arrows=
             document.createElement("div");
@@ -1295,7 +1231,9 @@ function createPlayerSetup(){
 
 
         const backArrow=
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
         backArrow.type="button";
 
@@ -1319,7 +1257,9 @@ function createPlayerSetup(){
 
 
         const nextArrow=
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
         nextArrow.type="button";
 
@@ -1342,21 +1282,44 @@ function createPlayerSetup(){
         );
 
 
-        arrows.appendChild(backArrow);
-        arrows.appendChild(nextArrow);
+        arrows.appendChild(
+            backArrow
+        );
+
+        arrows.appendChild(
+            nextArrow
+        );
 
 
-        avatarWrap.appendChild(options);
-        avatarWrap.appendChild(arrows);
+        avatarWrap.appendChild(
+            options
+        );
+
+        avatarWrap.appendChild(
+            arrows
+        );
 
 
-        row.appendChild(avatar);
-        row.appendChild(input);
-        row.appendChild(bot);
-        row.appendChild(avatarWrap);
+        row.appendChild(
+            avatar
+        );
+
+        row.appendChild(
+            input
+        );
+
+        row.appendChild(
+            bot
+        );
+
+        row.appendChild(
+            avatarWrap
+        );
 
 
-        container.appendChild(row);
+        container.appendChild(
+            row
+        );
 
     }
 
@@ -1364,8 +1327,8 @@ function createPlayerSetup(){
 
 
 /* =========================
-   MAPA
-========================= */
+   TABLERO
+   ========================= */
 
 function getRow(cell){
 
@@ -1383,6 +1346,7 @@ function getCol(cell){
     const pos=
         (cell-1)%10;
 
+
     return row%2===0
         ?pos
         :9-pos;
@@ -1390,12 +1354,9 @@ function getCol(cell){
 }
 
 
-function tooClose(a,b){
-
-    return Math.abs(a-b)<7;
-
-}
-
+/* =========================
+   MAPA
+   ========================= */
 
 function generateMap(){
 
@@ -1407,11 +1368,23 @@ function generateMap(){
     let attempts=0;
 
 
-    /* ESCALERAS */
+    /*
+       ESCALERAS
+
+       REGLAS:
+       - 5 escaleras
+       - nunca llegan a 100
+       - mínimo 8 casillas
+       - no misma fila
+       - no misma columna
+       - mínimo 2 columnas de diferencia
+       - mínimo 2 filas de diferencia
+       - por lo tanto no pueden quedar horizontales
+    */
 
     while(
         Object.keys(ladders).length<5 &&
-        attempts<3000
+        attempts<5000
     ){
 
         attempts++;
@@ -1420,15 +1393,69 @@ function generateMap(){
         const from=
             random(2,85);
 
+
         const to=
-            random(from+7,99);
+            random(from+8,99);
 
 
         if(to<=from)continue;
 
         if(to===100)continue;
 
-        if(tooClose(from,to))continue;
+        if(
+            Math.abs(to-from)<8
+        )continue;
+
+
+        const fromCol=
+            getCol(from);
+
+        const toCol=
+            getCol(to);
+
+
+        const fromRow=
+            getRow(from);
+
+        const toRow=
+            getRow(to);
+
+
+        /*
+           NUNCA HORIZONTAL
+        */
+
+        if(fromRow===toRow)
+            continue;
+
+
+        /*
+           NUNCA VERTICAL
+        */
+
+        if(fromCol===toCol)
+            continue;
+
+
+        /*
+           EVITAR CASI HORIZONTAL
+        */
+
+        if(
+            Math.abs(fromCol-toCol)<2
+        )
+            continue;
+
+
+        /*
+           DEBE TENER SUFICIENTE
+           DIFERENCIA VERTICAL
+        */
+
+        if(
+            Math.abs(fromRow-toRow)<2
+        )
+            continue;
 
 
         const values=[
@@ -1448,20 +1475,12 @@ function generateMap(){
         ];
 
 
-        if(
-            values.includes(from)||
-            values.includes(to)
-        ){
+        if(values.includes(from))
             continue;
-        }
 
 
-        if(
-            getCol(from)===
-            getCol(to)
-        ){
+        if(values.includes(to))
             continue;
-        }
 
 
         ladders[from]=to;
@@ -1469,7 +1488,9 @@ function generateMap(){
     }
 
 
-    /* SERPIENTES */
+    /*
+       SERPIENTES
+    */
 
     attempts=0;
 
@@ -1485,15 +1506,57 @@ function generateMap(){
         const from=
             random(15,99);
 
+
         const to=
-            random(2,from-7);
+            random(2,from-8);
 
 
-        if(from<=to)continue;
+        if(from<=to)
+            continue;
 
-        if(from===100)continue;
 
-        if(tooClose(from,to))continue;
+        if(from===100)
+            continue;
+
+
+        if(
+            Math.abs(from-to)<8
+        )
+            continue;
+
+
+        const fromCol=
+            getCol(from);
+
+        const toCol=
+            getCol(to);
+
+
+        const fromRow=
+            getRow(from);
+
+        const toRow=
+            getRow(to);
+
+
+        if(fromRow===toRow)
+            continue;
+
+
+        if(fromCol===toCol)
+            continue;
+
+
+        if(
+            Math.abs(fromCol-toCol)<2
+        )
+            continue;
+
+
+        if(
+            Math.abs(fromRow-toRow)<2
+        )
+            continue;
 
 
         const values=[
@@ -1513,20 +1576,12 @@ function generateMap(){
         ];
 
 
-        if(
-            values.includes(from)||
-            values.includes(to)
-        ){
+        if(values.includes(from))
             continue;
-        }
 
 
-        if(
-            getCol(from)===
-            getCol(to)
-        ){
+        if(values.includes(to))
             continue;
-        }
 
 
         snakes[from]=to;
@@ -1534,18 +1589,22 @@ function generateMap(){
     }
 
 
-    /* RESPALDO */
+    /*
+       RESPALDO
+    */
 
     if(
         Object.keys(ladders).length<5
     ){
 
         ladders={
+
             4:14,
             9:31,
             20:38,
             28:54,
             51:72
+
         };
 
     }
@@ -1556,12 +1615,14 @@ function generateMap(){
     ){
 
         snakes={
+
             17:7,
             36:16,
             48:26,
             62:43,
             79:59,
             96:74
+
         };
 
     }
@@ -1570,14 +1631,16 @@ function generateMap(){
 
 
 /* =========================
-   POSICIÓN DE CASILLA
-========================= */
+   POSICIONES
+   ========================= */
 
 function cellPosition(cell){
 
-    const row=getRow(cell);
+    const row=
+        getRow(cell);
 
-    const col=getCol(cell);
+    const col=
+        getCol(cell);
 
 
     return{
@@ -1592,13 +1655,16 @@ function cellPosition(cell){
 
 
 /* =========================
-   CREAR TABLERO
-========================= */
+   TABLERO
+   ========================= */
 
 function buildBoard(){
 
     const board=
-        document.getElementById("board");
+        document.getElementById(
+            "board"
+        );
+
 
     board.innerHTML="";
 
@@ -1606,18 +1672,29 @@ function buildBoard(){
     for(let n=1;n<=100;n++){
 
         const cell=
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         cell.className="cell";
 
 
         if(n===1){
-            cell.classList.add("start");
+
+            cell.classList.add(
+                "start"
+            );
+
         }
 
 
         if(n===100){
-            cell.classList.add("finish");
+
+            cell.classList.add(
+                "finish"
+            );
+
         }
 
 
@@ -1628,6 +1705,7 @@ function buildBoard(){
         cell.style.left=
             (p.x-5)+"%";
 
+
         cell.style.top=
             (p.y-5)+"%";
 
@@ -1635,7 +1713,9 @@ function buildBoard(){
         cell.textContent=n;
 
 
-        board.appendChild(cell);
+        board.appendChild(
+            cell
+        );
 
     }
 
@@ -1651,13 +1731,16 @@ function buildBoard(){
         "connections"
     );
 
+
     svg.setAttribute(
         "viewBox",
         "0 0 100 100"
     );
 
 
-    board.appendChild(svg);
+    board.appendChild(
+        svg
+    );
 
 
     Object.entries(ladders)
@@ -1684,26 +1767,35 @@ function buildBoard(){
     });
 
 
-    players.forEach((_,i)=>{
+    players.forEach(
+        (player,i)=>{
 
-        const token=
-            document.createElement("div");
-
-        token.className="token";
-
-        token.id=
-            `token-${i}`;
-
-        token.style.background=
-            colors[i];
-
-        token.textContent=
-            players[i].avatar;
+            const token=
+                document.createElement(
+                    "div"
+                );
 
 
-        board.appendChild(token);
+            token.className="token";
 
-    });
+            token.id=
+                `token-${i}`;
+
+
+            token.style.background=
+                colors[i];
+
+
+            token.textContent=
+                player.avatar;
+
+
+            board.appendChild(
+                token
+            );
+
+        }
+    );
 
 
     updateTokens();
@@ -1712,10 +1804,14 @@ function buildBoard(){
 
 
 /* =========================
-   ESCALERAS
-========================= */
+   DIBUJAR ESCALERA
+   ========================= */
 
-function drawLadder(svg,from,to){
+function drawLadder(
+    svg,
+    from,
+    to
+){
 
     const a=
         cellPosition(from);
@@ -1733,7 +1829,8 @@ function drawLadder(svg,from,to){
 
     const length=
         Math.sqrt(
-            dx*dx+dy*dy
+            dx*dx+
+            dy*dy
         );
 
 
@@ -1766,51 +1863,59 @@ function drawLadder(svg,from,to){
     ];
 
 
-    rails.forEach(r=>{
+    rails.forEach(
+        r=>{
 
-        const line=
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "line"
+            const line=
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "line"
+                );
+
+
+            line.setAttribute(
+                "x1",
+                r[0]
+            );
+
+            line.setAttribute(
+                "y1",
+                r[1]
+            );
+
+            line.setAttribute(
+                "x2",
+                r[2]
+            );
+
+            line.setAttribute(
+                "y2",
+                r[3]
             );
 
 
-        line.setAttribute(
-            "x1",r[0]
-        );
+            line.setAttribute(
+                "stroke",
+                "#754b18"
+            );
 
-        line.setAttribute(
-            "y1",r[1]
-        );
+            line.setAttribute(
+                "stroke-width",
+                "1.4"
+            );
 
-        line.setAttribute(
-            "x2",r[2]
-        );
-
-        line.setAttribute(
-            "y2",r[3]
-        );
-
-
-        line.setAttribute(
-            "stroke",
-            "#754b18"
-        );
-
-        line.setAttribute(
-            "stroke-width",
-            "1.4"
-        );
-
-        line.setAttribute(
-            "stroke-linecap",
-            "round"
-        );
+            line.setAttribute(
+                "stroke-linecap",
+                "round"
+            );
 
 
-        svg.appendChild(line);
+            svg.appendChild(
+                line
+            );
 
-    });
+        }
+    );
 
 
     const rungs=
@@ -1820,7 +1925,11 @@ function drawLadder(svg,from,to){
         );
 
 
-    for(let i=1;i<rungs;i++){
+    for(
+        let i=1;
+        i<rungs;
+        i++
+    ){
 
         const t=i/rungs;
 
@@ -1876,7 +1985,9 @@ function drawLadder(svg,from,to){
         );
 
 
-        svg.appendChild(rung);
+        svg.appendChild(
+            rung
+        );
 
     }
 
@@ -1884,10 +1995,14 @@ function drawLadder(svg,from,to){
 
 
 /* =========================
-   SERPIENTES PEQUEÑAS
-========================= */
+   DIBUJAR SERPIENTE
+   ========================= */
 
-function drawSnake(svg,from,to){
+function drawSnake(
+    svg,
+    from,
+    to
+){
 
     const a=
         cellPosition(from);
@@ -1905,14 +2020,17 @@ function drawSnake(svg,from,to){
 
     const distance=
         Math.sqrt(
-            dx*dx+dy*dy
+            dx*dx+
+            dy*dy
         );
 
 
     const steps=
         Math.max(
             8,
-            Math.floor(distance/3)
+            Math.floor(
+                distance/3
+            )
         );
 
 
@@ -1926,31 +2044,30 @@ function drawSnake(svg,from,to){
         dx/distance;
 
 
-    /*
-       Serpiente más estrecha.
-       Ya no invade media casilla.
-    */
-
     const amplitude=
         Math.min(
             1.5,
             Math.max(
-                0.7,
+                .7,
                 distance/22
             )
         );
 
 
-    for(let i=0;i<=steps;i++){
+    for(
+        let i=0;
+        i<=steps;
+        i++
+    ){
 
-        const t=
-            i/steps;
+        const t=i/steps;
 
 
         const wave=
             Math.sin(
                 t*Math.PI*4
-            )*amplitude;
+            )*
+            amplitude;
 
 
         points.push({
@@ -1970,8 +2087,6 @@ function drawSnake(svg,from,to){
     }
 
 
-    /* SOMBRA */
-
     const shadow=
         document.createElementNS(
             "http://www.w3.org/2000/svg",
@@ -1984,7 +2099,7 @@ function drawSnake(svg,from,to){
         points
         .map(
             p=>
-            `${p.x+0.35},${p.y+0.55}`
+                `${p.x+.35},${p.y+.55}`
         )
         .join(" ")
     );
@@ -1995,20 +2110,24 @@ function drawSnake(svg,from,to){
         "none"
     );
 
+
     shadow.setAttribute(
         "stroke",
         "#0008"
     );
+
 
     shadow.setAttribute(
         "stroke-width",
         "2.5"
     );
 
+
     shadow.setAttribute(
         "stroke-linecap",
         "round"
     );
+
 
     shadow.setAttribute(
         "stroke-linejoin",
@@ -2016,10 +2135,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(shadow);
+    svg.appendChild(
+        shadow
+    );
 
-
-    /* CUERPO */
 
     const body=
         document.createElementNS(
@@ -2032,7 +2151,8 @@ function drawSnake(svg,from,to){
         "points",
         points
         .map(
-            p=>`${p.x},${p.y}`
+            p=>
+                `${p.x},${p.y}`
         )
         .join(" ")
     );
@@ -2043,20 +2163,24 @@ function drawSnake(svg,from,to){
         "none"
     );
 
+
     body.setAttribute(
         "stroke",
         "#24732e"
     );
+
 
     body.setAttribute(
         "stroke-width",
         "1.8"
     );
 
+
     body.setAttribute(
         "stroke-linecap",
         "round"
     );
+
 
     body.setAttribute(
         "stroke-linejoin",
@@ -2064,10 +2188,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(body);
+    svg.appendChild(
+        body
+    );
 
-
-    /* BRILLO */
 
     const highlight=
         document.createElementNS(
@@ -2081,7 +2205,7 @@ function drawSnake(svg,from,to){
         points
         .map(
             p=>
-            `${p.x-0.25},${p.y-0.3}`
+                `${p.x-.25},${p.y-.3}`
         )
         .join(" ")
     );
@@ -2092,15 +2216,18 @@ function drawSnake(svg,from,to){
         "none"
     );
 
+
     highlight.setAttribute(
         "stroke",
         "#54a84c"
     );
 
+
     highlight.setAttribute(
         "stroke-width",
-        "0.5"
+        ".5"
     );
+
 
     highlight.setAttribute(
         "stroke-linecap",
@@ -2108,13 +2235,15 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(highlight);
+    svg.appendChild(
+        highlight
+    );
 
-
-    /* CABEZA */
 
     const head=
-        points[points.length-1];
+        points[
+            points.length-1
+        ];
 
 
     const headCircle=
@@ -2129,25 +2258,30 @@ function drawSnake(svg,from,to){
         head.x
     );
 
+
     headCircle.setAttribute(
         "cy",
         head.y
     );
+
 
     headCircle.setAttribute(
         "r",
         "1.7"
     );
 
+
     headCircle.setAttribute(
         "fill",
         "#24732e"
     );
 
+
     headCircle.setAttribute(
         "stroke",
         "#163d1b"
     );
+
 
     headCircle.setAttribute(
         "stroke-width",
@@ -2160,8 +2294,6 @@ function drawSnake(svg,from,to){
     );
 
 
-    /* OJO 1 */
-
     const eye1=
         document.createElementNS(
             "http://www.w3.org/2000/svg",
@@ -2171,18 +2303,21 @@ function drawSnake(svg,from,to){
 
     eye1.setAttribute(
         "cx",
-        head.x-0.55
+        head.x-.55
     );
+
 
     eye1.setAttribute(
         "cy",
-        head.y-0.55
+        head.y-.55
     );
+
 
     eye1.setAttribute(
         "r",
         ".45"
     );
+
 
     eye1.setAttribute(
         "fill",
@@ -2190,10 +2325,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(eye1);
+    svg.appendChild(
+        eye1
+    );
 
-
-    /* OJO 2 */
 
     const eye2=
         document.createElementNS(
@@ -2204,18 +2339,21 @@ function drawSnake(svg,from,to){
 
     eye2.setAttribute(
         "cx",
-        head.x+0.55
+        head.x+.55
     );
+
 
     eye2.setAttribute(
         "cy",
-        head.y-0.55
+        head.y-.55
     );
+
 
     eye2.setAttribute(
         "r",
         ".45"
     );
+
 
     eye2.setAttribute(
         "fill",
@@ -2223,10 +2361,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(eye2);
+    svg.appendChild(
+        eye2
+    );
 
-
-    /* PUPILA 1 */
 
     const pupil1=
         document.createElementNS(
@@ -2237,18 +2375,21 @@ function drawSnake(svg,from,to){
 
     pupil1.setAttribute(
         "cx",
-        head.x-0.55
+        head.x-.55
     );
+
 
     pupil1.setAttribute(
         "cy",
-        head.y-0.55
+        head.y-.55
     );
+
 
     pupil1.setAttribute(
         "r",
         ".2"
     );
+
 
     pupil1.setAttribute(
         "fill",
@@ -2256,10 +2397,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(pupil1);
+    svg.appendChild(
+        pupil1
+    );
 
-
-    /* PUPILA 2 */
 
     const pupil2=
         document.createElementNS(
@@ -2270,18 +2411,21 @@ function drawSnake(svg,from,to){
 
     pupil2.setAttribute(
         "cx",
-        head.x+0.55
+        head.x+.55
     );
+
 
     pupil2.setAttribute(
         "cy",
-        head.y-0.55
+        head.y-.55
     );
+
 
     pupil2.setAttribute(
         "r",
         ".2"
     );
+
 
     pupil2.setAttribute(
         "fill",
@@ -2289,10 +2433,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(pupil2);
+    svg.appendChild(
+        pupil2
+    );
 
-
-    /* LENGUA */
 
     const tongue=
         document.createElementNS(
@@ -2305,7 +2449,7 @@ function drawSnake(svg,from,to){
         "points",
         `${head.x},${head.y+1.1}
          ${head.x},${head.y+2.2}
-         ${head.x-0.7},${head.y+3}`
+         ${head.x-.7},${head.y+3}`
     );
 
 
@@ -2314,10 +2458,12 @@ function drawSnake(svg,from,to){
         "none"
     );
 
+
     tongue.setAttribute(
         "stroke",
         "#d22"
     );
+
 
     tongue.setAttribute(
         "stroke-width",
@@ -2325,10 +2471,10 @@ function drawSnake(svg,from,to){
     );
 
 
-    svg.appendChild(tongue);
+    svg.appendChild(
+        tongue
+    );
 
-
-    /* HORQUILLA */
 
     const fork=
         document.createElementNS(
@@ -2342,15 +2488,18 @@ function drawSnake(svg,from,to){
         head.x
     );
 
+
     fork.setAttribute(
         "y1",
         head.y+2.2
     );
 
+
     fork.setAttribute(
         "x2",
-        head.x+0.7
+        head.x+.7
     );
+
 
     fork.setAttribute(
         "y2",
@@ -2363,25 +2512,29 @@ function drawSnake(svg,from,to){
         "#d22"
     );
 
+
     fork.setAttribute(
         "stroke-width",
         ".3"
     );
 
 
-    svg.appendChild(fork);
+    svg.appendChild(
+        fork
+    );
 
 }
 
 
 /* =========================
-   COLOCAR JUGADOR
-========================= */
+   FICHAS
+   ========================= */
 
 function placeToken(index){
 
     const player=
         players[index];
+
 
     const pos=
         cellPosition(
@@ -2398,19 +2551,13 @@ function placeToken(index){
     if(!token)return;
 
 
-    /*
-       IMPORTANTE:
-       X e Y son el centro de la casilla.
-       translate(-50%,-50%) hace que
-       el centro del jugador coincida
-       con ese punto.
-    */
-
     token.style.left=
         pos.x+"%";
 
+
     token.style.top=
         pos.y+"%";
+
 
     token.style.transform=
         "translate(-50%,-50%)";
@@ -2420,18 +2567,18 @@ function placeToken(index){
 
 function updateTokens(){
 
-    players.forEach((_,i)=>{
-
-        placeToken(i);
-
-    });
+    players.forEach(
+        (_,i)=>{
+            placeToken(i);
+        }
+    );
 
 }
 
 
 /* =========================
    PANEL
-========================= */
+   ========================= */
 
 function updatePanel(){
 
@@ -2444,55 +2591,61 @@ function updatePanel(){
     panel.innerHTML="";
 
 
-    players.forEach((player,i)=>{
+    players.forEach(
+        (player,i)=>{
 
-        const box=
-            document.createElement("div");
+            const box=
+                document.createElement(
+                    "div"
+                );
 
 
-        box.className=
-            "playerBox";
+            box.className=
+                "playerBox";
 
 
-        if(
-            i===currentPlayer &&
-            !gameFinished
-        ){
+            if(
+                i===currentPlayer &&
+                !gameFinished
+            ){
 
-            box.classList.add(
-                "active"
+                box.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            box.innerHTML=`
+
+                <div class="avatar">
+                    ${player.avatar}
+                </div>
+
+                <div class="playerName">
+                    ${escapeHTML(player.name)}
+                </div>
+
+                <div class="position">
+                    ${player.position}
+                </div>
+
+            `;
+
+
+            panel.appendChild(
+                box
             );
 
         }
-
-
-        box.innerHTML=`
-
-            <div class="avatar">
-                ${player.avatar}
-            </div>
-
-            <div class="playerName">
-                ${escapeHTML(player.name)}
-            </div>
-
-            <div class="position">
-                ${player.position}
-            </div>
-
-        `;
-
-
-        panel.appendChild(box);
-
-    });
+    );
 
 }
 
 
 /* =========================
-   INICIAR
-========================= */
+   INICIAR PARTIDA
+   ========================= */
 
 document
 .getElementById("startButton")
@@ -2513,43 +2666,45 @@ function startGame(){
     players=[];
 
 
-    rows.forEach((row,i)=>{
+    rows.forEach(
+        (row,i)=>{
 
-        const input=
-            row.querySelector(
-                ".nameInput"
-            );
-
-
-        let name=
-            input.value.trim();
+            const input=
+                row.querySelector(
+                    ".nameInput"
+                );
 
 
-        if(!name){
+            let name=
+                input.value.trim();
 
-            name=
-                `Jugador ${i+1}`;
+
+            if(!name){
+
+                name=
+                    `Jugador ${i+1}`;
+
+            }
+
+
+            players.push({
+
+                name:name,
+
+                avatar:
+                    avatars[
+                        selectedAvatar[i]
+                    ],
+
+                position:1,
+
+                bot:
+                    botPlayers[i]
+
+            });
 
         }
-
-
-        players.push({
-
-            name:name,
-
-            avatar:
-                avatars[
-                    selectedAvatar[i]
-                ],
-
-            position:1,
-
-            bot:
-                botPlayers[i]
-
-        });
-
-    });
+    );
 
 
     currentPlayer=0;
@@ -2575,13 +2730,15 @@ function startGame(){
     activarFullscreen();
 
 
-    if(players[0].bot){
+    if(
+        players[0].bot
+    ){
 
         setTimeout(
             ()=>{
                 botTurn();
             },
-            800
+            500
         );
 
     }
@@ -2591,7 +2748,7 @@ function startGame(){
 
 /* =========================
    TURNO
-========================= */
+   ========================= */
 
 function updateTurn(){
 
@@ -2607,8 +2764,9 @@ function updateTurn(){
         "turnAvatar"
     )
     .textContent=
-        players[currentPlayer]
-        .avatar;
+        players[
+            currentPlayer
+        ].avatar;
 
 
     document
@@ -2617,7 +2775,9 @@ function updateTurn(){
     )
     .textContent=
         `Turno de ${
-            players[currentPlayer].name
+            players[
+                currentPlayer
+            ].name
         }`;
 
 
@@ -2628,12 +2788,11 @@ function updateTurn(){
 
 
     rollButton.disabled=
-
         rolling||
-
         gameFinished||
-
-        players[currentPlayer].bot;
+        players[
+            currentPlayer
+        ].bot;
 
 
     rollButton.style.opacity=
@@ -2649,7 +2808,7 @@ function updateTurn(){
 
 /* =========================
    MOVIMIENTO
-========================= */
+   ========================= */
 
 async function movePlayer(
     index,
@@ -2699,7 +2858,11 @@ async function movePlayer(
         updatePanel();
 
 
-        await sleep(90);
+        /*
+           100 ms por casilla
+        */
+
+        await sleep(100);
 
     }
 
@@ -2707,8 +2870,8 @@ async function movePlayer(
 
 
 /* =========================
-   SERPIENTE / ESCALERA
-========================= */
+   ESCALERA / SERPIENTE
+   ========================= */
 
 async function checkConnection(
     index
@@ -2718,8 +2881,12 @@ async function checkConnection(
         players[index];
 
 
+    /* ESCALERA */
+
     if(
-        ladders[player.position]
+        ladders[
+            player.position
+        ]
     ){
 
         const from=
@@ -2734,10 +2901,42 @@ async function checkConnection(
             "status"
         )
         .textContent=
-            `🪜 ¡${player.name} sube por una escalera!`;
+            `🪜 ${player.name} está subiendo...`;
 
 
-        await sleep(350);
+        const steps=12;
+
+
+        for(
+            let i=1;
+            i<=steps;
+            i++
+        ){
+
+            const t=
+                i/steps;
+
+
+            const smooth=
+                t*t*(3-2*t);
+
+
+            player.position=
+                Math.round(
+                    from+
+                    (to-from)*
+                    smooth
+                );
+
+
+            updateTokens();
+
+            updatePanel();
+
+
+            await sleep(50);
+
+        }
 
 
         player.position=to;
@@ -2748,7 +2947,15 @@ async function checkConnection(
         updatePanel();
 
 
-        await sleep(350);
+        await sleep(100);
+
+
+        document
+        .getElementById(
+            "status"
+        )
+        .textContent=
+            `🪜 ¡${player.name} subió la escalera!`;
 
 
         return true;
@@ -2756,8 +2963,12 @@ async function checkConnection(
     }
 
 
+    /* SERPIENTE */
+
     if(
-        snakes[player.position]
+        snakes[
+            player.position
+        ]
     ){
 
         const from=
@@ -2772,10 +2983,42 @@ async function checkConnection(
             "status"
         )
         .textContent=
-            `🐍 ¡La serpiente atrapó a ${player.name}!`;
+            `🐍 ¡${player.name} cayó por la serpiente!`;
 
 
-        await sleep(350);
+        const steps=12;
+
+
+        for(
+            let i=1;
+            i<=steps;
+            i++
+        ){
+
+            const t=
+                i/steps;
+
+
+            const smooth=
+                t*t;
+
+
+            player.position=
+                Math.round(
+                    from+
+                    (to-from)*
+                    smooth
+                );
+
+
+            updateTokens();
+
+            updatePanel();
+
+
+            await sleep(45);
+
+        }
 
 
         player.position=to;
@@ -2786,7 +3029,15 @@ async function checkConnection(
         updatePanel();
 
 
-        await sleep(350);
+        await sleep(100);
+
+
+        document
+        .getElementById(
+            "status"
+        )
+        .textContent=
+            `🐍 ${player.name} terminó en ${to}.`;
 
 
         return true;
@@ -2801,7 +3052,7 @@ async function checkConnection(
 
 /* =========================
    DADO
-========================= */
+   ========================= */
 
 const diceFaces=[
     "⚀",
@@ -2823,7 +3074,7 @@ async function animateDice(){
 
     for(
         let i=0;
-        i<10;
+        i<8;
         i++
     ){
 
@@ -2837,9 +3088,7 @@ async function animateDice(){
             ];
 
 
-        await sleep(
-            60+i*8
-        );
+        await sleep(45);
 
     }
 
@@ -2847,8 +3096,8 @@ async function animateDice(){
 
 
 /* =========================
-   TIRAR DADO
-========================= */
+   TIRADA HUMANA
+   ========================= */
 
 document
 .getElementById("rollButton")
@@ -2861,13 +3110,11 @@ document
 async function rollDice(){
 
     if(
-
         rolling||
-
         gameFinished||
-
-        players[currentPlayer].bot
-
+        players[
+            currentPlayer
+        ].bot
     ){
 
         return;
@@ -2886,7 +3133,9 @@ async function rollDice(){
         "status"
     )
     .textContent=
-        `${players[currentPlayer].name} está tirando...`;
+        `${players[
+            currentPlayer
+        ].name} está tirando...`;
 
 
     await animateDice();
@@ -2916,7 +3165,7 @@ async function rollDice(){
 
 /* =========================
    EJECUTAR MOVIMIENTO
-========================= */
+   ========================= */
 
 async function executeMove(
     index,
@@ -2935,14 +3184,15 @@ async function executeMove(
         `${player.name} sacó ${value}.`;
 
 
-    await sleep(250);
+    await sleep(100);
 
 
     const target=
-        player.position+value;
+        player.position+
+        value;
 
 
-    /* EXACTAMENTE 100 */
+    /* LLEGA EXACTAMENTE A 100 */
 
     if(
         target===100
@@ -2954,18 +3204,17 @@ async function executeMove(
         );
 
 
-        await sleep(300);
+        await sleep(150);
 
 
         finishGame(index);
-
 
         return;
 
     }
 
 
-    /* SE PASA */
+    /* SE PASA DE 100 */
 
     if(
         target>100
@@ -3004,7 +3253,6 @@ async function executeMove(
 
     }
 
-
     else{
 
         await movePlayer(
@@ -3020,7 +3268,7 @@ async function executeMove(
     );
 
 
-    await sleep(300);
+    await sleep(100);
 
 
     nextTurn();
@@ -3030,15 +3278,18 @@ async function executeMove(
 
 /* =========================
    SIGUIENTE TURNO
-========================= */
+   ========================= */
 
 function nextTurn(){
 
-    if(gameFinished)return;
+    if(gameFinished)
+        return;
 
 
     currentPlayer=
-        (currentPlayer+1)%
+        (
+            currentPlayer+1
+        )%
         players.length;
 
 
@@ -3049,14 +3300,16 @@ function nextTurn(){
 
 
     if(
-        players[currentPlayer].bot
+        players[
+            currentPlayer
+        ].bot
     ){
 
         setTimeout(
             ()=>{
                 botTurn();
             },
-            700
+            450
         );
 
     }
@@ -3069,7 +3322,9 @@ function nextTurn(){
         )
         .textContent=
             `🎲 Turno de ${
-                players[currentPlayer].name
+                players[
+                    currentPlayer
+                ].name
             }`;
 
     }
@@ -3079,18 +3334,16 @@ function nextTurn(){
 
 /* =========================
    BOT
-========================= */
+   ========================= */
 
 async function botTurn(){
 
     if(
-
         rolling||
-
         gameFinished||
-
-        !players[currentPlayer].bot
-
+        !players[
+            currentPlayer
+        ].bot
     ){
 
         return;
@@ -3105,7 +3358,9 @@ async function botTurn(){
 
 
     const player=
-        players[currentPlayer];
+        players[
+            currentPlayer
+        ];
 
 
     document
@@ -3116,7 +3371,7 @@ async function botTurn(){
         `🤖 ${player.name} está pensando...`;
 
 
-    await sleep(500);
+    await sleep(250);
 
 
     await animateDice();
@@ -3146,7 +3401,7 @@ async function botTurn(){
 
 /* =========================
    GANADOR
-========================= */
+   ========================= */
 
 function finishGame(index){
 
@@ -3182,7 +3437,7 @@ function finishGame(index){
 
 /* =========================
    NUEVO MAPA
-========================= */
+   ========================= */
 
 document
 .getElementById("newMapButton")
@@ -3217,8 +3472,8 @@ document
 
 
 /* =========================
-   VOLVER MENÚ
-========================= */
+   VOLVER AL MENÚ
+   ========================= */
 
 document
 .getElementById("backMenu")
@@ -3226,7 +3481,9 @@ document
     "click",
     ()=>{
 
-        if(rolling)return;
+        if(rolling)
+            return;
+
 
         showScreen("menu");
 
@@ -3247,8 +3504,8 @@ document
 
 
 /* =========================
-   JUGAR OTRA VEZ
-========================= */
+   OTRA PARTIDA
+   ========================= */
 
 document
 .getElementById("playAgain")
@@ -3299,7 +3556,7 @@ document
                 ()=>{
                     botTurn();
                 },
-                800
+                500
             );
 
         }
@@ -3310,10 +3567,12 @@ document
 
 /* =========================
    PANTALLA COMPLETA
-========================= */
+   ========================= */
 
 document
-.getElementById("fullscreenButton")
+.getElementById(
+    "fullscreenButton"
+)
 .addEventListener(
     "click",
     activarFullscreen
@@ -3325,30 +3584,27 @@ async function activarFullscreen(){
     try{
 
         if(
-
-            !document.fullscreenElement&&
-
-            document.documentElement
+            !document.fullscreenElement &&
+            document
+            .documentElement
             .requestFullscreen
-
         ){
 
             await document
-                .documentElement
-                .requestFullscreen();
+            .documentElement
+            .requestFullscreen();
 
         }
 
     }
-
     catch(e){}
 
 }
 
 
 /* =========================
-   INICIO
-========================= */
+   ARRANQUE
+   ========================= */
 
 createPlayerSetup();
 
