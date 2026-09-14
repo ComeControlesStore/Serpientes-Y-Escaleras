@@ -3,26 +3,22 @@
 <head>
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width,
-             initial-scale=1,
-             maximum-scale=1,
-             user-scalable=no,
-             viewport-fit=cover"
->
+<meta name="viewport"
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+<meta name="theme-color" content="#070a10">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
 <title>Serpientes & Escaleras</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
     margin:0;
     padding:0;
     width:100%;
@@ -33,25 +29,19 @@ body{
     font-family:Arial,sans-serif;
 }
 
-button,
-input{
+button,input{
     font:inherit;
 }
 
 .app{
     width:100%;
-    max-width:360px;
     height:100dvh;
+    min-height:100dvh;
     margin:0 auto;
     position:relative;
     overflow:hidden;
     background:
-    radial-gradient(
-        circle at 50% -10%,
-        #31456c,
-        #111827 48%,
-        #070a10
-    );
+        radial-gradient(circle at 50% -10%,#31456c,#111827 48%,#070a10);
 }
 
 .screen{
@@ -61,25 +51,29 @@ input{
     flex-direction:column;
     width:100%;
     height:100%;
+    min-height:0;
 }
 
 .screen.active{
     display:flex;
 }
 
-
-/* =====================================
-   MENU
-===================================== */
+/* ================= MENU ================= */
 
 #menu{
     padding:
-        12px
-        10px
-        calc(18px + env(safe-area-inset-bottom));
+        max(7px,env(safe-area-inset-top))
+        max(7px,env(safe-area-inset-right))
+        max(7px,env(safe-area-inset-bottom))
+        max(7px,env(safe-area-inset-left));
 
-    overflow:hidden;
-    justify-content:flex-start;
+    overflow-y:auto;
+    overflow-x:hidden;
+    scrollbar-width:none;
+}
+
+#menu::-webkit-scrollbar{
+    display:none;
 }
 
 .logo{
@@ -88,42 +82,60 @@ input{
 }
 
 .logo .emoji{
-    font-size:38px;
-    line-height:38px;
+    font-size:clamp(25px,8vw,32px);
+    line-height:1;
 }
 
 .logo h1{
-    margin:5px 0 0;
-    font-size:25px;
-    line-height:23px;
+    margin:3px 0 0;
+    font-size:clamp(17px,5.5vw,21px);
+    line-height:1.05;
     font-weight:1000;
 }
 
 .logo p{
-    margin:5px 0 10px;
-    color:#aebbd0;
-    font-size:9px;
-}
-
-.menuEmojis{
-    text-align:center;
-    font-size:17px;
-    line-height:20px;
-    margin-bottom:7px;
+    margin:4px 0 7px;
+    color:#9eabc0;
+    font-size:8px;
 }
 
 .card{
     width:100%;
     background:#151e2e;
     border:1px solid #2e3b54;
-    border-radius:14px;
-    padding:10px;
+    border-radius:12px;
+    padding:7px;
     box-shadow:0 8px 20px #0007;
 }
 
 .card h2{
-    margin:0 0 7px;
-    font-size:14px;
+    margin:0 0 5px;
+    font-size:12px;
+}
+
+/* ================= JUGADORES ================= */
+
+.countOptions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:4px;
+    margin-bottom:6px;
+}
+
+.countButton{
+    height:30px;
+    border:1px solid #46536b;
+    border-radius:7px;
+    background:#202a3d;
+    color:white;
+    font-size:11px;
+    font-weight:1000;
+}
+
+.countButton.selected{
+    background:#ffd84d;
+    color:#17120a;
+    border-color:#ffd84d;
 }
 
 .playerSetup{
@@ -135,52 +147,124 @@ input{
     width:100%;
     display:flex;
     align-items:center;
-    gap:5px;
+    gap:4px;
     background:#202a3d;
-    padding:4px;
-    border-radius:8px;
+    padding:3px;
+    border-radius:7px;
+    min-width:0;
 }
 
 .setupAvatar{
-    width:34px;
-    height:34px;
-    flex-shrink:0;
+    width:32px;
+    height:32px;
+    flex:0 0 32px;
     border:0;
-    border-radius:8px;
+    border-radius:7px;
     background:#303d55;
-    font-size:19px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    line-height:1;
+    overflow:hidden;
 }
 
 .nameInput{
-    width:100%;
-    min-width:0;
+    width:clamp(65px,22vw,105px);
+    min-width:45px;
     border:0;
     outline:0;
     background:#111827;
     color:white;
-    border-radius:7px;
-    padding:7px 8px;
-    font-size:11px;
+    border-radius:6px;
+    padding:6px;
+    font-size:10px;
 }
 
-.avatarOptions{
-    display:flex;
-    gap:3px;
-    width:100%;
-    height:27px;
-    overflow:hidden;
-    margin-bottom:3px;
-}
-
-.avatarOption{
-    width:25px;
-    height:25px;
-    flex-shrink:0;
+.botButton{
+    width:40px;
+    height:28px;
+    flex:0 0 40px;
     border:1px solid #46536b;
     border-radius:6px;
     background:#29344a;
-    font-size:14px;
+    color:white;
+    font-size:9px;
+    font-weight:1000;
+}
+
+.botButton.active{
+    background:#8c5cff;
+    border-color:#b89cff;
+}
+
+/* ================= EMOJIS ================= */
+
+.avatarWrap{
+    flex:1;
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:3px;
+}
+
+.avatarOptions{
+    flex:1;
+    min-width:0;
+    width:100%;
+    height:31px;
+
+    display:flex;
+    align-items:center;
+    gap:4px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    padding:2px 4px;
+
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+
+    touch-action:pan-x;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+}
+
+.avatarOptions::-webkit-scrollbar{
+    display:none;
+    width:0;
+    height:0;
+}
+
+.avatarOption{
+    flex:0 0 30px;
+    width:30px;
+    height:27px;
+
+    border:1px solid #46536b;
+    border-radius:6px;
+
+    background:#29344a;
+    color:white;
+
     padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:17px;
+    line-height:1;
+
+    white-space:nowrap;
+    overflow:hidden;
+
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        sans-serif;
 }
 
 .avatarOption.selected{
@@ -188,15 +272,41 @@ input{
     background:#46536b;
 }
 
+.avatarArrow{
+    width:22px;
+    height:27px;
+    flex:0 0 22px;
+
+    border:0;
+    border-radius:5px;
+
+    background:#394862;
+    color:#ffd84d;
+
+    font-size:13px;
+    font-weight:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.avatarArrow:active{
+    transform:scale(.9);
+    background:#46536b;
+}
+
+/* ================= BOTONES ================= */
+
 .mainButton{
     width:100%;
     border:0;
-    border-radius:9px;
-    padding:9px;
-    margin-top:6px;
+    border-radius:8px;
+    padding:8px;
+    margin-top:5px;
     background:#ffd84d;
     color:#17120a;
-    font-size:11px;
+    font-size:10px;
     font-weight:1000;
     box-shadow:0 2px 0 #b99520;
 }
@@ -204,31 +314,25 @@ input{
 .secondaryButton{
     width:100%;
     border:1px solid #394862;
-    border-radius:9px;
-    padding:8px;
-    margin-top:5px;
+    border-radius:8px;
+    padding:7px;
+    margin-top:4px;
     background:#202b41;
     color:white;
-    font-size:10px;
+    font-size:9px;
     font-weight:900;
 }
 
-.menuDecoration{
-    text-align:center;
-    font-size:15px;
-    margin-top:7px;
-}
-
-
-/* =====================================
-   JUEGO
-===================================== */
+/* ================= JUEGO ================= */
 
 #game{
     padding:
-        3px
-        3px
-        calc(10px + env(safe-area-inset-bottom));
+        max(3px,env(safe-area-inset-top))
+        max(3px,env(safe-area-inset-right))
+        max(3px,env(safe-area-inset-bottom))
+        max(3px,env(safe-area-inset-left));
+
+    min-height:0;
 }
 
 .top{
@@ -237,13 +341,13 @@ input{
     display:flex;
     align-items:center;
     gap:3px;
-    flex-shrink:0;
+    flex:0 0 31px;
 }
 
 .icon{
     width:29px;
     height:29px;
-    flex-shrink:0;
+    flex:0 0 29px;
     border:0;
     border-radius:7px;
     background:#202b41;
@@ -257,40 +361,63 @@ input{
     height:29px;
     background:#202b41;
     border-radius:7px;
+
     display:flex;
     align-items:center;
     gap:4px;
+
     padding:0 6px;
+
     font-size:8px;
     font-weight:1000;
+
     overflow:hidden;
+    white-space:nowrap;
 }
 
 #turnAvatar{
+    flex:0 0 auto;
     font-size:12px;
 }
 
+#turnText{
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* ================= TABLERO ================= */
+
 #boardArea{
-    flex:1;
+    flex:1 1 auto;
     min-height:0;
+    min-width:0;
+
     width:100%;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     padding:2px 0;
 }
 
 #board{
     width:min(
-        calc(100vw - 10px),
+        100%,
+        calc(100dvh - 155px),
         350px
     );
 
     max-width:100%;
-    aspect-ratio:1;
+    max-height:100%;
+
+    aspect-ratio:1/1;
+
     position:relative;
     overflow:hidden;
+
     border-radius:10px;
+
     background:#e7d09c;
 
     box-shadow:
@@ -300,16 +427,24 @@ input{
 
 .cell{
     position:absolute;
+
     width:10%;
     height:10%;
+
     padding:1px;
+
     display:flex;
     align-items:flex-start;
     justify-content:flex-end;
+
     border:1px solid #927d5055;
+
     color:#322817;
-    font-size:6px;
+
+    font-size:clamp(5px,1.7vw,7px);
     font-weight:1000;
+
+    z-index:1;
 }
 
 .cell:nth-child(odd){
@@ -331,25 +466,37 @@ input{
 .connections{
     position:absolute;
     inset:0;
+
     width:100%;
     height:100%;
-    z-index:4;
+
+    z-index:5;
     pointer-events:none;
 }
 
 .token{
     position:absolute;
+
     width:6.5%;
     height:6.5%;
+
     max-width:22px;
     max-height:22px;
+
+    min-width:12px;
+    min-height:12px;
+
     border:1.5px solid white;
     border-radius:50%;
+
     z-index:20;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:10px;
+
+    font-size:clamp(7px,2.8vw,11px);
+    line-height:1;
 
     box-shadow:
         0 3px 5px #000b,
@@ -360,30 +507,33 @@ input{
         top .1s;
 }
 
+/* ================= PANEL ================= */
+
 .bottom{
     width:100%;
-    flex-shrink:0;
+    flex:0 0 auto;
+
     background:#151e2e;
     border:1px solid #2e3b54;
     border-radius:10px;
 
-    padding:
-        4px
-        4px
-        calc(6px + env(safe-area-inset-bottom));
+    padding:3px;
 }
 
 .players{
+    width:100%;
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(5,minmax(0,1fr));
     gap:2px;
 }
 
 .playerBox{
     min-width:0;
+
     background:#202a3d;
     border:1px solid transparent;
     border-radius:6px;
+
     padding:2px;
     text-align:center;
 }
@@ -394,11 +544,14 @@ input{
 
 .avatar{
     font-size:11px;
+    line-height:12px;
 }
 
 .playerName{
     font-size:6px;
+    line-height:7px;
     font-weight:1000;
+
     overflow:hidden;
     white-space:nowrap;
     text-overflow:ellipsis;
@@ -407,54 +560,57 @@ input{
 .position{
     color:#98a5bb;
     font-size:5px;
+    line-height:6px;
 }
 
 .controls{
     display:flex;
     gap:3px;
-    margin-top:4px;
-
-    /* Sube los controles */
-    padding-bottom:2px;
+    margin-top:3px;
 }
 
 .dice{
     width:37px;
     height:37px;
-    flex-shrink:0;
+    flex:0 0 37px;
+
     border-radius:8px;
+
     background:white;
     color:#111;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:19px;
+
     box-shadow:0 2px 0 #aeb3bd;
 }
 
 .roll{
     flex:1;
     margin:0;
-    padding:8px;
+    padding:7px;
     font-size:10px;
-}
-
-.roll:disabled{
-    opacity:.5;
 }
 
 .status{
     height:10px;
-    margin-top:2px;
+    margin-top:1px;
+
     text-align:center;
+
     color:#aeb9cc;
+
     font-size:7px;
+
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 
-
-/* =====================================
-   GANADOR
-===================================== */
+/* ================= GANADOR ================= */
 
 #win{
     align-items:center;
@@ -465,21 +621,16 @@ input{
 
 .trophy{
     font-size:55px;
-    animation:
-        bounce 1s
-        infinite alternate;
+    animation:bounce 1s infinite alternate;
 }
 
 @keyframes bounce{
-
     from{
         transform:translateY(0);
     }
-
     to{
         transform:translateY(-8px);
     }
-
 }
 
 .winTitle{
@@ -499,18 +650,71 @@ input{
     margin-top:8px;
 }
 
+/* ================= PANTALLAS PEQUEÑAS ================= */
+
+@media(max-height:600px){
+
+    .logo .emoji{
+        font-size:24px;
+    }
+
+    .logo h1{
+        font-size:17px;
+    }
+
+    .logo p{
+        margin:2px 0 4px;
+    }
+
+    .card{
+        padding:5px;
+    }
+
+    .setupPlayer{
+        padding:2px;
+    }
+
+    .setupAvatar{
+        width:29px;
+        height:29px;
+        flex-basis:29px;
+        font-size:16px;
+    }
+
+    .avatarOptions{
+        height:28px;
+    }
+
+    .avatarOption{
+        width:28px;
+        height:24px;
+        flex-basis:28px;
+        font-size:15px;
+    }
+
+    .mainButton{
+        padding:6px;
+    }
+
+    .secondaryButton{
+        padding:5px;
+    }
+}
+
+@media(min-width:500px){
+
+    .app{
+        max-width:390px;
+    }
+}
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-
-<!-- =====================================
-     MENU
-===================================== -->
+<!-- ================= MENU ================= -->
 
 <section id="menu" class="screen active">
 
@@ -521,149 +725,69 @@ input{
         </div>
 
         <h1>
-            SERPIENTES<br>
-            & ESCALERAS
+            SERPIENTES &amp; ESCALERAS
         </h1>
 
         <p>
-            🎮 3 jugadores · 🗺️ mapa aleatorio · 📱 móvil
+            El clásico juego de suerte y caos
         </p>
 
-        <div class="menuEmojis">
-            🐍 🪜 🎲 🏆 😎 🐸 🤖 🦊 👻 🎯
-        </div>
-
     </div>
-
 
     <div class="card">
 
         <h2>
-            👥🎮 Jugadores
+            👥 ¿Cuántos jugadores?
         </h2>
 
+        <div class="countOptions">
 
-        <!-- JUGADOR 1 -->
-
-        <div class="setupPlayer">
-
-            <button
-                class="setupAvatar"
-                id="setupAvatar0"
-            >
-                😀
+            <button class="countButton selected" data-count="2">
+                2
             </button>
 
-            <input
-                id="name0"
-                class="nameInput"
-                maxlength="12"
-                value="Jugador 1"
-                placeholder="Nombre"
-            >
+            <button class="countButton" data-count="3">
+                3
+            </button>
+
+            <button class="countButton" data-count="4">
+                4
+            </button>
+
+            <button class="countButton" data-count="5">
+                5
+            </button>
 
         </div>
 
-        <div
-            id="avatars0"
-            class="avatarOptions"
-        ></div>
+        <h2>
+            🎮 Jugadores
+        </h2>
 
+        <div id="playerSetup" class="playerSetup"></div>
 
-        <!-- JUGADOR 2 -->
-
-        <div class="setupPlayer">
-
-            <button
-                class="setupAvatar"
-                id="setupAvatar1"
-            >
-                😎
-            </button>
-
-            <input
-                id="name1"
-                class="nameInput"
-                maxlength="12"
-                value="Jugador 2"
-                placeholder="Nombre"
-            >
-
-        </div>
-
-        <div
-            id="avatars1"
-            class="avatarOptions"
-        ></div>
-
-
-        <!-- JUGADOR 3 -->
-
-        <div class="setupPlayer">
-
-            <button
-                class="setupAvatar"
-                id="setupAvatar2"
-            >
-                🤠
-            </button>
-
-            <input
-                id="name2"
-                class="nameInput"
-                maxlength="12"
-                value="Jugador 3"
-                placeholder="Nombre"
-            >
-
-        </div>
-
-        <div
-            id="avatars2"
-            class="avatarOptions"
-        ></div>
-
-
-        <button
-            class="mainButton"
-            onclick="startGame()"
-        >
-            🎲🐍 CREAR MAPA Y JUGAR 🪜🎮
+        <button class="mainButton" onclick="startGame()">
+            🎲 EMPEZAR PARTIDA
         </button>
 
-
-        <button
-            class="secondaryButton"
-            onclick="showRules()"
-        >
-            📖🎯 REGLAS DEL JUEGO
+        <button class="secondaryButton" onclick="showRules()">
+            📖 REGLAS
         </button>
-
-        <div class="menuDecoration">
-            🎲 🐍 🪜 🐸 🏆 ⭐ 🎮
-        </div>
 
     </div>
 
 </section>
 
 
-
-<!-- =====================================
-     JUEGO
-===================================== -->
+<!-- ================= JUEGO ================= -->
 
 <section id="game" class="screen">
 
     <div class="top">
 
-        <button
-            class="icon"
-            onclick="goMenu()"
-        >
-            🏠
+        <button class="icon" onclick="goMenu()">
+            ☰
         </button>
-
 
         <div class="turn">
 
@@ -677,67 +801,41 @@ input{
 
         </div>
 
-
-        <button
-            class="icon"
-            onclick="newMap()"
-        >
+        <button class="icon" onclick="newMap()">
             🔄
         </button>
 
     </div>
 
-
     <div id="boardArea">
 
-        <div id="board">
-
-            <svg
-                id="connections"
-                class="connections"
-                viewBox="0 0 1000 1000"
-                preserveAspectRatio="none"
-            ></svg>
-
-        </div>
+        <div id="board"></div>
 
     </div>
 
-
     <div class="bottom">
 
-        <div
-            id="playersPanel"
-            class="players"
-        ></div>
-
+        <div id="playersPanel" class="players"></div>
 
         <div class="controls">
 
-            <div
-                id="dice"
-                class="dice"
-            >
+            <div id="dice" class="dice">
                 ⚀
             </div>
-
 
             <button
                 id="rollButton"
                 class="mainButton roll"
-                onclick="rollDice()"
-            >
+                onclick="rollDice()">
+
                 🎲 TIRAR DADO
+
             </button>
 
         </div>
 
-
-        <div
-            id="status"
-            class="status"
-        >
-            Tira el dado 🎲
+        <div id="status" class="status">
+            Tira el dado para comenzar
         </div>
 
     </div>
@@ -745,10 +843,7 @@ input{
 </section>
 
 
-
-<!-- =====================================
-     GANADOR
-===================================== -->
+<!-- ================= GANADOR ================= -->
 
 <section id="win" class="screen">
 
@@ -756,37 +851,21 @@ input{
         🏆
     </div>
 
-
-    <div
-        id="winnerTitle"
-        class="winTitle"
-    >
-        ¡GANADOR!
+    <div id="winTitle" class="winTitle">
+        ¡Ganaste!
     </div>
 
-
-    <div
-        id="winnerText"
-        class="winText"
-    >
-        Llegaste al 100.
+    <div id="winText" class="winText">
+        Llegaste a la casilla 100.
     </div>
-
 
     <div class="winButtons">
 
-        <button
-            class="mainButton"
-            onclick="newMap()"
-        >
-            🎲 NUEVO MAPA
+        <button class="mainButton" onclick="startGame()">
+            🔄 JUGAR OTRA VEZ
         </button>
 
-
-        <button
-            class="secondaryButton"
-            onclick="goMenu()"
-        >
+        <button class="secondaryButton" onclick="goMenu()">
             🏠 MENÚ
         </button>
 
@@ -797,1499 +876,2031 @@ input{
 </div>
 
 
-
 <script>
 
-/* =====================================
-   CONFIGURACIÓN
-===================================== */
+/* =========================================================
+   DATOS
+========================================================= */
 
-const colors=[
+const colors = [
     "#ff5368",
     "#54a7ff",
-    "#8be35c"
+    "#8be35c",
+    "#b46cff",
+    "#ff9f43"
 ];
 
-const avatars=[
-    "😀","😎","🤠","👽",
-    "🐸","🐱","🐼","👻",
-    "🤖","🦊","🐵","🥷"
+const avatars = [
+
+    "😀","😃","😄","😁","😆","😅","😂","🤣",
+    "😊","😇","🙂","🙃","😉","😌","😍","🥰",
+    "😘","😗","😙","😚","😋","😛","😝","😜",
+    "🤪","🤨","🧐","🤓","😎","🤩","🥳","😏",
+    "😒","😞","😔","😟","😕","🙁","☹️","😣",
+    "😖","😫","😩","🥺","😢","😭","😤","😠",
+    "😡","🤬","🤯","😳","🥵","🥶","😱","😨",
+    "😰","😥","😓","🤗","🤔","🫣","🤭","🫢",
+    "🤫","🤥","😶","🫠","😐","😑","😬","🙄",
+    "😯","😦","😧","😮","😲","🥱","😴","🤤",
+    "😪","😵","🤐","🥴","🤢","🤮","🤧","😷",
+
+    "🤠","🥸","👻","💀","☠️","👽","👾","🤖",
+    "🎃","😈","👿","👹","👺","🤡","💩",
+
+    "🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼",
+    "🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈",
+    "🙉","🙊","🐒","🐔","🐧","🐦","🐤","🦆",
+    "🦅","🦉","🐺","🐗","🐴","🦄","🐝","🐛",
+    "🦋","🐌","🐞","🐜","🪲","🕷️","🦂","🐢",
+    "🐍","🦎","🦖","🦕","🐙","🦑","🦀","🐠",
+    "🐟","🐡","🐬","🐳","🦈","🐊","🐘","🦏",
+    "🦛","🐪","🐫","🦒","🦘","🦬","🐄","🐎",
+    "🐖","🐑","🦙","🐐","🦌","🐕","🐈","🦮",
+    "🐕‍🦺","🐈‍⬛","🪽","🦜","🦚","🦩","🦢",
+    "🦤","🦃",
+
+    "🍕","🍔","🍟","🌭","🍿","🍩","🍪","🍫",
+    "🍎","🍉","🍓","🍌","🍇","🍒","🥝","🥑",
+    "🍍","🥭","🍊","🍋","🍈","🍑","🍐","🍏",
+
+    "⚽","🏀","🏈","⚾","🎾","🏐","🎱","🏆",
+    "🎮","🕹️","🎲","🎯","🎳","🏹","🥊","🥋",
+
+    "🚗","🏎️","🚕","🚌","🚓","🚑","🚒","🚜",
+    "🚀","✈️","🚁","🚢","🚂","🚲","🛵","🛸",
+
+    "🔥","⭐","🌟","💎","💥","⚡","🌈","☀️",
+    "🌙","🌪️","❄️","☁️","🌊","🌋","🌎",
+
+    "👑","🎩","🕶️","🥷","🧙","🧛","🧟","🧞",
+    "🧜","🦸","🦹","👮","🕵️","👨‍🚀","💪",
+    "👀","👋","👍","👎","👏","🙌","🤝","✌️",
+
+    "❤️","🧡","💛","💚","💙","💜","🖤","🤍",
+    "🤎","💖","💗","💓","💞","💕","💯","✨"
 ];
 
-const diceFaces=[
-    "⚀","⚁","⚂",
-    "⚃","⚄","⚅"
+const diceFaces = [
+    "⚀","⚁","⚂","⚃","⚄","⚅"
 ];
 
-let selectedAvatar=[
-    "😀",
-    "😎",
-    "🤠"
+let selectedAvatar = [0,1,2,3,4];
+
+let botPlayers = [
+    false,
+    false,
+    false,
+    false,
+    false
 ];
 
-let players=[];
-let ladders={};
-let snakes={};
+let playerCount = 2;
 
-let currentPlayer=0;
-let rolling=false;
-let gameFinished=false;
+let players = [];
 
+let ladders = {};
+let snakes = {};
 
-/* =====================================
-   AVATARES
-===================================== */
+let currentPlayer = 0;
 
-function createAvatarOptions(){
-
-    for(let p=0;p<3;p++){
-
-        const box=
-            document.getElementById(
-                "avatars"+p
-            );
-
-        box.innerHTML="";
+let rolling = false;
+let gameFinished = false;
 
 
-        avatars.forEach(a=>{
-
-            const button=
-                document.createElement(
-                    "button"
-                );
-
-            button.className=
-                "avatarOption";
-
-            button.textContent=a;
-
-
-            if(
-                a===selectedAvatar[p]
-            ){
-
-                button.classList.add(
-                    "selected"
-                );
-
-            }
-
-
-            button.onclick=()=>{
-
-                selectedAvatar[p]=a;
-
-                document.getElementById(
-                    "setupAvatar"+p
-                ).textContent=a;
-
-                createAvatarOptions();
-
-            };
-
-
-            box.appendChild(button);
-
-        });
-
-    }
-
-}
-
-createAvatarOptions();
-
-
-/* =====================================
-   PANTALLAS
-===================================== */
-
-function show(id){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(
-            s=>s.classList.remove("active")
-        );
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-}
-
-
-function goMenu(){
-
-    rolling=false;
-    gameFinished=false;
-
-    show("menu");
-
-}
-
-
-function showRules(){
-
-alert(
-`📖🎮 REGLAS
-
-👥 Juegan 3 jugadores.
-
-1️⃣ Todos comienzan en 1.
-
-🎲 Tira un dado de 6 caras.
-
-➡️ Avanza según el resultado.
-
-🪜 Si caes en una escalera, subes.
-
-🐍 Si caes en una serpiente, bajas.
-
-6️⃣ Sacar 6 NO da otro turno.
-
-🏁 Debes llegar EXACTAMENTE al 100.
-
-↩️ Si te pasas, rebotas hacia atrás.
-
-Ejemplo:
-97 + 5 = 98
-
-🪜 5 escaleras.
-
-🐍 6 serpientes.
-
-🚫 No están en 1 ni 100.
-
-🚫 No comparten casilla.
-
-🚫 No son horizontales.
-
-🗺️ Cada partida tiene un mapa diferente.
-
-🏆 ¡El primero en llegar al 100 gana!`
-);
-
-}
-
-
-/* =====================================
+/* =========================================================
    UTILIDADES
-===================================== */
+========================================================= */
 
 function sleep(ms){
-
     return new Promise(
-        resolve=>setTimeout(
-            resolve,
-            ms
-        )
+        resolve => setTimeout(resolve,ms)
     );
-
 }
-
 
 function random(min,max){
-
     return Math.floor(
-        Math.random()*
-        (max-min+1)
+        Math.random()*(max-min+1)
     )+min;
-
 }
 
-
 function escapeHTML(text){
-
-    return text
+    return String(text)
         .replaceAll("&","&amp;")
         .replaceAll("<","&lt;")
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
-
 }
 
 
-/* =====================================
-   MAPA
-===================================== */
+/* =========================================================
+   PANTALLAS
+========================================================= */
 
-function getRow(n){
+function show(id){
 
-    return Math.floor(
-        (n-1)/10
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen =>
+            screen.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+}
+
+function goMenu(){
+
+    rolling = false;
+    gameFinished = false;
+
+    show("menu");
+
+    createPlayerSetup();
+}
+
+function showRules(){
+
+    alert(
+        "🐍 SERPIENTES & ESCALERAS\n\n"+
+        "🎲 Tira el dado y avanza.\n\n"+
+        "🪜 Si caes en una escalera, subes.\n\n"+
+        "🐍 Si caes en una serpiente, bajas.\n\n"+
+        "🏆 Debes llegar exactamente al 100.\n\n"+
+        "🤖 Los jugadores marcados como BOT juegan automáticamente."
     );
-
 }
 
 
-function getCol(n){
+/* =========================================================
+   CANTIDAD
+========================================================= */
 
-    const row=getRow(n);
+document
+.querySelectorAll(".countButton")
+.forEach(button => {
 
-    const index=
-        (n-1)%10;
+    button.addEventListener(
+        "click",
+        () => {
 
-    return row%2===0
-        ?index
-        :9-index;
+            playerCount =
+                Number(button.dataset.count);
 
-}
+            playerCount =
+                Math.max(
+                    2,
+                    Math.min(
+                        5,
+                        playerCount
+                    )
+                );
+
+            document
+            .querySelectorAll(".countButton")
+            .forEach(b =>
+                b.classList.remove("selected")
+            );
+
+            button.classList.add("selected");
+
+            createPlayerSetup();
+        }
+    );
+});
 
 
-function validDirection(a,b){
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
 
-    return Math.abs(
-        getRow(a)-
-        getRow(b)
-    )>=2;
+function createPlayerSetup(){
 
-}
+    const container =
+        document.getElementById(
+            "playerSetup"
+        );
+
+    container.innerHTML = "";
+
+    for(let i=0;i<playerCount;i++){
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "setupPlayer";
 
 
-function tooClose(a,b,used){
+        const avatar =
+            document.createElement("button");
 
-    for(
-        const p of used
-    ){
+        avatar.className =
+            "setupAvatar";
 
-        if(
-            Math.abs(a-p)<=2 ||
-            Math.abs(b-p)<=2
-        ){
+        avatar.textContent =
+            avatars[selectedAvatar[i]];
 
-            return true;
 
+        const input =
+            document.createElement("input");
+
+        input.className =
+            "nameInput";
+
+        input.id =
+            `name${i}`;
+
+        input.placeholder =
+            `Jugador ${i+1}`;
+
+        input.maxLength = 12;
+
+
+        const bot =
+            document.createElement("button");
+
+        bot.className =
+            "botButton";
+
+        bot.textContent =
+            botPlayers[i]
+                ? "🤖"
+                : "👤";
+
+
+        if(botPlayers[i]){
+            bot.classList.add("active");
         }
 
+
+        bot.addEventListener(
+            "click",
+            () => {
+
+                botPlayers[i] =
+                    !botPlayers[i];
+
+                bot.classList.toggle(
+                    "active",
+                    botPlayers[i]
+                );
+
+                bot.textContent =
+                    botPlayers[i]
+                        ? "🤖"
+                        : "👤";
+            }
+        );
+
+
+        const avatarWrap =
+            document.createElement("div");
+
+        avatarWrap.className =
+            "avatarWrap";
+
+
+        const options =
+            document.createElement("div");
+
+        options.className =
+            "avatarOptions";
+
+
+        for(let a=0;a<avatars.length;a++){
+
+            const option =
+                document.createElement("button");
+
+            option.className =
+                "avatarOption";
+
+            option.textContent =
+                avatars[a];
+
+
+            if(a===selectedAvatar[i]){
+                option.classList.add(
+                    "selected"
+                );
+            }
+
+
+            option.addEventListener(
+                "click",
+                () => {
+
+                    selectedAvatar[i] = a;
+
+                    avatar.textContent =
+                        avatars[a];
+
+                    options
+                    .querySelectorAll(
+                        ".avatarOption"
+                    )
+                    .forEach(x =>
+                        x.classList.remove(
+                            "selected"
+                        )
+                    );
+
+                    option.classList.add(
+                        "selected"
+                    );
+
+                    option.scrollIntoView({
+                        behavior:"smooth",
+                        block:"nearest",
+                        inline:"center"
+                    });
+                }
+            );
+
+
+            options.appendChild(option);
+        }
+
+
+        const arrow =
+            document.createElement("button");
+
+        arrow.className =
+            "avatarArrow";
+
+        arrow.textContent =
+            "▶";
+
+
+        arrow.addEventListener(
+            "click",
+            () => {
+
+                options.scrollBy({
+                    left:150,
+                    behavior:"smooth"
+                });
+            }
+        );
+
+
+        avatarWrap.appendChild(options);
+        avatarWrap.appendChild(arrow);
+
+        row.appendChild(avatar);
+        row.appendChild(input);
+        row.appendChild(bot);
+        row.appendChild(avatarWrap);
+
+        container.appendChild(row);
     }
-
-    return false;
-
 }
 
 
-/* =====================================
-   GENERADOR
-===================================== */
+/* =========================================================
+   MAPA
+========================================================= */
+
+function getRow(cell){
+    return Math.floor((cell-1)/10);
+}
+
+function getCol(cell){
+
+    const row =
+        getRow(cell);
+
+    const position =
+        (cell-1)%10;
+
+    return row%2===0
+        ? position
+        : 9-position;
+}
+
+function tooClose(a,b){
+    return Math.abs(a-b)<7;
+}
+
 
 function generateMap(){
 
-    const MAX_TRIES=300;
+    ladders = {};
+    snakes = {};
+
+    let tries = 0;
 
 
-    for(
-        let attempt=0;
-        attempt<MAX_TRIES;
-        attempt++
+    /* ESCALERAS */
+
+    while(
+        Object.keys(ladders).length < 5 &&
+        tries < 1500
     ){
 
-        const newLadders={};
-        const newSnakes={};
+        tries++;
 
-        const occupied=
-            new Set([1,100]);
+        const a =
+            random(2,75);
 
-        const used=[
-            1,
-            100
-        ];
-
-
-        /* ESCALERAS */
-
-        let tries=0;
-
-
-        while(
-            Object.keys(newLadders).length<5 &&
-            tries<1000
-        ){
-
-            tries++;
-
-
-            const start=
-                random(2,82);
-
-            const end=
-                random(
-                    start+8,
-                    99
-                );
-
-
-            if(
-                occupied.has(start) ||
-                occupied.has(end)
-            ){
-                continue;
-            }
-
-
-            if(
-                !validDirection(
-                    start,
-                    end
-                )
-            ){
-                continue;
-            }
-
-
-            if(
-                tooClose(
-                    start,
-                    end,
-                    used
-                )
-            ){
-                continue;
-            }
-
-
-            newLadders[start]=end;
-
-            occupied.add(start);
-            occupied.add(end);
-
-            used.push(start,end);
-
-        }
+        const b =
+            random(a+8,99);
 
 
         if(
-            Object.keys(newLadders).length!==5
+            b>99 ||
+            tooClose(a,b) ||
+            a===1 ||
+            a===100 ||
+            b===1 ||
+            b===100
         ){
-
             continue;
-
         }
 
 
-        /* SERPIENTES */
-
-        tries=0;
+        let conflict = false;
 
 
-        while(
-            Object.keys(newSnakes).length<6 &&
-            tries<1500
-        ){
-
-            tries++;
-
-
-            const head=
-                random(18,99);
-
-            const tail=
-                random(
-                    2,
-                    head-8
-                );
-
+        for(const [x,y]
+            of Object.entries(ladders)){
 
             if(
-                occupied.has(head) ||
-                occupied.has(tail)
+                tooClose(a,Number(x)) ||
+                tooClose(b,Number(y)) ||
+                tooClose(a,Number(y)) ||
+                tooClose(b,Number(x))
             ){
-                continue;
+                conflict = true;
+                break;
             }
-
-
-            if(
-                !validDirection(
-                    head,
-                    tail
-                )
-            ){
-                continue;
-            }
-
-
-            if(
-                tooClose(
-                    head,
-                    tail,
-                    used
-                )
-            ){
-                continue;
-            }
-
-
-            newSnakes[head]=tail;
-
-            occupied.add(head);
-            occupied.add(tail);
-
-            used.push(head,tail);
-
         }
 
 
-        if(
-            Object.keys(newSnakes).length!==6
-        ){
+        if(conflict) continue;
 
-            continue;
 
+        for(const [x,y]
+            of Object.entries(snakes)){
+
+            if(
+                tooClose(a,Number(x)) ||
+                tooClose(b,Number(y)) ||
+                tooClose(a,Number(y)) ||
+                tooClose(b,Number(x))
+            ){
+                conflict = true;
+                break;
+            }
         }
 
 
-        ladders=newLadders;
-        snakes=newSnakes;
+        if(conflict) continue;
 
-        return;
-
+        ladders[a] = b;
     }
 
 
-    /* FALLBACK */
+    /* SERPIENTES */
 
-    ladders={
-        4:25,
-        17:38,
-        32:53,
-        52:74,
-        73:95
-    };
+    tries = 0;
 
 
-    snakes={
-        35:18,
-        46:28,
-        61:43,
-        68:49,
-        84:65,
-        97:79
-    };
+    while(
+        Object.keys(snakes).length < 6 &&
+        tries < 2000
+    ){
 
+        tries++;
+
+        const a =
+            random(25,99);
+
+        const b =
+            random(2,a-8);
+
+
+        if(
+            b<2 ||
+            b>=a ||
+            a===100 ||
+            tooClose(a,b)
+        ){
+            continue;
+        }
+
+
+        let conflict = false;
+
+
+        for(const [x,y]
+            of Object.entries(ladders)){
+
+            if(
+                tooClose(a,Number(x)) ||
+                tooClose(b,Number(y)) ||
+                tooClose(a,Number(y)) ||
+                tooClose(b,Number(x))
+            ){
+                conflict = true;
+                break;
+            }
+        }
+
+
+        if(conflict) continue;
+
+
+        for(const [x,y]
+            of Object.entries(snakes)){
+
+            if(
+                tooClose(a,Number(x)) ||
+                tooClose(b,Number(y)) ||
+                tooClose(a,Number(y)) ||
+                tooClose(b,Number(x))
+            ){
+                conflict = true;
+                break;
+            }
+        }
+
+
+        if(conflict) continue;
+
+        snakes[a] = b;
+    }
+
+
+    /* RESPALDO */
+
+    if(
+        Object.keys(ladders).length < 5
+    ){
+
+        ladders = {
+            4:14,
+            9:31,
+            20:38,
+            28:54,
+            51:72
+        };
+    }
+
+
+    if(
+        Object.keys(snakes).length < 6
+    ){
+
+        snakes = {
+            17:7,
+            36:16,
+            48:26,
+            62:43,
+            79:59,
+            96:74
+        };
+    }
 }
 
 
-/* =====================================
-   POSICIÓN
-===================================== */
+/* =========================================================
+   POSICIONES
+========================================================= */
 
-function cellPosition(n){
+function cellPosition(cell){
 
-    const row=getRow(n);
-    const col=getCol(n);
+    const row =
+        getRow(cell);
 
-    return{
+    const col =
+        getCol(cell);
 
-        x:
-            col*10+5,
-
-        y:
-            100-
-            (row*10+5)
-
+    return {
+        x:col*10+5,
+        y:(9-row)*10+5
     };
-
 }
 
 
-/* =====================================
+/* =========================================================
    TABLERO
-===================================== */
+========================================================= */
 
 function buildBoard(){
 
-    const board=
+    const board =
         document.getElementById(
             "board"
         );
 
-
-    board
-        .querySelectorAll(
-            ".cell,.token"
-        )
-        .forEach(
-            e=>e.remove()
-        );
+    board.innerHTML = "";
 
 
-    const svg=
-        document.getElementById(
-            "connections"
-        );
+    for(let n=1;n<=100;n++){
 
-    svg.innerHTML="";
+        const cell =
+            document.createElement("div");
 
-
-    for(
-        let n=1;
-        n<=100;
-        n++
-    ){
-
-        const row=getRow(n);
-        const col=getCol(n);
+        cell.className =
+            "cell";
 
 
-        const cell=
-            document.createElement(
-                "div"
-            );
+        if(n===1){
+            cell.classList.add("start");
+        }
 
 
-        cell.className="cell";
+        if(n===100){
+            cell.classList.add("finish");
+        }
 
 
-        if(n===1)
-            cell.classList.add(
-                "start"
-            );
+        const row =
+            getRow(n);
+
+        const col =
+            getCol(n);
 
 
-        if(n===100)
-            cell.classList.add(
-                "finish"
-            );
+        cell.style.left =
+            `${col*10}%`;
 
+        cell.style.top =
+            `${(9-row)*10}%`;
 
-        cell.textContent=n;
-
-
-        cell.style.left=
-            col*10+"%";
-
-
-        cell.style.top=
-            (9-row)*10+"%";
-
+        cell.textContent =
+            n;
 
         board.appendChild(cell);
-
     }
 
 
-    for(
-        const [a,b]
-        of Object.entries(ladders)
-    ){
+    const svg =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+        );
+
+    svg.classList.add(
+        "connections"
+    );
+
+    svg.setAttribute(
+        "viewBox",
+        "0 0 100 100"
+    );
+
+
+    for(const [from,to]
+        of Object.entries(ladders)){
 
         drawLadder(
-            Number(a),
-            Number(b)
+            svg,
+            Number(from),
+            Number(to)
         );
-
     }
 
 
-    for(
-        const [a,b]
-        of Object.entries(snakes)
-    ){
+    for(const [from,to]
+        of Object.entries(snakes)){
 
         drawSnake(
-            Number(a),
-            Number(b)
+            svg,
+            Number(from),
+            Number(to)
         );
-
     }
 
+
+    board.appendChild(svg);
+
+
+    players.forEach(
+        (player,i) => {
+
+            const token =
+                document.createElement(
+                    "div"
+                );
+
+            token.id =
+                `token${i}`;
+
+            token.className =
+                "token";
+
+            token.style.background =
+                player.color;
+
+            token.textContent =
+                player.avatar;
+
+            board.appendChild(token);
+        }
+    );
 }
 
 
-/* =====================================
-   ESCALERA
-===================================== */
+/* =========================================================
+   ESCALERA REAL
+========================================================= */
 
-function drawLadder(start,end){
+function drawLadder(svg,from,to){
 
-    const svg=
-        document.getElementById(
-            "connections"
-        );
+    const a =
+        cellPosition(from);
 
-
-    const a=cellPosition(start);
-    const b=cellPosition(end);
+    const b =
+        cellPosition(to);
 
 
-    const x1=a.x*10;
-    const y1=a.y*10;
+    const dx =
+        b.x-a.x;
 
-    const x2=b.x*10;
-    const y2=b.y*10;
-
-
-    const dx=x2-x1;
-    const dy=y2-y1;
+    const dy =
+        b.y-a.y;
 
 
-    const len=
+    const len =
         Math.sqrt(
-            dx*dx+
-            dy*dy
+            dx*dx+dy*dy
         );
 
 
-    const nx=-dy/len;
-    const ny=dx/len;
+    const nx =
+        -dy/len*1.35;
+
+    const ny =
+        dx/len*1.35;
 
 
-    const offset=7;
+    const group =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "g"
+        );
 
 
-    const ns=
-        "http://www.w3.org/2000/svg";
+    const rail1 =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+    const rail2 =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
 
 
-    function line(
-        x1,y1,x2,y2,
-        color,width
-    ){
+    rail1.setAttribute("x1",a.x+nx);
+    rail1.setAttribute("y1",a.y+ny);
+    rail1.setAttribute("x2",b.x+nx);
+    rail1.setAttribute("y2",b.y+ny);
 
-        const l=
+    rail2.setAttribute("x1",a.x-nx);
+    rail2.setAttribute("y1",a.y-ny);
+    rail2.setAttribute("x2",b.x-nx);
+    rail2.setAttribute("y2",b.y-ny);
+
+
+    rail1.setAttribute("stroke","#8b5a2b");
+    rail2.setAttribute("stroke","#8b5a2b");
+
+    rail1.setAttribute("stroke-width","1.5");
+    rail2.setAttribute("stroke-width","1.5");
+
+    rail1.setAttribute("stroke-linecap","round");
+    rail2.setAttribute("stroke-linecap","round");
+
+
+    group.appendChild(rail1);
+    group.appendChild(rail2);
+
+
+    const steps =
+        Math.max(
+            2,
+            Math.floor(len/7)
+        );
+
+
+    for(let i=1;i<steps;i++){
+
+        const t =
+            i/steps;
+
+        const x =
+            a.x+dx*t;
+
+        const y =
+            a.y+dy*t;
+
+
+        const rung =
             document.createElementNS(
-                ns,
+                "http://www.w3.org/2000/svg",
                 "line"
             );
 
 
-        l.setAttribute(
+        rung.setAttribute(
             "x1",
-            x1
+            x+nx
         );
 
-        l.setAttribute(
+        rung.setAttribute(
             "y1",
-            y1
+            y+ny
         );
 
-        l.setAttribute(
+        rung.setAttribute(
             "x2",
-            x2
+            x-nx
         );
 
-        l.setAttribute(
+        rung.setAttribute(
             "y2",
-            y2
+            y-ny
         );
 
 
-        l.setAttribute(
+        rung.setAttribute(
             "stroke",
-            color
+            "#8b5a2b"
         );
 
-        l.setAttribute(
+        rung.setAttribute(
             "stroke-width",
-            width
-        );
-
-        l.setAttribute(
-            "stroke-linecap",
-            "round"
+            "1.2"
         );
 
 
-        svg.appendChild(l);
-
+        group.appendChild(rung);
     }
 
 
-    const ax1=x1+nx*offset;
-    const ay1=y1+ny*offset;
-
-    const ax2=x2+nx*offset;
-    const ay2=y2+ny*offset;
-
-    const bx1=x1-nx*offset;
-    const by1=y1-ny*offset;
-
-    const bx2=x2-nx*offset;
-    const by2=y2-ny*offset;
-
-
-    line(
-        ax1+2,
-        ay1+2,
-        ax2+2,
-        ay2+2,
-        "#0006",
-        8
-    );
-
-    line(
-        bx1+2,
-        by1+2,
-        bx2+2,
-        by2+2,
-        "#0006",
-        8
-    );
-
-
-    line(
-        ax1,
-        ay1,
-        ax2,
-        ay2,
-        "#70491f",
-        7
-    );
-
-    line(
-        bx1,
-        by1,
-        bx2,
-        by2,
-        "#70491f",
-        7
-    );
-
-
-    const steps=
-        Math.max(
-            3,
-            Math.floor(
-                len/100
-            )
-        );
-
-
-    for(
-        let i=1;
-        i<steps;
-        i++
-    ){
-
-        const t=i/steps;
-
-        const cx=
-            x1+dx*t;
-
-        const cy=
-            y1+dy*t;
-
-
-        line(
-            cx+nx*offset,
-            cy+ny*offset,
-            cx-nx*offset,
-            cy-ny*offset,
-            "#a46c32",
-            6
-        );
-
-    }
-
+    svg.appendChild(group);
 }
 
 
-/* =====================================
-   SERPIENTE
-===================================== */
+/* =========================================================
+   🐍 SERPIENTE REAL
+========================================================= */
 
-function drawSnake(head,tail){
+function drawSnake(svg,from,to){
 
-    const svg=
-        document.getElementById(
-            "connections"
+    const a =
+        cellPosition(from);
+
+    const b =
+        cellPosition(to);
+
+
+    const dx =
+        b.x-a.x;
+
+    const dy =
+        b.y-a.y;
+
+
+    const length =
+        Math.sqrt(
+            dx*dx+dy*dy
         );
 
 
-    const a=cellPosition(head);
-    const b=cellPosition(tail);
+    const nx =
+        -dy/length;
+
+    const ny =
+        dx/length;
 
 
-    const x1=a.x*10;
-    const y1=a.y*10;
+    /*
+       Curva principal.
+       Se construyen varios puntos para que
+       el cuerpo parezca una serpiente y no
+       una línea que se arrepintió de existir.
+    */
 
-    const x2=b.x*10;
-    const y2=b.y*10;
+    const points = [];
+
+    const segments =
+        Math.max(
+            8,
+            Math.floor(length/3)
+        );
 
 
-    const dx=x2-x1;
-    const dy=y2-y1;
-
-
-    const curve=
+    const amplitude =
         Math.min(
-            55,
+            6,
             Math.max(
-                25,
-                Math.abs(dx)*.15
+                3,
+                length*.08
             )
         );
 
 
-    const cx1=
-        x1-dy*.1;
+    for(let i=0;i<=segments;i++){
 
-    const cy1=
-        y1+curve;
+        const t =
+            i/segments;
 
-    const cx2=
-        x2+dy*.1;
+        const baseX =
+            a.x+dx*t;
 
-    const cy2=
-        y2-curve;
-
-
-    const path=
-        `M ${x1} ${y1}
-         C ${cx1} ${cy1},
-           ${cx2} ${cy2},
-           ${x2} ${y2}`;
+        const baseY =
+            a.y+dy*t;
 
 
-    const ns=
-        "http://www.w3.org/2000/svg";
+        const wave =
+            Math.sin(
+                t*Math.PI*3
+            ) * amplitude;
 
 
-    function makePath(
-        color,
-        width
-    ){
-
-        const p=
-            document.createElementNS(
-                ns,
-                "path"
-            );
-
-
-        p.setAttribute(
-            "d",
-            path
-        );
-
-        p.setAttribute(
-            "fill",
-            "none"
-        );
-
-        p.setAttribute(
-            "stroke",
-            color
-        );
-
-        p.setAttribute(
-            "stroke-width",
-            width
-        );
-
-        p.setAttribute(
-            "stroke-linecap",
-            "round"
-        );
-
-
-        svg.appendChild(p);
-
+        points.push({
+            x:baseX+nx*wave,
+            y:baseY+ny*wave
+        });
     }
 
 
-    makePath(
-        "#0006",
-        19
-    );
+    /*
+       Sombra del cuerpo
+    */
 
-    makePath(
-        "#477d43",
-        14
-    );
-
-    makePath(
-        "#78b65d",
-        4
-    );
-
-
-    const headCircle=
+    const shadow =
         document.createElementNS(
-            ns,
+            "http://www.w3.org/2000/svg",
+            "polyline"
+        );
+
+
+    shadow.setAttribute(
+        "points",
+        points.map(
+            p => `${p.x+0.7},${p.y+1}`
+        ).join(" ")
+    );
+
+
+    shadow.setAttribute(
+        "fill",
+        "none"
+    );
+
+    shadow.setAttribute(
+        "stroke",
+        "#0007"
+    );
+
+    shadow.setAttribute(
+        "stroke-width",
+        "4.8"
+    );
+
+    shadow.setAttribute(
+        "stroke-linecap",
+        "round"
+    );
+
+    shadow.setAttribute(
+        "stroke-linejoin",
+        "round"
+    );
+
+
+    svg.appendChild(shadow);
+
+
+    /*
+       Cuerpo
+    */
+
+    const body =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "polyline"
+        );
+
+
+    body.setAttribute(
+        "points",
+        points.map(
+            p => `${p.x},${p.y}`
+        ).join(" ")
+    );
+
+
+    body.setAttribute(
+        "fill",
+        "none"
+    );
+
+    body.setAttribute(
+        "stroke",
+        "#238b45"
+    );
+
+    body.setAttribute(
+        "stroke-width",
+        "4"
+    );
+
+    body.setAttribute(
+        "stroke-linecap",
+        "round"
+    );
+
+    body.setAttribute(
+        "stroke-linejoin",
+        "round"
+    );
+
+
+    svg.appendChild(body);
+
+
+    /*
+       Línea clara sobre el cuerpo
+    */
+
+    const highlight =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "polyline"
+        );
+
+
+    highlight.setAttribute(
+        "points",
+        points.map(
+            p =>
+                `${p.x-nx*.8},${p.y-ny*.8}`
+        ).join(" ")
+    );
+
+
+    highlight.setAttribute(
+        "fill",
+        "none"
+    );
+
+    highlight.setAttribute(
+        "stroke",
+        "#58c878"
+    );
+
+    highlight.setAttribute(
+        "stroke-width",
+        "0.9"
+    );
+
+    highlight.setAttribute(
+        "stroke-linecap",
+        "round"
+    );
+
+
+    svg.appendChild(highlight);
+
+
+    /*
+       Cabeza
+    */
+
+    const head =
+        points[0];
+
+
+    const headGroup =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "g"
+        );
+
+
+    const headCircle =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
             "circle"
         );
 
 
     headCircle.setAttribute(
         "cx",
-        x1
+        head.x
     );
 
     headCircle.setAttribute(
         "cy",
-        y1
+        head.y
     );
 
     headCircle.setAttribute(
         "r",
-        "11"
+        "3.1"
     );
 
     headCircle.setAttribute(
         "fill",
-        "#477d43"
+        "#19743a"
+    );
+
+    headCircle.setAttribute(
+        "stroke",
+        "#0e4c27"
+    );
+
+    headCircle.setAttribute(
+        "stroke-width",
+        "0.6"
     );
 
 
-    svg.appendChild(
+    headGroup.appendChild(
         headCircle
     );
 
 
-    for(
-        const side of [-1,1]
-    ){
+    /*
+       Dirección de la cabeza
+    */
 
-        const eye=
-            document.createElementNS(
-                ns,
-                "circle"
-            );
+    const dirX =
+        (points[1].x-head.x);
 
+    const dirY =
+        (points[1].y-head.y);
 
-        eye.setAttribute(
-            "cx",
-            x1+side*4
-        );
-
-        eye.setAttribute(
-            "cy",
-            y1-3
-        );
-
-        eye.setAttribute(
-            "r",
-            "2.3"
-        );
-
-        eye.setAttribute(
-            "fill",
-            "white"
+    const dirLength =
+        Math.sqrt(
+            dirX*dirX+
+            dirY*dirY
         );
 
 
-        svg.appendChild(
-            eye
-        );
+    const ux =
+        dirX/dirLength;
+
+    const uy =
+        dirY/dirLength;
 
 
-        const pupil=
-            document.createElementNS(
-                ns,
-                "circle"
-            );
+    /*
+       Ojos
+    */
+
+    const eyeOffset = 1.25;
 
 
-        pupil.setAttribute(
-            "cx",
-            x1+side*4
-        );
-
-        pupil.setAttribute(
-            "cy",
-            y1-3
-        );
-
-        pupil.setAttribute(
-            "r",
-            "1"
-        );
-
-        pupil.setAttribute(
-            "fill",
-            "#111"
-        );
-
-
-        svg.appendChild(
-            pupil
-        );
-
-    }
-
-
-    const tongue=
+    const eye1 =
         document.createElementNS(
-            ns,
-            "line"
+            "http://www.w3.org/2000/svg",
+            "circle"
+        );
+
+    const eye2 =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle"
         );
 
 
-    tongue.setAttribute(
-        "x1",
-        x1
+    eye1.setAttribute(
+        "cx",
+        head.x+ux*1.7+nx*eyeOffset
     );
 
-    tongue.setAttribute(
-        "y1",
-        y1+9
+    eye1.setAttribute(
+        "cy",
+        head.y+uy*1.7+ny*eyeOffset
     );
 
-    tongue.setAttribute(
-        "x2",
-        x1
+
+    eye2.setAttribute(
+        "cx",
+        head.x+ux*1.7-nx*eyeOffset
     );
 
+    eye2.setAttribute(
+        "cy",
+        head.y+uy*1.7-ny*eyeOffset
+    );
+
+
+    eye1.setAttribute(
+        "r",
+        "0.75"
+    );
+
+    eye2.setAttribute(
+        "r",
+        "0.75"
+    );
+
+
+    eye1.setAttribute(
+        "fill",
+        "white"
+    );
+
+    eye2.setAttribute(
+        "fill",
+        "white"
+    );
+
+
+    headGroup.appendChild(eye1);
+    headGroup.appendChild(eye2);
+
+
+    /*
+       Pupilas
+    */
+
+    const pupil1 =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle"
+        );
+
+    const pupil2 =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle"
+        );
+
+
+    pupil1.setAttribute(
+        "cx",
+        head.x+ux*2+nx*eyeOffset
+    );
+
+    pupil1.setAttribute(
+        "cy",
+        head.y+uy*2+ny*eyeOffset
+    );
+
+
+    pupil2.setAttribute(
+        "cx",
+        head.x+ux*2-nx*eyeOffset
+    );
+
+    pupil2.setAttribute(
+        "cy",
+        head.y+uy*2-ny*eyeOffset
+    );
+
+
+    pupil1.setAttribute(
+        "r",
+        "0.35"
+    );
+
+    pupil2.setAttribute(
+        "r",
+        "0.35"
+    );
+
+
+    pupil1.setAttribute(
+        "fill",
+        "#111"
+    );
+
+    pupil2.setAttribute(
+        "fill",
+        "#111"
+    );
+
+
+    headGroup.appendChild(pupil1);
+    headGroup.appendChild(pupil2);
+
+
+    /*
+       Lengua bifurcada
+    */
+
+    const tongueStartX =
+        head.x+ux*3;
+
+    const tongueStartY =
+        head.y+uy*3;
+
+
+    const tongueEndX =
+        head.x+ux*5;
+
+    const tongueEndY =
+        head.y+uy*5;
+
+
+    const tongue =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path"
+        );
+
+
+    const forkX =
+        tongueEndX;
+
+    const forkY =
+        tongueEndY;
+
+
     tongue.setAttribute(
-        "y2",
-        y1+18
+        "d",
+        `
+        M ${tongueStartX} ${tongueStartY}
+        L ${forkX} ${forkY}
+        M ${forkX} ${forkY}
+        L ${forkX+nx*1.2} ${forkY+ny*1.2}
+        M ${forkX} ${forkY}
+        L ${forkX-nx*1.2} ${forkY-ny*1.2}
+        `
+    );
+
+
+    tongue.setAttribute(
+        "fill",
+        "none"
     );
 
     tongue.setAttribute(
         "stroke",
-        "#d63c54"
+        "#ef3340"
     );
 
     tongue.setAttribute(
         "stroke-width",
-        "2"
+        "0.65"
+    );
+
+    tongue.setAttribute(
+        "stroke-linecap",
+        "round"
     );
 
 
-    svg.appendChild(
+    headGroup.appendChild(
         tongue
     );
 
 
-    for(
-        let i=1;
-        i<5;
-        i++
-    ){
-
-        const t=i/5;
-
-
-        const dot=
-            document.createElementNS(
-                ns,
-                "circle"
-            );
-
-
-        dot.setAttribute(
-            "cx",
-            x1+dx*t
-        );
-
-        dot.setAttribute(
-            "cy",
-            y1+dy*t
-        );
-
-        dot.setAttribute(
-            "r",
-            "2"
-        );
-
-        dot.setAttribute(
-            "fill",
-            "#315a30"
-        );
-
-
-        svg.appendChild(
-            dot
-        );
-
-    }
-
+    svg.appendChild(
+        headGroup
+    );
 }
 
 
-/* =====================================
-   FICHAS
-===================================== */
+/* =========================================================
+   TOKENS
+========================================================= */
 
 function placeToken(index){
 
-    const board=
-        document.getElementById(
-            "board"
-        );
+    const player =
+        players[index];
 
-
-    let token=
-        document.getElementById(
-            "token"+index
-        );
-
-
-    if(!token){
-
-        token=
-            document.createElement(
-                "div"
-            );
-
-        token.id=
-            "token"+index;
-
-        token.className=
-            "token";
-
-
-        board.appendChild(
-            token
-        );
-
-    }
-
-
-    token.textContent=
-        players[index].avatar;
-
-
-    token.style.background=
-        colors[index];
-
-
-    const pos=
+    const pos =
         cellPosition(
-            players[index].position
+            player.pos
         );
 
 
-    const same=
-        players.filter(
-            p=>
-                p.position===
-                players[index].position
+    const offsets = [
+        [-5,-5],
+        [5,-5],
+        [-5,5],
+        [5,5],
+        [0,0]
+    ];
+
+
+    const offset =
+        offsets[index] || [0,0];
+
+
+    const token =
+        document.getElementById(
+            `token${index}`
         );
 
 
-    const sameIndex=
-        same.findIndex(
-            p=>
-                p.id===index
-        );
+    if(!token) return;
 
 
-    let ox=0;
-    let oy=0;
+    token.style.left =
+        `calc(${pos.x}% - ${offset[0]}%)`;
 
+    token.style.top =
+        `calc(${pos.y}% - ${offset[1]}%)`;
 
-    if(same.length>1){
-
-        const offsets=[
-            [-5,-5],
-            [5,-5],
-            [0,5]
-        ];
-
-
-        ox=
-            offsets[sameIndex][0];
-
-        oy=
-            offsets[sameIndex][1];
-
-    }
-
-
-    token.style.left=
-        `calc(${pos.x}% - 3.25% + ${ox}px)`;
-
-
-    token.style.top=
-        `calc(${pos.y}% - 3.25% + ${oy}px)`;
-
+    token.textContent =
+        player.avatar;
 }
 
 
-/* =====================================
+function updateTokens(){
+
+    players.forEach(
+        (_,i) =>
+            placeToken(i)
+    );
+}
+
+
+/* =========================================================
    PANEL
-===================================== */
+========================================================= */
 
 function updatePanel(){
 
-    const panel=
+    const panel =
         document.getElementById(
             "playersPanel"
         );
 
-
-    panel.innerHTML="";
+    panel.innerHTML = "";
 
 
     players.forEach(
-        (p,i)=>{
+        (player,i) => {
 
-            const box=
+            const box =
                 document.createElement(
                     "div"
                 );
 
-
-            box.className=
+            box.className =
                 "playerBox";
 
 
             if(i===currentPlayer){
-
                 box.classList.add(
                     "active"
                 );
-
             }
 
 
-            box.innerHTML=`
-
+            box.innerHTML = `
                 <div class="avatar">
-                    ${escapeHTML(p.avatar)}
+                    ${player.avatar}
                 </div>
 
                 <div class="playerName">
-                    ${escapeHTML(p.name)}
+                    ${escapeHTML(player.name)}
+                    ${player.bot ? " 🤖" : ""}
                 </div>
 
                 <div class="position">
-                    Casilla ${p.position}
+                    ${player.pos}/100
                 </div>
-
             `;
 
 
-            panel.appendChild(
-                box
-            );
-
+            panel.appendChild(box);
         }
     );
 
 
-    const current=
-        players[currentPlayer];
+    if(players.length){
+
+        const player =
+            players[currentPlayer];
 
 
-    document.getElementById(
-        "turnAvatar"
-    ).textContent=
-        current.avatar;
+        document.getElementById(
+            "turnAvatar"
+        ).textContent =
+            player.avatar;
 
 
-    document.getElementById(
-        "turnText"
-    ).textContent=
-        "Turno de "+
-        current.name;
-
+        document.getElementById(
+            "turnText"
+        ).textContent =
+            `Turno de ${player.name}${player.bot ? " 🤖" : ""}`;
+    }
 }
 
 
-/* =====================================
-   INICIAR PARTIDA
-===================================== */
+/* =========================================================
+   INICIAR
+========================================================= */
 
 function startGame(){
 
-    players=[];
+    players = [];
 
 
-    for(
-        let i=0;
-        i<3;
-        i++
-    ){
+    for(let i=0;i<playerCount;i++){
 
-        let name=
+        const input =
             document.getElementById(
-                "name"+i
-            ).value.trim();
+                `name${i}`
+            );
+
+
+        let name =
+            input
+                ? input.value.trim()
+                : "";
 
 
         if(!name){
-
-            name=
-                "Jugador "+
-                (i+1);
-
+            name =
+                `Jugador ${i+1}`;
         }
 
 
         players.push({
 
-            id:i,
-
             name:name,
 
             avatar:
-                selectedAvatar[i],
+                avatars[
+                    selectedAvatar[i]
+                ],
 
-            position:1
+            color:
+                colors[i],
 
+            pos:1,
+
+            bot:
+                !!botPlayers[i]
         });
-
     }
 
 
-    currentPlayer=0;
-
-    rolling=false;
-
-    gameFinished=false;
+    currentPlayer = 0;
+    rolling = false;
+    gameFinished = false;
 
 
     generateMap();
-
     buildBoard();
 
     show("game");
 
     updatePanel();
-
-
-    players.forEach(
-        (_,i)=>
-            placeToken(i)
-    );
+    updateTokens();
 
 
     document.getElementById(
         "dice"
-    ).textContent="⚀";
+    ).textContent =
+        "⚀";
 
 
-    document.getElementById(
-        "status"
-    ).textContent=
-        "Tira el dado 🎲";
+    const first =
+        players[0];
 
 
     document.getElementById(
         "rollButton"
-    ).disabled=false;
+    ).disabled =
+        first.bot;
 
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        first.bot
+            ? "🤖 El bot está pensando..."
+            : "🎲 Tira el dado";
+
+
+    activarFullscreen();
+
+
+    if(first.bot){
+
+        setTimeout(
+            botTurn,
+            800
+        );
+    }
 }
 
 
-/* =====================================
-   MOVIMIENTO
-===================================== */
+/* =========================================================
+   MOVER
+========================================================= */
 
-async function movePlayer(
-    index,
-    target
-){
+async function movePlayer(index,steps){
 
-    const player=
+    const player =
         players[index];
 
 
-    const step=
-        target>player.position
-        ?1
-        :-1;
+    for(let i=0;i<steps;i++){
+
+        if(player.pos>=100){
+            break;
+        }
 
 
-    while(
-        player.position!==target
-    ){
-
-        player.position+=step;
-
+        player.pos++;
 
         placeToken(index);
 
         updatePanel();
 
-
-        await sleep(85);
-
+        await sleep(100);
     }
-
 }
 
 
-/* =====================================
+/* =========================================================
    SERPIENTE / ESCALERA
-===================================== */
+========================================================= */
 
-async function checkConnection(
-    index
-){
+async function checkConnection(index){
 
-    const player=
+    const player =
         players[index];
 
 
-    const position=
-        player.position;
+    if(ladders[player.pos]){
 
+        const from =
+            player.pos;
 
-    if(
-        Object.prototype.hasOwnProperty.call(
-            ladders,
-            position
-        )
-    ){
-
-        const destination=
-            ladders[position];
+        const to =
+            ladders[player.pos];
 
 
         document.getElementById(
             "status"
-        ).textContent=
-            "🪜 ¡Subes a "+
-            destination+
-            "!";
+        ).textContent =
+            `🪜 ¡Escalera! ${from} → ${to}`;
 
 
-        await sleep(250);
+        await sleep(450);
 
 
-        await movePlayer(
-            index,
-            destination
-        );
+        player.pos =
+            to;
 
+
+        placeToken(index);
+        updatePanel();
+
+
+        await sleep(450);
 
         return;
-
     }
 
 
-    if(
-        Object.prototype.hasOwnProperty.call(
-            snakes,
-            position
-        )
-    ){
+    if(snakes[player.pos]){
 
-        const destination=
-            snakes[position];
+        const from =
+            player.pos;
+
+        const to =
+            snakes[player.pos];
 
 
         document.getElementById(
             "status"
-        ).textContent=
-            "🐍 ¡Bajas a "+
-            destination+
-            "!";
+        ).textContent =
+            `🐍 ¡SERPIENTE! ${from} → ${to}`;
 
 
-        await sleep(250);
+        await sleep(450);
 
 
-        await movePlayer(
-            index,
-            destination
-        );
+        player.pos =
+            to;
 
+
+        placeToken(index);
+        updatePanel();
+
+
+        await sleep(500);
     }
-
 }
 
 
-/* =====================================
-   DADO
-===================================== */
+/* =========================================================
+   TIRAR DADO
+========================================================= */
 
 async function rollDice(){
+
+    if(
+        rolling ||
+        gameFinished ||
+        !players.length
+    ){
+        return;
+    }
+
+
+    const player =
+        players[currentPlayer];
+
+
+    if(player.bot){
+        return;
+    }
+
+
+    rolling = true;
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled = true;
+
+
+    const dice =
+        document.getElementById(
+            "dice"
+        );
+
+
+    for(let i=0;i<10;i++){
+
+        const value =
+            random(1,6);
+
+        dice.textContent =
+            diceFaces[value-1];
+
+        await sleep(60);
+    }
+
+
+    const value =
+        random(1,6);
+
+
+    dice.textContent =
+        diceFaces[value-1];
+
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        `${player.name} sacó ${value}`;
+
+
+    await sleep(250);
+
+
+    await executeMove(
+        currentPlayer,
+        value
+    );
+}
+
+
+/* =========================================================
+   EJECUTAR MOVIMIENTO
+========================================================= */
+
+async function executeMove(index,value){
+
+    const player =
+        players[index];
+
+
+    const target =
+        player.pos+value;
+
+
+    /* SOBREPASA 100 */
+
+    if(target>100){
+
+        for(let i=0;i<value;i++){
+
+            if(player.pos>1){
+
+                player.pos--;
+
+                placeToken(index);
+
+                updatePanel();
+
+                await sleep(100);
+            }
+        }
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            `↩️ ${player.name} retrocede`;
+
+    }else{
+
+        await movePlayer(
+            index,
+            value
+        );
+    }
+
+
+    if(player.pos<100){
+
+        await checkConnection(index);
+    }
+
+
+    updatePanel();
+    updateTokens();
+
+
+    if(player.pos===100){
+
+        finishGame(index);
+
+        return;
+    }
+
+
+    rolling = false;
+
+    nextTurn();
+}
+
+
+/* =========================================================
+   SIGUIENTE TURNO
+========================================================= */
+
+function nextTurn(){
+
+    if(gameFinished){
+        return;
+    }
+
+
+    currentPlayer =
+        (currentPlayer+1)
+        % players.length;
+
+
+    updatePanel();
+    updateTokens();
+
+
+    const player =
+        players[currentPlayer];
+
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        player.bot
+            ? `🤖 ${player.name} está pensando...`
+            : `🎲 Turno de ${player.name}`;
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled =
+        player.bot;
+
+
+    if(player.bot){
+
+        setTimeout(
+            botTurn,
+            700
+        );
+    }
+}
+
+
+/* =========================================================
+   BOT
+========================================================= */
+
+async function botTurn(){
+
+    if(
+        gameFinished ||
+        rolling ||
+        !players.length
+    ){
+        return;
+    }
+
+
+    const player =
+        players[currentPlayer];
+
+
+    if(!player.bot){
+        return;
+    }
+
+
+    rolling = true;
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled = true;
+
+
+    const dice =
+        document.getElementById(
+            "dice"
+        );
+
+
+    for(let i=0;i<10;i++){
+
+        const value =
+            random(1,6);
+
+
+        dice.textContent =
+            diceFaces[value-1];
+
+
+        await sleep(75);
+    }
+
+
+    const value =
+        random(1,6);
+
+
+    dice.textContent =
+        diceFaces[value-1];
+
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        `🤖 ${player.name} sacó ${value}`;
+
+
+    await sleep(300);
+
+
+    await executeMove(
+        currentPlayer,
+        value
+    );
+}
+
+
+/* =========================================================
+   GANADOR
+========================================================= */
+
+function finishGame(index){
+
+    gameFinished = true;
+    rolling = false;
+
+
+    const player =
+        players[index];
+
+
+    document.getElementById(
+        "winTitle"
+    ).textContent =
+        `🏆 ¡${player.name} ganó!`;
+
+
+    document.getElementById(
+        "winText"
+    ).textContent =
+        `${player.avatar} llegó exactamente a la casilla 100.`;
+
+
+    show("win");
+}
+
+
+/* =========================================================
+   NUEVO MAPA
+========================================================= */
+
+function newMap(){
 
     if(
         rolling ||
@@ -2299,233 +2910,49 @@ async function rollDice(){
     }
 
 
-    rolling=true;
-
-
-    document.getElementById(
-        "rollButton"
-    ).disabled=true;
-
-
-    const dice=
-        document.getElementById(
-            "dice"
-        );
-
-
-    for(
-        let i=0;
-        i<9;
-        i++
-    ){
-
-        dice.textContent=
-            diceFaces[
-                random(1,6)-1
-            ];
-
-
-        await sleep(60);
-
-    }
-
-
-    const result=
-        random(1,6);
-
-
-    dice.textContent=
-        diceFaces[result-1];
-
-
-    const player=
-        players[currentPlayer];
-
-
-    let target=
-        player.position+
-        result;
-
-
-    /* REBOTE */
-
-    if(target>100){
-
-        const excess=
-            target-100;
-
-
-        target=
-            100-excess;
-
-    }
-
-
-    document.getElementById(
-        "status"
-    ).textContent=
-        player.name+
-        " sacó "+
-        result+
-        " 🎲";
-
-
-    await sleep(250);
-
-
-    await movePlayer(
-        currentPlayer,
-        target
-    );
-
-
-    if(
-        player.position===100
-    ){
-
-        finishGame();
-
-        return;
-
-    }
-
-
-    await checkConnection(
-        currentPlayer
-    );
-
-
-    if(
-        player.position===100
-    ){
-
-        finishGame();
-
-        return;
-
-    }
-
-
-    /* SIGUIENTE */
-
-    currentPlayer=
-        (currentPlayer+1)%3;
-
-
-    updatePanel();
-
-
-    document.getElementById(
-        "status"
-    ).textContent=
-        "Tira el dado 🎲";
-
-
-    rolling=false;
-
-
-    document.getElementById(
-        "rollButton"
-    ).disabled=false;
-
-}
-
-
-/* =====================================
-   GANADOR
-===================================== */
-
-function finishGame(){
-
-    gameFinished=true;
-
-    rolling=false;
-
-
-    const winner=
-        players[currentPlayer];
-
-
-    document.getElementById(
-        "winnerTitle"
-    ).textContent=
-        "¡"+
-        winner.name+
-        " GANÓ!";
-
-
-    document.getElementById(
-        "winnerText"
-    ).textContent=
-        winner.avatar+
-        " llegó exactamente a la casilla 100.";
-
-
-    show("win");
-
-}
-
-
-/* =====================================
-   NUEVO MAPA
-===================================== */
-
-function newMap(){
-
-    if(
-        players.length!==3
-    ){
-
-        startGame();
-
-        return;
-
-    }
-
-
-    players.forEach(
-        p=>p.position=1
-    );
-
-
-    currentPlayer=0;
-
-    rolling=false;
-
-    gameFinished=false;
-
-
     generateMap();
 
     buildBoard();
 
-    show("game");
+    updateTokens();
 
     updatePanel();
 
 
-    players.forEach(
-        (_,i)=>
-            placeToken(i)
-    );
-
-
-    document.getElementById(
-        "dice"
-    ).textContent="⚀";
-
-
     document.getElementById(
         "status"
-    ).textContent=
-        "Nuevo mapa 🎲";
-
-
-    document.getElementById(
-        "rollButton"
-    ).disabled=false;
-
+    ).textContent =
+        "🔄 ¡Nuevo tablero!";
 }
+
+
+/* =========================================================
+   FULLSCREEN
+========================================================= */
+
+function activarFullscreen(){
+
+    try{
+
+        if(
+            document.documentElement.requestFullscreen &&
+            !document.fullscreenElement
+        ){
+
+            document.documentElement
+                .requestFullscreen()
+                .catch(()=>{});
+        }
+
+    }catch(e){}
+}
+
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+createPlayerSetup();
 
 </script>
 
