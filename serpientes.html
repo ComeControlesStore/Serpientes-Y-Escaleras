@@ -1,0 +1,2869 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1,
+             maximum-scale=1,
+             user-scalable=no"
+>
+
+<title>Serpientes & Escaleras</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#070a10;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+
+/* =====================================
+   APP REALMENTE PARA CELULAR
+===================================== */
+
+.app{
+
+    width:100%;
+    max-width:360px;
+
+    height:100dvh;
+
+    margin:0 auto;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(
+        circle at 50% -10%,
+        #31456c,
+        #111827 48%,
+        #070a10
+    );
+}
+
+
+/* =====================================
+   PANTALLAS
+===================================== */
+
+.screen{
+
+    position:absolute;
+
+    inset:0;
+
+    display:none;
+
+    flex-direction:column;
+
+    width:100%;
+    height:100%;
+
+}
+
+.screen.active{
+    display:flex;
+}
+
+
+/* =====================================
+   MENU
+===================================== */
+
+#menu{
+
+    padding:
+        8px
+        8px
+        10px;
+
+    overflow:hidden;
+
+    justify-content:flex-start;
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    text-align:center;
+
+    flex-shrink:0;
+
+}
+
+.logo .emoji{
+
+    font-size:32px;
+
+    line-height:32px;
+
+}
+
+.logo h1{
+
+    margin:
+        3px
+        0
+        0;
+
+    font-size:21px;
+
+    line-height:20px;
+
+    font-weight:1000;
+
+}
+
+.logo p{
+
+    margin:
+        4px
+        0
+        7px;
+
+    color:#9eabc0;
+
+    font-size:8px;
+
+}
+
+
+/* TARJETA */
+
+.card{
+
+    width:100%;
+
+    background:#151e2e;
+
+    border:
+        1px solid
+        #2e3b54;
+
+    border-radius:12px;
+
+    padding:7px;
+
+    box-shadow:
+        0 8px 20px #0007;
+
+}
+
+
+/* TITULO */
+
+.card h2{
+
+    margin:
+        0
+        0
+        5px;
+
+    font-size:12px;
+
+}
+
+
+/* JUGADORES */
+
+.playerSetup{
+
+    display:grid;
+
+    gap:3px;
+
+}
+
+.setupPlayer{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+
+    background:#202a3d;
+
+    padding:3px;
+
+    border-radius:7px;
+
+}
+
+.setupAvatar{
+
+    width:29px;
+    height:29px;
+
+    flex-shrink:0;
+
+    border:0;
+
+    border-radius:7px;
+
+    background:#303d55;
+
+    font-size:16px;
+
+}
+
+.nameInput{
+
+    width:100%;
+
+    min-width:0;
+
+    border:0;
+
+    outline:0;
+
+    background:#111827;
+
+    color:white;
+
+    border-radius:6px;
+
+    padding:
+        6px
+        7px;
+
+    font-size:10px;
+
+}
+
+
+/* AVATARES */
+
+.avatarOptions{
+
+    display:flex;
+
+    gap:2px;
+
+    width:100%;
+
+    height:23px;
+
+    overflow:hidden;
+
+}
+
+.avatarOption{
+
+    width:22px;
+    height:22px;
+
+    flex-shrink:0;
+
+    border:
+        1px solid
+        #46536b;
+
+    border-radius:5px;
+
+    background:#29344a;
+
+    font-size:12px;
+
+    padding:0;
+
+}
+
+.avatarOption.selected{
+
+    border:
+        2px solid
+        #ffd84d;
+
+    background:#46536b;
+
+}
+
+
+/* BOTONES MENU */
+
+.mainButton{
+
+    width:100%;
+
+    border:0;
+
+    border-radius:8px;
+
+    padding:8px;
+
+    margin-top:5px;
+
+    background:#ffd84d;
+
+    color:#17120a;
+
+    font-size:10px;
+
+    font-weight:1000;
+
+    box-shadow:
+        0 2px 0
+        #b99520;
+
+}
+
+.secondaryButton{
+
+    width:100%;
+
+    border:
+        1px solid
+        #394862;
+
+    border-radius:8px;
+
+    padding:7px;
+
+    margin-top:4px;
+
+    background:#202b41;
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:900;
+
+}
+
+
+/* =====================================
+   JUEGO
+===================================== */
+
+#game{
+
+    padding:3px;
+
+}
+
+
+/* BARRA SUPERIOR */
+
+.top{
+
+    width:100%;
+
+    height:31px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+
+    flex-shrink:0;
+
+}
+
+.icon{
+
+    width:29px;
+    height:29px;
+
+    flex-shrink:0;
+
+    border:0;
+
+    border-radius:7px;
+
+    background:#202b41;
+
+    color:white;
+
+    font-size:13px;
+
+}
+
+.turn{
+
+    flex:1;
+
+    min-width:0;
+
+    height:29px;
+
+    background:#202b41;
+
+    border-radius:7px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+
+    padding:
+        0
+        6px;
+
+    font-size:8px;
+
+    font-weight:1000;
+
+    overflow:hidden;
+
+}
+
+#turnAvatar{
+
+    font-size:12px;
+
+}
+
+
+/* =====================================
+   TABLERO
+===================================== */
+
+#boardArea{
+
+    flex:1;
+
+    min-height:0;
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:2px 0;
+
+}
+
+#board{
+
+    width:min(
+        calc(100vw - 10px),
+        350px
+    );
+
+    max-width:100%;
+
+    aspect-ratio:1;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    background:#e7d09c;
+
+    box-shadow:
+        0 8px 18px #000b,
+        inset 0 0 0 2px #765e35;
+
+}
+
+
+/* CASILLAS */
+
+.cell{
+
+    position:absolute;
+
+    width:10%;
+
+    height:10%;
+
+    padding:1px;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:flex-end;
+
+    border:
+        1px solid
+        #927d5055;
+
+    color:#322817;
+
+    font-size:6px;
+
+    font-weight:1000;
+
+}
+
+.cell:nth-child(odd){
+    background:#fff1c7;
+}
+
+.cell:nth-child(even){
+    background:#e5cc94;
+}
+
+.start{
+    background:#92e39a!important;
+}
+
+.finish{
+    background:#ffd84d!important;
+}
+
+
+/* =====================================
+   SERPIENTES / ESCALERAS
+===================================== */
+
+.connections{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    z-index:4;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================
+   FICHAS
+===================================== */
+
+.token{
+
+    position:absolute;
+
+    width:6.5%;
+
+    height:6.5%;
+
+    max-width:22px;
+    max-height:22px;
+
+    border:
+        1.5px solid
+        white;
+
+    border-radius:50%;
+
+    z-index:20;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:10px;
+
+    box-shadow:
+        0 3px 5px #000b,
+        inset 0 0 5px #fff8;
+
+    transition:
+        left .1s,
+        top .1s;
+
+}
+
+
+/* =====================================
+   PANEL
+===================================== */
+
+.bottom{
+
+    width:100%;
+
+    flex-shrink:0;
+
+    background:#151e2e;
+
+    border:
+        1px solid
+        #2e3b54;
+
+    border-radius:10px;
+
+    padding:3px;
+
+}
+
+.players{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:2px;
+
+}
+
+.playerBox{
+
+    min-width:0;
+
+    background:#202a3d;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius:6px;
+
+    padding:2px;
+
+    text-align:center;
+
+}
+
+.playerBox.active{
+
+    border-color:#ffd84d;
+
+}
+
+.avatar{
+    font-size:11px;
+}
+
+.playerName{
+
+    font-size:6px;
+
+    font-weight:1000;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+
+}
+
+.position{
+
+    color:#98a5bb;
+
+    font-size:5px;
+
+}
+
+
+/* CONTROLES */
+
+.controls{
+
+    display:flex;
+
+    gap:3px;
+
+    margin-top:3px;
+
+}
+
+.dice{
+
+    width:37px;
+    height:37px;
+
+    flex-shrink:0;
+
+    border-radius:8px;
+
+    background:white;
+
+    color:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:19px;
+
+    box-shadow:
+        0 2px 0
+        #aeb3bd;
+
+}
+
+.roll{
+
+    flex:1;
+
+    margin:0;
+
+    padding:7px;
+
+    font-size:10px;
+
+}
+
+.roll:disabled{
+    opacity:.5;
+}
+
+.status{
+
+    height:10px;
+
+    margin-top:1px;
+
+    text-align:center;
+
+    color:#aeb9cc;
+
+    font-size:7px;
+
+}
+
+
+/* =====================================
+   GANADOR
+===================================== */
+
+#win{
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+.trophy{
+
+    font-size:55px;
+
+    animation:
+        bounce 1s
+        infinite alternate;
+
+}
+
+@keyframes bounce{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-8px);
+    }
+
+}
+
+.winTitle{
+
+    font-size:24px;
+
+    font-weight:1000;
+
+    margin:5px 0;
+
+}
+
+.winText{
+
+    color:#aeb9cc;
+
+    font-size:10px;
+
+}
+
+.winButtons{
+
+    width:100%;
+
+    max-width:280px;
+
+    margin-top:8px;
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- =====================================
+     MENU
+===================================== -->
+
+<section
+    id="menu"
+    class="screen active"
+>
+
+    <div class="logo">
+
+        <div class="emoji">
+            🎲🐍🪜
+        </div>
+
+        <h1>
+            SERPIENTES<br>
+            & ESCALERAS
+        </h1>
+
+        <p>
+            3 jugadores · mapa aleatorio · móvil
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            👥 Jugadores
+        </h2>
+
+
+        <!-- JUGADOR 1 -->
+
+        <div class="setupPlayer">
+
+            <button
+                class="setupAvatar"
+                id="setupAvatar0"
+            >
+                😀
+            </button>
+
+            <input
+                id="name0"
+                class="nameInput"
+                maxlength="12"
+                value="Jugador 1"
+                placeholder="Nombre"
+            >
+
+        </div>
+
+        <div
+            id="avatars0"
+            class="avatarOptions"
+        ></div>
+
+
+        <!-- JUGADOR 2 -->
+
+        <div class="setupPlayer">
+
+            <button
+                class="setupAvatar"
+                id="setupAvatar1"
+            >
+                😎
+            </button>
+
+            <input
+                id="name1"
+                class="nameInput"
+                maxlength="12"
+                value="Jugador 2"
+                placeholder="Nombre"
+            >
+
+        </div>
+
+        <div
+            id="avatars1"
+            class="avatarOptions"
+        ></div>
+
+
+        <!-- JUGADOR 3 -->
+
+        <div class="setupPlayer">
+
+            <button
+                class="setupAvatar"
+                id="setupAvatar2"
+            >
+                🤠
+            </button>
+
+            <input
+                id="name2"
+                class="nameInput"
+                maxlength="12"
+                value="Jugador 3"
+                placeholder="Nombre"
+            >
+
+        </div>
+
+        <div
+            id="avatars2"
+            class="avatarOptions"
+        ></div>
+
+
+        <button
+            class="mainButton"
+            onclick="startGame()"
+        >
+            🎲 CREAR MAPA Y JUGAR
+        </button>
+
+
+        <button
+            class="secondaryButton"
+            onclick="showRules()"
+        >
+            📖 REGLAS
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     JUEGO
+===================================== -->
+
+<section
+    id="game"
+    class="screen"
+>
+
+    <div class="top">
+
+        <button
+            class="icon"
+            onclick="goMenu()"
+        >
+            🏠
+        </button>
+
+
+        <div class="turn">
+
+            <span id="turnAvatar">
+                😀
+            </span>
+
+            <span id="turnText">
+                Turno
+            </span>
+
+        </div>
+
+
+        <button
+            class="icon"
+            onclick="newMap()"
+        >
+            🔄
+        </button>
+
+    </div>
+
+
+    <div id="boardArea">
+
+        <div id="board">
+
+            <svg
+                id="connections"
+                class="connections"
+                viewBox="0 0 1000 1000"
+                preserveAspectRatio="none"
+            ></svg>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom">
+
+        <div
+            id="playersPanel"
+            class="players"
+        ></div>
+
+
+        <div class="controls">
+
+            <div
+                id="dice"
+                class="dice"
+            >
+                ⚀
+            </div>
+
+
+            <button
+                id="rollButton"
+                class="mainButton roll"
+                onclick="rollDice()"
+            >
+                🎲 TIRAR DADO
+            </button>
+
+        </div>
+
+
+        <div
+            id="status"
+            class="status"
+        >
+            Tira el dado
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     GANADOR
+===================================== -->
+
+<section
+    id="win"
+    class="screen"
+>
+
+    <div class="trophy">
+        🏆
+    </div>
+
+
+    <div
+        id="winnerTitle"
+        class="winTitle"
+    >
+        ¡GANADOR!
+    </div>
+
+
+    <div
+        id="winnerText"
+        class="winText"
+    >
+        Llegaste al 100.
+    </div>
+
+
+    <div class="winButtons">
+
+        <button
+            class="mainButton"
+            onclick="newMap()"
+        >
+            🎲 NUEVO MAPA
+        </button>
+
+
+        <button
+            class="secondaryButton"
+            onclick="goMenu()"
+        >
+            🏠 MENÚ
+        </button>
+
+    </div>
+
+</section>
+
+</div>
+
+
+
+<script>
+
+/* =====================================
+   CONFIGURACIÓN
+===================================== */
+
+const colors=[
+    "#ff5368",
+    "#54a7ff",
+    "#8be35c"
+];
+
+const avatars=[
+    "😀","😎","🤠","👽",
+    "🐸","🐱","🐼","👻",
+    "🤖","🦊","🐵","🥷"
+];
+
+const diceFaces=[
+    "⚀","⚁","⚂",
+    "⚃","⚄","⚅"
+];
+
+let selectedAvatar=[
+    "😀",
+    "😎",
+    "🤠"
+];
+
+let players=[];
+let ladders={};
+let snakes={};
+
+let currentPlayer=0;
+let rolling=false;
+let gameFinished=false;
+
+
+/* =====================================
+   AVATARES
+===================================== */
+
+function createAvatarOptions(){
+
+    for(let p=0;p<3;p++){
+
+        const box=
+            document.getElementById(
+                "avatars"+p
+            );
+
+        box.innerHTML="";
+
+
+        avatars.forEach(a=>{
+
+            const button=
+                document.createElement(
+                    "button"
+                );
+
+            button.className=
+                "avatarOption";
+
+            button.textContent=a;
+
+
+            if(
+                a===selectedAvatar[p]
+            ){
+
+                button.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            button.onclick=()=>{
+
+                selectedAvatar[p]=a;
+
+                document.getElementById(
+                    "setupAvatar"+p
+                ).textContent=a;
+
+                createAvatarOptions();
+
+            };
+
+
+            box.appendChild(button);
+
+        });
+
+    }
+
+}
+
+createAvatarOptions();
+
+
+/* =====================================
+   PANTALLAS
+===================================== */
+
+function show(id){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(
+            s=>s.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+}
+
+
+function goMenu(){
+
+    rolling=false;
+    gameFinished=false;
+
+    show("menu");
+
+}
+
+
+function showRules(){
+
+alert(
+`📖 REGLAS
+
+👥 Juegan 3 jugadores.
+
+1️⃣ Todos comienzan en 1.
+
+🎲 Tira un dado de 6 caras.
+
+➡️ Avanza según el resultado.
+
+🪜 Si caes en una escalera, subes.
+
+🐍 Si caes en una serpiente, bajas.
+
+6️⃣ Sacar 6 NO da otro turno.
+
+🏁 Debes llegar EXACTAMENTE al 100.
+
+↩️ Si te pasas, rebotas hacia atrás.
+
+Ejemplo:
+97 + 5 = 98
+
+🪜 5 escaleras.
+
+🐍 6 serpientes.
+
+🚫 No están en 1 ni 100.
+
+🚫 No comparten casilla.
+
+🚫 No son horizontales.
+
+🗺️ Cada partida tiene un mapa diferente.`
+);
+
+}
+
+
+/* =====================================
+   UTILIDADES
+===================================== */
+
+function sleep(ms){
+
+    return new Promise(
+        resolve=>setTimeout(
+            resolve,
+            ms
+        )
+    );
+
+}
+
+
+function random(min,max){
+
+    return Math.floor(
+        Math.random()*
+        (max-min+1)
+    )+min;
+
+}
+
+
+function escapeHTML(text){
+
+    return text
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================
+   MAPA
+===================================== */
+
+function getRow(n){
+
+    return Math.floor(
+        (n-1)/10
+    );
+
+}
+
+
+function getCol(n){
+
+    const row=getRow(n);
+
+    const index=
+        (n-1)%10;
+
+    return row%2===0
+        ?index
+        :9-index;
+
+}
+
+
+function validDirection(a,b){
+
+    return Math.abs(
+        getRow(a)-
+        getRow(b)
+    )>=2;
+
+}
+
+
+function tooClose(a,b,used){
+
+    for(
+        const p of used
+    ){
+
+        if(
+            Math.abs(a-p)<=2 ||
+            Math.abs(b-p)<=2
+        ){
+
+            return true;
+
+        }
+
+    }
+
+    return false;
+
+}
+
+
+/* =====================================
+   GENERADOR
+===================================== */
+
+function generateMap(){
+
+    const MAX_TRIES=300;
+
+
+    for(
+        let attempt=0;
+        attempt<MAX_TRIES;
+        attempt++
+    ){
+
+        const newLadders={};
+        const newSnakes={};
+
+        const occupied=
+            new Set([1,100]);
+
+        const used=[
+            1,
+            100
+        ];
+
+
+        /* ESCALERAS */
+
+        let tries=0;
+
+
+        while(
+            Object.keys(newLadders).length<5 &&
+            tries<1000
+        ){
+
+            tries++;
+
+
+            const start=
+                random(2,82);
+
+            const end=
+                random(
+                    start+8,
+                    99
+                );
+
+
+            if(
+                occupied.has(start) ||
+                occupied.has(end)
+            ){
+                continue;
+            }
+
+
+            if(
+                !validDirection(
+                    start,
+                    end
+                )
+            ){
+                continue;
+            }
+
+
+            if(
+                tooClose(
+                    start,
+                    end,
+                    used
+                )
+            ){
+                continue;
+            }
+
+
+            newLadders[start]=end;
+
+            occupied.add(start);
+            occupied.add(end);
+
+            used.push(start,end);
+
+        }
+
+
+        if(
+            Object.keys(newLadders).length!==5
+        ){
+
+            continue;
+
+        }
+
+
+        /* SERPIENTES */
+
+        tries=0;
+
+
+        while(
+            Object.keys(newSnakes).length<6 &&
+            tries<1500
+        ){
+
+            tries++;
+
+
+            const head=
+                random(18,99);
+
+            const tail=
+                random(
+                    2,
+                    head-8
+                );
+
+
+            if(
+                occupied.has(head) ||
+                occupied.has(tail)
+            ){
+                continue;
+            }
+
+
+            if(
+                !validDirection(
+                    head,
+                    tail
+                )
+            ){
+                continue;
+            }
+
+
+            if(
+                tooClose(
+                    head,
+                    tail,
+                    used
+                )
+            ){
+                continue;
+            }
+
+
+            newSnakes[head]=tail;
+
+            occupied.add(head);
+            occupied.add(tail);
+
+            used.push(head,tail);
+
+        }
+
+
+        if(
+            Object.keys(newSnakes).length!==6
+        ){
+
+            continue;
+
+        }
+
+
+        ladders=newLadders;
+        snakes=newSnakes;
+
+        return;
+
+    }
+
+
+    /* FALLBACK */
+
+    ladders={
+        4:25,
+        17:38,
+        32:53,
+        52:74,
+        73:95
+    };
+
+
+    snakes={
+        35:18,
+        46:28,
+        61:43,
+        68:49,
+        84:65,
+        97:79
+    };
+
+}
+
+
+/* =====================================
+   POSICIÓN
+===================================== */
+
+function cellPosition(n){
+
+    const row=getRow(n);
+    const col=getCol(n);
+
+    return{
+
+        x:
+            col*10+5,
+
+        y:
+            100-
+            (row*10+5)
+
+    };
+
+}
+
+
+/* =====================================
+   TABLERO
+===================================== */
+
+function buildBoard(){
+
+    const board=
+        document.getElementById(
+            "board"
+        );
+
+
+    board
+        .querySelectorAll(
+            ".cell,.token"
+        )
+        .forEach(
+            e=>e.remove()
+        );
+
+
+    const svg=
+        document.getElementById(
+            "connections"
+        );
+
+    svg.innerHTML="";
+
+
+    for(
+        let n=1;
+        n<=100;
+        n++
+    ){
+
+        const row=getRow(n);
+        const col=getCol(n);
+
+
+        const cell=
+            document.createElement(
+                "div"
+            );
+
+
+        cell.className="cell";
+
+
+        if(n===1)
+            cell.classList.add(
+                "start"
+            );
+
+
+        if(n===100)
+            cell.classList.add(
+                "finish"
+            );
+
+
+        cell.textContent=n;
+
+
+        cell.style.left=
+            col*10+"%";
+
+
+        cell.style.top=
+            (9-row)*10+"%";
+
+
+        board.appendChild(cell);
+
+    }
+
+
+    for(
+        const [a,b]
+        of Object.entries(ladders)
+    ){
+
+        drawLadder(
+            Number(a),
+            Number(b)
+        );
+
+    }
+
+
+    for(
+        const [a,b]
+        of Object.entries(snakes)
+    ){
+
+        drawSnake(
+            Number(a),
+            Number(b)
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   ESCALERA COMPACTA
+===================================== */
+
+function drawLadder(start,end){
+
+    const svg=
+        document.getElementById(
+            "connections"
+        );
+
+
+    const a=cellPosition(start);
+    const b=cellPosition(end);
+
+
+    const x1=a.x*10;
+    const y1=a.y*10;
+
+    const x2=b.x*10;
+    const y2=b.y*10;
+
+
+    const dx=x2-x1;
+    const dy=y2-y1;
+
+
+    const len=
+        Math.sqrt(
+            dx*dx+
+            dy*dy
+        );
+
+
+    const nx=-dy/len;
+    const ny=dx/len;
+
+
+    /*
+       MUY PEQUEÑA
+    */
+
+    const offset=7;
+
+
+    const ns=
+        "http://www.w3.org/2000/svg";
+
+
+    function line(
+        x1,y1,x2,y2,
+        color,width
+    ){
+
+        const l=
+            document.createElementNS(
+                ns,
+                "line"
+            );
+
+
+        l.setAttribute(
+            "x1",
+            x1
+        );
+
+        l.setAttribute(
+            "y1",
+            y1
+        );
+
+        l.setAttribute(
+            "x2",
+            x2
+        );
+
+        l.setAttribute(
+            "y2",
+            y2
+        );
+
+
+        l.setAttribute(
+            "stroke",
+            color
+        );
+
+        l.setAttribute(
+            "stroke-width",
+            width
+        );
+
+        l.setAttribute(
+            "stroke-linecap",
+            "round"
+        );
+
+
+        svg.appendChild(l);
+
+    }
+
+
+    const ax1=x1+nx*offset;
+    const ay1=y1+ny*offset;
+
+    const ax2=x2+nx*offset;
+    const ay2=y2+ny*offset;
+
+    const bx1=x1-nx*offset;
+    const by1=y1-ny*offset;
+
+    const bx2=x2-nx*offset;
+    const by2=y2-ny*offset;
+
+
+    line(
+        ax1+2,
+        ay1+2,
+        ax2+2,
+        ay2+2,
+        "#0006",
+        8
+    );
+
+    line(
+        bx1+2,
+        by1+2,
+        bx2+2,
+        by2+2,
+        "#0006",
+        8
+    );
+
+
+    line(
+        ax1,
+        ay1,
+        ax2,
+        ay2,
+        "#70491f",
+        7
+    );
+
+    line(
+        bx1,
+        by1,
+        bx2,
+        by2,
+        "#70491f",
+        7
+    );
+
+
+    const steps=
+        Math.max(
+            3,
+            Math.floor(
+                len/100
+            )
+        );
+
+
+    for(
+        let i=1;
+        i<steps;
+        i++
+    ){
+
+        const t=i/steps;
+
+        const cx=
+            x1+dx*t;
+
+        const cy=
+            y1+dy*t;
+
+
+        line(
+            cx+nx*offset,
+            cy+ny*offset,
+            cx-nx*offset,
+            cy-ny*offset,
+            "#a46c32",
+            6
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   SERPIENTE COMPACTA
+===================================== */
+
+function drawSnake(head,tail){
+
+    const svg=
+        document.getElementById(
+            "connections"
+        );
+
+
+    const a=cellPosition(head);
+    const b=cellPosition(tail);
+
+
+    const x1=a.x*10;
+    const y1=a.y*10;
+
+    const x2=b.x*10;
+    const y2=b.y*10;
+
+
+    const dx=x2-x1;
+    const dy=y2-y1;
+
+
+    const curve=
+        Math.min(
+            55,
+            Math.max(
+                25,
+                Math.abs(dx)*.15
+            )
+        );
+
+
+    const cx1=
+        x1-dy*.1;
+
+    const cy1=
+        y1+curve;
+
+    const cx2=
+        x2+dy*.1;
+
+    const cy2=
+        y2-curve;
+
+
+    const path=
+        `M ${x1} ${y1}
+         C ${cx1} ${cy1},
+           ${cx2} ${cy2},
+           ${x2} ${y2}`;
+
+
+    const ns=
+        "http://www.w3.org/2000/svg";
+
+
+    function makePath(
+        color,
+        width
+    ){
+
+        const p=
+            document.createElementNS(
+                ns,
+                "path"
+            );
+
+
+        p.setAttribute(
+            "d",
+            path
+        );
+
+        p.setAttribute(
+            "fill",
+            "none"
+        );
+
+        p.setAttribute(
+            "stroke",
+            color
+        );
+
+        p.setAttribute(
+            "stroke-width",
+            width
+        );
+
+        p.setAttribute(
+            "stroke-linecap",
+            "round"
+        );
+
+
+        svg.appendChild(p);
+
+    }
+
+
+    makePath(
+        "#0006",
+        19
+    );
+
+    makePath(
+        "#477d43",
+        14
+    );
+
+    makePath(
+        "#78b65d",
+        4
+    );
+
+
+    /* CABEZA PEQUEÑA */
+
+    const headCircle=
+        document.createElementNS(
+            ns,
+            "circle"
+        );
+
+
+    headCircle.setAttribute(
+        "cx",
+        x1
+    );
+
+    headCircle.setAttribute(
+        "cy",
+        y1
+    );
+
+    headCircle.setAttribute(
+        "r",
+        "11"
+    );
+
+    headCircle.setAttribute(
+        "fill",
+        "#477d43"
+    );
+
+
+    svg.appendChild(
+        headCircle
+    );
+
+
+    /* OJOS */
+
+    for(
+        const side of [-1,1]
+    ){
+
+        const eye=
+            document.createElementNS(
+                ns,
+                "circle"
+            );
+
+
+        eye.setAttribute(
+            "cx",
+            x1+side*4
+        );
+
+        eye.setAttribute(
+            "cy",
+            y1-3
+        );
+
+        eye.setAttribute(
+            "r",
+            "2.3"
+        );
+
+        eye.setAttribute(
+            "fill",
+            "white"
+        );
+
+
+        svg.appendChild(
+            eye
+        );
+
+
+        const pupil=
+            document.createElementNS(
+                ns,
+                "circle"
+            );
+
+
+        pupil.setAttribute(
+            "cx",
+            x1+side*4
+        );
+
+        pupil.setAttribute(
+            "cy",
+            y1-3
+        );
+
+        pupil.setAttribute(
+            "r",
+            "1"
+        );
+
+        pupil.setAttribute(
+            "fill",
+            "#111"
+        );
+
+
+        svg.appendChild(
+            pupil
+        );
+
+    }
+
+
+    /* LENGUA */
+
+    const tongue=
+        document.createElementNS(
+            ns,
+            "line"
+        );
+
+
+    tongue.setAttribute(
+        "x1",
+        x1
+    );
+
+    tongue.setAttribute(
+        "y1",
+        y1+9
+    );
+
+    tongue.setAttribute(
+        "x2",
+        x1
+    );
+
+    tongue.setAttribute(
+        "y2",
+        y1+18
+    );
+
+    tongue.setAttribute(
+        "stroke",
+        "#d63c54"
+    );
+
+    tongue.setAttribute(
+        "stroke-width",
+        "2"
+    );
+
+
+    svg.appendChild(
+        tongue
+    );
+
+
+    /* MANCHAS */
+
+    for(
+        let i=1;
+        i<5;
+        i++
+    ){
+
+        const t=i/5;
+
+
+        const dot=
+            document.createElementNS(
+                ns,
+                "circle"
+            );
+
+
+        dot.setAttribute(
+            "cx",
+            x1+dx*t
+        );
+
+        dot.setAttribute(
+            "cy",
+            y1+dy*t
+        );
+
+        dot.setAttribute(
+            "r",
+            "2"
+        );
+
+        dot.setAttribute(
+            "fill",
+            "#315a30"
+        );
+
+
+        svg.appendChild(
+            dot
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   FICHAS
+===================================== */
+
+function placeToken(index){
+
+    const board=
+        document.getElementById(
+            "board"
+        );
+
+
+    let token=
+        document.getElementById(
+            "token"+index
+        );
+
+
+    if(!token){
+
+        token=
+            document.createElement(
+                "div"
+            );
+
+        token.id=
+            "token"+index;
+
+        token.className=
+            "token";
+
+
+        board.appendChild(
+            token
+        );
+
+    }
+
+
+    token.textContent=
+        players[index].avatar;
+
+
+    token.style.background=
+        colors[index];
+
+
+    const pos=
+        cellPosition(
+            players[index].position
+        );
+
+
+    const same=
+        players.filter(
+            p=>
+                p.position===
+                players[index].position
+        );
+
+
+    const sameIndex=
+        same.findIndex(
+            p=>
+                p.id===index
+        );
+
+
+    let ox=0;
+    let oy=0;
+
+
+    if(same.length>1){
+
+        const offsets=[
+            [-5,-5],
+            [5,-5],
+            [0,5]
+        ];
+
+
+        ox=
+            offsets[sameIndex][0];
+
+        oy=
+            offsets[sameIndex][1];
+
+    }
+
+
+    token.style.left=
+        `calc(${pos.x}% - 3.25% + ${ox}px)`;
+
+
+    token.style.top=
+        `calc(${pos.y}% - 3.25% + ${oy}px)`;
+
+}
+
+
+/* =====================================
+   PANEL
+===================================== */
+
+function updatePanel(){
+
+    const panel=
+        document.getElementById(
+            "playersPanel"
+        );
+
+
+    panel.innerHTML="";
+
+
+    players.forEach(
+        (p,i)=>{
+
+            const box=
+                document.createElement(
+                    "div"
+                );
+
+
+            box.className=
+                "playerBox";
+
+
+            if(i===currentPlayer){
+
+                box.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            box.innerHTML=`
+
+                <div class="avatar">
+                    ${escapeHTML(p.avatar)}
+                </div>
+
+                <div class="playerName">
+                    ${escapeHTML(p.name)}
+                </div>
+
+                <div class="position">
+                    Casilla ${p.position}
+                </div>
+
+            `;
+
+
+            panel.appendChild(
+                box
+            );
+
+        }
+    );
+
+
+    const current=
+        players[currentPlayer];
+
+
+    document.getElementById(
+        "turnAvatar"
+    ).textContent=
+        current.avatar;
+
+
+    document.getElementById(
+        "turnText"
+    ).textContent=
+        "Turno de "+
+        current.name;
+
+}
+
+
+/* =====================================
+   INICIAR PARTIDA
+===================================== */
+
+function startGame(){
+
+    players=[];
+
+
+    for(
+        let i=0;
+        i<3;
+        i++
+    ){
+
+        let name=
+            document.getElementById(
+                "name"+i
+            ).value.trim();
+
+
+        if(!name){
+
+            name=
+                "Jugador "+
+                (i+1);
+
+        }
+
+
+        players.push({
+
+            id:i,
+
+            name:name,
+
+            avatar:
+                selectedAvatar[i],
+
+            position:1
+
+        });
+
+    }
+
+
+    currentPlayer=0;
+
+    rolling=false;
+
+    gameFinished=false;
+
+
+    generateMap();
+
+    buildBoard();
+
+    show("game");
+
+    updatePanel();
+
+
+    players.forEach(
+        (_,i)=>
+            placeToken(i)
+    );
+
+
+    document.getElementById(
+        "dice"
+    ).textContent="⚀";
+
+
+    document.getElementById(
+        "status"
+    ).textContent=
+        "Tira el dado";
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled=false;
+
+}
+
+
+/* =====================================
+   MOVIMIENTO
+===================================== */
+
+async function movePlayer(
+    index,
+    target
+){
+
+    const player=
+        players[index];
+
+
+    const step=
+        target>player.position
+        ?1
+        :-1;
+
+
+    while(
+        player.position!==target
+    ){
+
+        player.position+=step;
+
+
+        placeToken(index);
+
+        updatePanel();
+
+
+        await sleep(85);
+
+    }
+
+}
+
+
+/* =====================================
+   SERPIENTE / ESCALERA
+===================================== */
+
+async function checkConnection(
+    index
+){
+
+    const player=
+        players[index];
+
+
+    const position=
+        player.position;
+
+
+    if(
+        Object.prototype.hasOwnProperty.call(
+            ladders,
+            position
+        )
+    ){
+
+        const destination=
+            ladders[position];
+
+
+        document.getElementById(
+            "status"
+        ).textContent=
+            "🪜 ¡Subes a "+
+            destination+
+            "!";
+
+
+        await sleep(250);
+
+
+        await movePlayer(
+            index,
+            destination
+        );
+
+
+        return;
+
+    }
+
+
+    if(
+        Object.prototype.hasOwnProperty.call(
+            snakes,
+            position
+        )
+    ){
+
+        const destination=
+            snakes[position];
+
+
+        document.getElementById(
+            "status"
+        ).textContent=
+            "🐍 ¡Bajas a "+
+            destination+
+            "!";
+
+
+        await sleep(250);
+
+
+        await movePlayer(
+            index,
+            destination
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   DADO
+===================================== */
+
+async function rollDice(){
+
+    if(
+        rolling ||
+        gameFinished
+    ){
+        return;
+    }
+
+
+    rolling=true;
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled=true;
+
+
+    const dice=
+        document.getElementById(
+            "dice"
+        );
+
+
+    for(
+        let i=0;
+        i<9;
+        i++
+    ){
+
+        dice.textContent=
+            diceFaces[
+                random(1,6)-1
+            ];
+
+
+        await sleep(60);
+
+    }
+
+
+    const result=
+        random(1,6);
+
+
+    dice.textContent=
+        diceFaces[result-1];
+
+
+    const player=
+        players[currentPlayer];
+
+
+    let target=
+        player.position+
+        result;
+
+
+    /* REBOTE */
+
+    if(target>100){
+
+        const excess=
+            target-100;
+
+
+        target=
+            100-excess;
+
+    }
+
+
+    document.getElementById(
+        "status"
+    ).textContent=
+        player.name+
+        " sacó "+
+        result;
+
+
+    await sleep(250);
+
+
+    await movePlayer(
+        currentPlayer,
+        target
+    );
+
+
+    if(
+        player.position===100
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    await checkConnection(
+        currentPlayer
+    );
+
+
+    if(
+        player.position===100
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    /* SIGUIENTE */
+
+    currentPlayer=
+        (currentPlayer+1)%3;
+
+
+    updatePanel();
+
+
+    document.getElementById(
+        "status"
+    ).textContent=
+        "Tira el dado";
+
+
+    rolling=false;
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled=false;
+
+}
+
+
+/* =====================================
+   GANADOR
+===================================== */
+
+function finishGame(){
+
+    gameFinished=true;
+
+    rolling=false;
+
+
+    const winner=
+        players[currentPlayer];
+
+
+    document.getElementById(
+        "winnerTitle"
+    ).textContent=
+        "¡"+
+        winner.name+
+        " GANÓ!";
+
+
+    document.getElementById(
+        "winnerText"
+    ).textContent=
+        winner.avatar+
+        " llegó exactamente a la casilla 100.";
+
+
+    show("win");
+
+}
+
+
+/* =====================================
+   NUEVO MAPA
+===================================== */
+
+function newMap(){
+
+    if(
+        players.length!==3
+    ){
+
+        startGame();
+
+        return;
+
+    }
+
+
+    players.forEach(
+        p=>p.position=1
+    );
+
+
+    currentPlayer=0;
+
+    rolling=false;
+
+    gameFinished=false;
+
+
+    generateMap();
+
+    buildBoard();
+
+    show("game");
+
+    updatePanel();
+
+
+    players.forEach(
+        (_,i)=>
+            placeToken(i)
+    );
+
+
+    document.getElementById(
+        "dice"
+    ).textContent="⚀";
+
+
+    document.getElementById(
+        "status"
+    ).textContent=
+        "Nuevo mapa. Tira el dado";
+
+
+    document.getElementById(
+        "rollButton"
+    ).disabled=false;
+
+}
+
+</script>
+
+</body>
+</html>
