@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +8,8 @@
     content="width=device-width,
              initial-scale=1,
              maximum-scale=1,
-             user-scalable=no"
+             user-scalable=no,
+             viewport-fit=cover"
 >
 
 <title>Serpientes & Escaleras</title>
@@ -38,24 +38,13 @@ input{
     font:inherit;
 }
 
-
-/* =====================================
-   APP REALMENTE PARA CELULAR
-===================================== */
-
 .app{
-
     width:100%;
     max-width:360px;
-
     height:100dvh;
-
     margin:0 auto;
-
     position:relative;
-
     overflow:hidden;
-
     background:
     radial-gradient(
         circle at 50% -10%,
@@ -65,24 +54,13 @@ input{
     );
 }
 
-
-/* =====================================
-   PANTALLAS
-===================================== */
-
 .screen{
-
     position:absolute;
-
     inset:0;
-
     display:none;
-
     flex-direction:column;
-
     width:100%;
     height:100%;
-
 }
 
 .screen.active{
@@ -95,270 +73,150 @@ input{
 ===================================== */
 
 #menu{
-
     padding:
-        8px
-        8px
-        10px;
+        12px
+        10px
+        calc(18px + env(safe-area-inset-bottom));
 
     overflow:hidden;
-
     justify-content:flex-start;
-
 }
 
-
-/* LOGO */
-
 .logo{
-
     text-align:center;
-
     flex-shrink:0;
-
 }
 
 .logo .emoji{
-
-    font-size:32px;
-
-    line-height:32px;
-
+    font-size:38px;
+    line-height:38px;
 }
 
 .logo h1{
-
-    margin:
-        3px
-        0
-        0;
-
-    font-size:21px;
-
-    line-height:20px;
-
+    margin:5px 0 0;
+    font-size:25px;
+    line-height:23px;
     font-weight:1000;
-
 }
 
 .logo p{
-
-    margin:
-        4px
-        0
-        7px;
-
-    color:#9eabc0;
-
-    font-size:8px;
-
+    margin:5px 0 10px;
+    color:#aebbd0;
+    font-size:9px;
 }
 
-
-/* TARJETA */
+.menuEmojis{
+    text-align:center;
+    font-size:17px;
+    line-height:20px;
+    margin-bottom:7px;
+}
 
 .card{
-
     width:100%;
-
     background:#151e2e;
-
-    border:
-        1px solid
-        #2e3b54;
-
-    border-radius:12px;
-
-    padding:7px;
-
-    box-shadow:
-        0 8px 20px #0007;
-
+    border:1px solid #2e3b54;
+    border-radius:14px;
+    padding:10px;
+    box-shadow:0 8px 20px #0007;
 }
-
-
-/* TITULO */
 
 .card h2{
-
-    margin:
-        0
-        0
-        5px;
-
-    font-size:12px;
-
+    margin:0 0 7px;
+    font-size:14px;
 }
 
-
-/* JUGADORES */
-
 .playerSetup{
-
     display:grid;
-
-    gap:3px;
-
+    gap:4px;
 }
 
 .setupPlayer{
-
     width:100%;
-
     display:flex;
-
     align-items:center;
-
-    gap:4px;
-
+    gap:5px;
     background:#202a3d;
-
-    padding:3px;
-
-    border-radius:7px;
-
+    padding:4px;
+    border-radius:8px;
 }
 
 .setupAvatar{
-
-    width:29px;
-    height:29px;
-
+    width:34px;
+    height:34px;
     flex-shrink:0;
-
     border:0;
-
-    border-radius:7px;
-
+    border-radius:8px;
     background:#303d55;
-
-    font-size:16px;
-
+    font-size:19px;
 }
 
 .nameInput{
-
     width:100%;
-
     min-width:0;
-
     border:0;
-
     outline:0;
-
     background:#111827;
-
     color:white;
-
-    border-radius:6px;
-
-    padding:
-        6px
-        7px;
-
-    font-size:10px;
-
+    border-radius:7px;
+    padding:7px 8px;
+    font-size:11px;
 }
 
-
-/* AVATARES */
-
 .avatarOptions{
-
     display:flex;
-
-    gap:2px;
-
+    gap:3px;
     width:100%;
-
-    height:23px;
-
+    height:27px;
     overflow:hidden;
-
+    margin-bottom:3px;
 }
 
 .avatarOption{
-
-    width:22px;
-    height:22px;
-
+    width:25px;
+    height:25px;
     flex-shrink:0;
-
-    border:
-        1px solid
-        #46536b;
-
-    border-radius:5px;
-
+    border:1px solid #46536b;
+    border-radius:6px;
     background:#29344a;
-
-    font-size:12px;
-
+    font-size:14px;
     padding:0;
-
 }
 
 .avatarOption.selected{
-
-    border:
-        2px solid
-        #ffd84d;
-
+    border:2px solid #ffd84d;
     background:#46536b;
-
 }
 
-
-/* BOTONES MENU */
-
 .mainButton{
-
     width:100%;
-
     border:0;
-
-    border-radius:8px;
-
-    padding:8px;
-
-    margin-top:5px;
-
+    border-radius:9px;
+    padding:9px;
+    margin-top:6px;
     background:#ffd84d;
-
     color:#17120a;
-
-    font-size:10px;
-
+    font-size:11px;
     font-weight:1000;
-
-    box-shadow:
-        0 2px 0
-        #b99520;
-
+    box-shadow:0 2px 0 #b99520;
 }
 
 .secondaryButton{
-
     width:100%;
-
-    border:
-        1px solid
-        #394862;
-
-    border-radius:8px;
-
-    padding:7px;
-
-    margin-top:4px;
-
+    border:1px solid #394862;
+    border-radius:9px;
+    padding:8px;
+    margin-top:5px;
     background:#202b41;
-
     color:white;
-
-    font-size:9px;
-
+    font-size:10px;
     font-weight:900;
+}
 
+.menuDecoration{
+    text-align:center;
+    font-size:15px;
+    margin-top:7px;
 }
 
 
@@ -367,162 +225,91 @@ input{
 ===================================== */
 
 #game{
-
-    padding:3px;
-
+    padding:
+        3px
+        3px
+        calc(10px + env(safe-area-inset-bottom));
 }
 
-
-/* BARRA SUPERIOR */
-
 .top{
-
     width:100%;
-
     height:31px;
-
     display:flex;
-
     align-items:center;
-
     gap:3px;
-
     flex-shrink:0;
-
 }
 
 .icon{
-
     width:29px;
     height:29px;
-
     flex-shrink:0;
-
     border:0;
-
     border-radius:7px;
-
     background:#202b41;
-
     color:white;
-
     font-size:13px;
-
 }
 
 .turn{
-
     flex:1;
-
     min-width:0;
-
     height:29px;
-
     background:#202b41;
-
     border-radius:7px;
-
     display:flex;
-
     align-items:center;
-
     gap:4px;
-
-    padding:
-        0
-        6px;
-
+    padding:0 6px;
     font-size:8px;
-
     font-weight:1000;
-
     overflow:hidden;
-
 }
 
 #turnAvatar{
-
     font-size:12px;
-
 }
 
-
-/* =====================================
-   TABLERO
-===================================== */
-
 #boardArea{
-
     flex:1;
-
     min-height:0;
-
     width:100%;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     padding:2px 0;
-
 }
 
 #board{
-
     width:min(
         calc(100vw - 10px),
         350px
     );
 
     max-width:100%;
-
     aspect-ratio:1;
-
     position:relative;
-
     overflow:hidden;
-
     border-radius:10px;
-
     background:#e7d09c;
 
     box-shadow:
         0 8px 18px #000b,
         inset 0 0 0 2px #765e35;
-
 }
 
-
-/* CASILLAS */
-
 .cell{
-
     position:absolute;
-
     width:10%;
-
     height:10%;
-
     padding:1px;
-
     display:flex;
-
     align-items:flex-start;
-
     justify-content:flex-end;
-
-    border:
-        1px solid
-        #927d5055;
-
+    border:1px solid #927d5055;
     color:#322817;
-
     font-size:6px;
-
     font-weight:1000;
-
 }
 
 .cell:nth-child(odd){
@@ -541,57 +328,27 @@ input{
     background:#ffd84d!important;
 }
 
-
-/* =====================================
-   SERPIENTES / ESCALERAS
-===================================== */
-
 .connections{
-
     position:absolute;
-
     inset:0;
-
     width:100%;
-
     height:100%;
-
     z-index:4;
-
     pointer-events:none;
-
 }
 
-
-/* =====================================
-   FICHAS
-===================================== */
-
 .token{
-
     position:absolute;
-
     width:6.5%;
-
     height:6.5%;
-
     max-width:22px;
     max-height:22px;
-
-    border:
-        1.5px solid
-        white;
-
+    border:1.5px solid white;
     border-radius:50%;
-
     z-index:20;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:10px;
 
     box-shadow:
@@ -601,65 +358,38 @@ input{
     transition:
         left .1s,
         top .1s;
-
 }
 
-
-/* =====================================
-   PANEL
-===================================== */
-
 .bottom{
-
     width:100%;
-
     flex-shrink:0;
-
     background:#151e2e;
-
-    border:
-        1px solid
-        #2e3b54;
-
+    border:1px solid #2e3b54;
     border-radius:10px;
 
-    padding:3px;
-
+    padding:
+        4px
+        4px
+        calc(6px + env(safe-area-inset-bottom));
 }
 
 .players{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:2px;
-
 }
 
 .playerBox{
-
     min-width:0;
-
     background:#202a3d;
-
-    border:
-        1px solid
-        transparent;
-
+    border:1px solid transparent;
     border-radius:6px;
-
     padding:2px;
-
     text-align:center;
-
 }
 
 .playerBox.active{
-
     border-color:#ffd84d;
-
 }
 
 .avatar{
@@ -667,77 +397,46 @@ input{
 }
 
 .playerName{
-
     font-size:6px;
-
     font-weight:1000;
-
     overflow:hidden;
-
     white-space:nowrap;
-
     text-overflow:ellipsis;
-
 }
 
 .position{
-
     color:#98a5bb;
-
     font-size:5px;
-
 }
 
-
-/* CONTROLES */
-
 .controls{
-
     display:flex;
-
     gap:3px;
+    margin-top:4px;
 
-    margin-top:3px;
-
+    /* Sube los controles */
+    padding-bottom:2px;
 }
 
 .dice{
-
     width:37px;
     height:37px;
-
     flex-shrink:0;
-
     border-radius:8px;
-
     background:white;
-
     color:#111;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:19px;
-
-    box-shadow:
-        0 2px 0
-        #aeb3bd;
-
+    box-shadow:0 2px 0 #aeb3bd;
 }
 
 .roll{
-
     flex:1;
-
     margin:0;
-
-    padding:7px;
-
+    padding:8px;
     font-size:10px;
-
 }
 
 .roll:disabled{
@@ -745,17 +444,11 @@ input{
 }
 
 .status{
-
     height:10px;
-
-    margin-top:1px;
-
+    margin-top:2px;
     text-align:center;
-
     color:#aeb9cc;
-
     font-size:7px;
-
 }
 
 
@@ -764,25 +457,17 @@ input{
 ===================================== */
 
 #win{
-
     align-items:center;
-
     justify-content:center;
-
     padding:15px;
-
     text-align:center;
-
 }
 
 .trophy{
-
     font-size:55px;
-
     animation:
         bounce 1s
         infinite alternate;
-
 }
 
 @keyframes bounce{
@@ -798,31 +483,20 @@ input{
 }
 
 .winTitle{
-
     font-size:24px;
-
     font-weight:1000;
-
     margin:5px 0;
-
 }
 
 .winText{
-
     color:#aeb9cc;
-
     font-size:10px;
-
 }
 
 .winButtons{
-
     width:100%;
-
     max-width:280px;
-
     margin-top:8px;
-
 }
 
 </style>
@@ -838,10 +512,7 @@ input{
      MENU
 ===================================== -->
 
-<section
-    id="menu"
-    class="screen active"
->
+<section id="menu" class="screen active">
 
     <div class="logo">
 
@@ -855,8 +526,12 @@ input{
         </h1>
 
         <p>
-            3 jugadores · mapa aleatorio · móvil
+            🎮 3 jugadores · 🗺️ mapa aleatorio · 📱 móvil
         </p>
+
+        <div class="menuEmojis">
+            🐍 🪜 🎲 🏆 😎 🐸 🤖 🦊 👻 🎯
+        </div>
 
     </div>
 
@@ -864,7 +539,7 @@ input{
     <div class="card">
 
         <h2>
-            👥 Jugadores
+            👥🎮 Jugadores
         </h2>
 
 
@@ -953,7 +628,7 @@ input{
             class="mainButton"
             onclick="startGame()"
         >
-            🎲 CREAR MAPA Y JUGAR
+            🎲🐍 CREAR MAPA Y JUGAR 🪜🎮
         </button>
 
 
@@ -961,8 +636,12 @@ input{
             class="secondaryButton"
             onclick="showRules()"
         >
-            📖 REGLAS
+            📖🎯 REGLAS DEL JUEGO
         </button>
+
+        <div class="menuDecoration">
+            🎲 🐍 🪜 🐸 🏆 ⭐ 🎮
+        </div>
 
     </div>
 
@@ -974,10 +653,7 @@ input{
      JUEGO
 ===================================== -->
 
-<section
-    id="game"
-    class="screen"
->
+<section id="game" class="screen">
 
     <div class="top">
 
@@ -1061,7 +737,7 @@ input{
             id="status"
             class="status"
         >
-            Tira el dado
+            Tira el dado 🎲
         </div>
 
     </div>
@@ -1074,10 +750,7 @@ input{
      GANADOR
 ===================================== -->
 
-<section
-    id="win"
-    class="screen"
->
+<section id="win" class="screen">
 
     <div class="trophy">
         🏆
@@ -1259,7 +932,7 @@ function goMenu(){
 function showRules(){
 
 alert(
-`📖 REGLAS
+`📖🎮 REGLAS
 
 👥 Juegan 3 jugadores.
 
@@ -1292,7 +965,9 @@ Ejemplo:
 
 🚫 No son horizontales.
 
-🗺️ Cada partida tiene un mapa diferente.`
+🗺️ Cada partida tiene un mapa diferente.
+
+🏆 ¡El primero en llegar al 100 gana!`
 );
 
 }
@@ -1723,7 +1398,7 @@ function buildBoard(){
 
 
 /* =====================================
-   ESCALERA COMPACTA
+   ESCALERA
 ===================================== */
 
 function drawLadder(start,end){
@@ -1759,10 +1434,6 @@ function drawLadder(start,end){
     const nx=-dy/len;
     const ny=dx/len;
 
-
-    /*
-       MUY PEQUEÑA
-    */
 
     const offset=7;
 
@@ -1915,7 +1586,7 @@ function drawLadder(start,end){
 
 
 /* =====================================
-   SERPIENTE COMPACTA
+   SERPIENTE
 ===================================== */
 
 function drawSnake(head,tail){
@@ -2034,8 +1705,6 @@ function drawSnake(head,tail){
     );
 
 
-    /* CABEZA PEQUEÑA */
-
     const headCircle=
         document.createElementNS(
             ns,
@@ -2068,8 +1737,6 @@ function drawSnake(head,tail){
         headCircle
     );
 
-
-    /* OJOS */
 
     for(
         const side of [-1,1]
@@ -2143,8 +1810,6 @@ function drawSnake(head,tail){
     }
 
 
-    /* LENGUA */
-
     const tongue=
         document.createElementNS(
             ns,
@@ -2187,8 +1852,6 @@ function drawSnake(head,tail){
         tongue
     );
 
-
-    /* MANCHAS */
 
     for(
         let i=1;
@@ -2493,7 +2156,7 @@ function startGame(){
     document.getElementById(
         "status"
     ).textContent=
-        "Tira el dado";
+        "Tira el dado 🎲";
 
 
     document.getElementById(
@@ -2703,7 +2366,8 @@ async function rollDice(){
     ).textContent=
         player.name+
         " sacó "+
-        result;
+        result+
+        " 🎲";
 
 
     await sleep(250);
@@ -2754,7 +2418,7 @@ async function rollDice(){
     document.getElementById(
         "status"
     ).textContent=
-        "Tira el dado";
+        "Tira el dado 🎲";
 
 
     rolling=false;
@@ -2854,7 +2518,7 @@ function newMap(){
     document.getElementById(
         "status"
     ).textContent=
-        "Nuevo mapa. Tira el dado";
+        "Nuevo mapa 🎲";
 
 
     document.getElementById(
