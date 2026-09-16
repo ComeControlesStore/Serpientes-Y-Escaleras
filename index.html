@@ -2,623 +2,1253 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#070a10">
-<title>Serpientes & Escaleras</title>
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+<meta name="theme-color" content="#080b14">
+
+<title>COMESERPIENTES</title>
 
 <style>
+
 *{
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent
+    -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
     margin:0;
-    padding:0;
     width:100%;
     height:100%;
     overflow:hidden;
-    background:#070a10;
-    color:white;
-    font-family:Arial,sans-serif
+    background:#080b14;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    overscroll-behavior:none;
 }
 
 button,input{
-    font:inherit
+    font:inherit;
 }
 
 .app{
+    position:relative;
     width:100%;
     height:100dvh;
     min-height:100dvh;
-    margin:0 auto;
-    position:relative;
     overflow:hidden;
-    background:radial-gradient(circle at 50% -10%,#31456c,#111827 48%,#070a10)
+
+    background:
+        radial-gradient(
+            circle at 50% -15%,
+            #415b91 0%,
+            #1c2944 30%,
+            #0d1422 62%,
+            #070a11 100%
+        );
 }
+
+/* =========================
+   PANTALLAS
+========================= */
 
 .screen{
     position:absolute;
     inset:0;
-    display:none;
-    flex-direction:column;
+
     width:100%;
     height:100%;
-    min-height:0
+
+    display:none;
+    flex-direction:column;
+
+    min-height:0;
 }
 
 .screen.active{
-    display:flex
+    display:flex;
 }
 
-/* MENÚ */
+/* =========================
+   MENÚ
+========================= */
 
 #menu{
-    padding:max(7px,env(safe-area-inset-top))
-            max(7px,env(safe-area-inset-right))
-            max(7px,env(safe-area-inset-bottom))
-            max(7px,env(safe-area-inset-left));
+    padding:
+        max(10px,env(safe-area-inset-top))
+        max(10px,env(safe-area-inset-right))
+        max(10px,env(safe-area-inset-bottom))
+        max(10px,env(safe-area-inset-left));
+
     overflow-y:auto;
     overflow-x:hidden;
-    scrollbar-width:none
+
+    scrollbar-width:none;
 }
 
 #menu::-webkit-scrollbar{
-    display:none
+    display:none;
 }
 
 .logo{
     text-align:center;
-    flex-shrink:0
+    flex-shrink:0;
+
+    padding-top:2px;
+    padding-bottom:8px;
 }
 
 .logo .emoji{
-    font-size:clamp(25px,8vw,32px);
-    line-height:1
+    font-size:clamp(34px,10vw,52px);
+
+    filter:
+        drop-shadow(0 5px 5px #0008);
 }
 
 .logo h1{
-    margin:3px 0 0;
-    font-size:clamp(17px,5.5vw,21px);
-    line-height:1.05;
-    font-weight:1000
+    margin:4px 0 0;
+
+    font-size:
+        clamp(25px,8vw,38px);
+
+    line-height:1;
+
+    font-weight:1000;
+
+    letter-spacing:1px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8b0,
+            #ffd84d 45%,
+            #d89b18
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    text-shadow:
+        0 4px 10px #0008;
 }
 
 .logo p{
-    margin:4px 0 7px;
-    color:#9eabc0;
-    font-size:8px
+    margin:7px 0 0;
+
+    color:#aebbd2;
+
+    font-size:10px;
 }
+
+/* =========================
+   TARJETA
+========================= */
 
 .card{
     width:100%;
-    background:#151e2e;
-    border:1px solid #2e3b54;
-    border-radius:12px;
-    padding:7px;
-    box-shadow:0 8px 20px #0007
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c2940,
+            #111a2a
+        );
+
+    border:
+        1px solid #506080;
+
+    border-radius:18px;
+
+    padding:10px;
+
+    box-shadow:
+        0 15px 35px #0009,
+        inset 0 1px 0 #ffffff14;
 }
 
 .card h2{
-    margin:0 0 5px;
-    font-size:12px
+    margin:0 0 7px;
+
+    font-size:13px;
+
+    color:#f7f9ff;
 }
+
+/* =========================
+   JUGADORES
+========================= */
 
 .countOptions{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:4px;
-    margin-bottom:6px
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:5px;
+
+    margin-bottom:7px;
 }
 
 .countButton{
-    height:30px;
-    border:1px solid #46536b;
-    border-radius:7px;
-    background:#202a3d;
+    height:34px;
+
+    border:
+        1px solid #4d5c79;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #293650,
+            #1b2538
+        );
+
     color:white;
-    font-size:11px;
-    font-weight:1000
+
+    font-size:12px;
+
+    font-weight:1000;
+
+    box-shadow:
+        inset 0 1px 0 #ffffff12;
+}
+
+.countButton:active{
+    transform:scale(.96);
 }
 
 .countButton.selected{
-    background:#ffd84d;
+    background:
+        linear-gradient(
+            180deg,
+            #fff078,
+            #ffd84d,
+            #dba928
+        );
+
     color:#17120a;
-    border-color:#ffd84d
+
+    border-color:#ffe98b;
+
+    box-shadow:
+        0 3px 0 #a67919,
+        0 5px 12px #ffd84d44;
 }
 
 .playerSetup{
     display:grid;
-    gap:4px
+    gap:5px;
 }
 
 .setupPlayer{
     width:100%;
+
     display:flex;
     align-items:center;
-    gap:4px;
-    background:#202a3d;
-    padding:3px;
-    border-radius:7px;
-    min-width:0
+
+    gap:5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #26344e,
+            #1d293e
+        );
+
+    border:
+        1px solid #354664;
+
+    padding:4px;
+
+    border-radius:10px;
+
+    min-width:0;
+
+    box-shadow:
+        inset 0 1px 0 #ffffff0c;
 }
 
 .setupAvatar{
-    width:32px;
-    height:32px;
-    flex:0 0 32px;
+    width:35px;
+    height:35px;
+
+    flex:0 0 35px;
+
     border:0;
-    border-radius:7px;
-    background:#303d55;
+
+    border-radius:9px;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #4c5e7d,
+            #273650
+        );
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
-    line-height:1;
-    overflow:hidden
+
+    font-size:20px;
+
+    box-shadow:
+        inset 0 1px 0 #ffffff18,
+        0 3px 5px #0006;
 }
 
 .nameInput{
-    width:clamp(65px,22vw,105px);
+    width:clamp(
+        65px,
+        22vw,
+        105px
+    );
+
     min-width:45px;
-    border:0;
+
+    border:
+        1px solid #3c4b67;
+
     outline:0;
-    background:#111827;
+
+    background:#101827;
+
     color:white;
-    border-radius:6px;
-    padding:6px;
-    font-size:10px
+
+    border-radius:8px;
+
+    padding:7px;
+
+    font-size:10px;
+}
+
+.nameInput:focus{
+    border-color:#ffd84d;
 }
 
 .botButton{
-    width:40px;
-    height:28px;
-    flex:0 0 40px;
-    border:1px solid #46536b;
-    border-radius:6px;
-    background:#29344a;
+    width:42px;
+    height:29px;
+
+    flex:0 0 42px;
+
+    border:
+        1px solid #4b5a75;
+
+    border-radius:7px;
+
+    background:#293650;
+
     color:white;
+
     font-size:9px;
-    font-weight:1000
+
+    font-weight:1000;
 }
 
 .botButton.active{
-    background:#8c5cff;
-    border-color:#b89cff
+    background:
+        linear-gradient(
+            180deg,
+            #a27aff,
+            #7347d8
+        );
+
+    border-color:#c5aaff;
+
+    box-shadow:
+        0 0 10px #8c5cff55;
 }
 
 .avatarWrap{
     flex:1;
     min-width:0;
+
     display:flex;
     align-items:center;
-    gap:3px
+
+    gap:3px;
 }
 
 .avatarOptions{
     flex:1;
     min-width:0;
-    width:100%;
-    height:31px;
+
+    height:32px;
+
     display:flex;
     align-items:center;
+
     gap:4px;
+
     overflow-x:auto;
     overflow-y:hidden;
+
     padding:2px 4px;
+
     scrollbar-width:none;
-    -ms-overflow-style:none;
+
     touch-action:pan-x;
+
     overscroll-behavior-x:contain;
-    -webkit-overflow-scrolling:touch
+
+    -webkit-overflow-scrolling:touch;
 }
 
 .avatarOptions::-webkit-scrollbar{
     display:none;
-    width:0;
-    height:0
 }
 
 .avatarOption{
     flex:0 0 30px;
+
     width:30px;
-    height:27px;
-    border:1px solid #46536b;
-    border-radius:6px;
-    background:#29344a;
+    height:28px;
+
+    border:
+        1px solid #485876;
+
+    border-radius:7px;
+
+    background:#293750;
+
     color:white;
+
     padding:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:17px;
+
     line-height:1;
+
     white-space:nowrap;
-    overflow:hidden;
-    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif
 }
 
 .avatarOption.selected{
-    border:2px solid #ffd84d;
-    background:#46536b
+    border:
+        2px solid #ffd84d;
+
+    background:#455676;
+
+    box-shadow:
+        0 0 8px #ffd84d44;
 }
 
 .avatarArrows{
     display:flex;
     gap:2px;
-    flex:0 0 auto
+
+    flex:0 0 auto;
 }
 
 .avatarArrow{
-    width:22px;
-    height:27px;
-    flex:0 0 22px;
+    width:23px;
+    height:28px;
+
+    flex:0 0 23px;
+
     border:0;
-    border-radius:5px;
-    background:#394862;
+
+    border-radius:6px;
+
+    background:#3b4a65;
+
     color:#ffd84d;
+
     font-size:13px;
+
     font-weight:1000;
-    display:flex;
-    align-items:center;
-    justify-content:center
 }
 
 .avatarArrow:active{
     transform:scale(.9);
-    background:#46536b
 }
+
+/* =========================
+   BOTONES
+========================= */
 
 .mainButton{
     width:100%;
+
     border:0;
-    border-radius:8px;
-    padding:8px;
-    margin-top:5px;
-    background:#ffd84d;
+
+    border-radius:10px;
+
+    padding:10px;
+
+    margin-top:6px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff07b,
+            #ffd84d 50%,
+            #dda92a
+        );
+
     color:#17120a;
-    font-size:10px;
+
+    font-size:11px;
+
     font-weight:1000;
-    box-shadow:0 2px 0 #b99520
+
+    box-shadow:
+        0 3px 0 #9d7418,
+        0 5px 15px #0005;
+}
+
+.mainButton:active{
+    transform:translateY(2px);
+
+    box-shadow:
+        0 1px 0 #9d7418;
 }
 
 .secondaryButton{
     width:100%;
-    border:1px solid #394862;
-    border-radius:8px;
-    padding:7px;
-    margin-top:4px;
-    background:#202b41;
+
+    border:
+        1px solid #465675;
+
+    border-radius:9px;
+
+    padding:8px;
+
+    margin-top:5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #293650,
+            #1c273b
+        );
+
     color:white;
-    font-size:9px;
-    font-weight:900
+
+    font-size:10px;
+
+    font-weight:900;
 }
 
-/* JUEGO */
+/* =========================
+   JUEGO
+========================= */
 
 #game{
-    padding:max(3px,env(safe-area-inset-top))
-            max(3px,env(safe-area-inset-right))
-            max(3px,env(safe-area-inset-bottom))
-            max(3px,env(safe-area-inset-left));
-    min-height:0
+    padding:
+        max(5px,env(safe-area-inset-top))
+        max(5px,env(safe-area-inset-right))
+        max(5px,env(safe-area-inset-bottom))
+        max(5px,env(safe-area-inset-left));
+
+    min-height:0;
 }
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
 
 .top{
     width:100%;
-    height:31px;
+
+    height:36px;
+
     display:flex;
     align-items:center;
-    gap:3px;
-    flex:0 0 31px
+
+    gap:4px;
+
+    flex:0 0 36px;
 }
 
 .icon{
-    width:29px;
-    height:29px;
-    flex:0 0 29px;
-    border:0;
-    border-radius:7px;
-    background:#202b41;
+    width:33px;
+    height:33px;
+
+    flex:0 0 33px;
+
+    border:
+        1px solid #40516f;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #293650,
+            #1b263a
+        );
+
     color:white;
-    font-size:13px
+
+    font-size:14px;
+
+    box-shadow:
+        inset 0 1px 0 #ffffff12;
+}
+
+.icon:active{
+    transform:scale(.94);
 }
 
 .turn{
     flex:1;
+
     min-width:0;
-    height:29px;
-    background:#202b41;
-    border-radius:7px;
+
+    height:33px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #293650,
+            #1b263a
+        );
+
+    border:
+        1px solid #40516f;
+
+    border-radius:9px;
+
     display:flex;
     align-items:center;
-    gap:4px;
-    padding:0 6px;
-    font-size:8px;
+
+    gap:5px;
+
+    padding:0 8px;
+
+    font-size:9px;
+
     font-weight:1000;
+
     overflow:hidden;
-    white-space:nowrap
+
+    white-space:nowrap;
+
+    box-shadow:
+        inset 0 1px 0 #ffffff0b;
 }
 
 #turnAvatar{
     flex:0 0 auto;
-    font-size:12px
+    font-size:14px;
 }
 
 #turnText{
     overflow:hidden;
-    text-overflow:ellipsis
+    text-overflow:ellipsis;
 }
+
+/* =========================
+   TABLERO RESPONSIVO
+========================= */
 
 #boardArea{
     flex:1 1 auto;
+
     min-height:0;
     min-width:0;
+
     width:100%;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    padding:2px 0
+
+    padding:5px 0;
 }
 
 #board{
-    width:min(100%,calc(100dvh - 155px),350px);
+    position:relative;
+
+    width:min(
+        100%,
+        calc(100dvh - 170px),
+        620px
+    );
+
     max-width:100%;
     max-height:100%;
+
     aspect-ratio:1/1;
-    position:relative;
+
     overflow:hidden;
-    border-radius:10px;
-    background:#e7d09c;
-    box-shadow:8px 18px 18px #000b,inset 0 0 0 2px #765e35
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f4e2b0,
+            #d5b979
+        );
+
+    border:
+        3px solid #6e5128;
+
+    box-shadow:
+        0 18px 35px #000b,
+        0 5px 0 #392813,
+        inset 0 0 0 2px #fff4,
+        inset 0 0 25px #654a2080;
 }
+
+/* brillo del tablero */
+
+#board::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:50;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            #ffffff18 0%,
+            transparent 35%,
+            transparent 70%,
+            #00000014 100%
+        );
+}
+
+/* =========================
+   CASILLAS
+========================= */
 
 .cell{
     position:absolute;
+
     width:10%;
     height:10%;
-    padding:1px;
+
+    padding:2px;
+
     display:flex;
+
     align-items:flex-start;
     justify-content:flex-end;
-    border:1px solid #927d5055;
-    color:#322817;
-    font-size:clamp(5px,1.7vw,7px);
+
+    border:
+        1px solid #6d572f55;
+
+    color:#3c2b15;
+
+    font-size:
+        clamp(
+            6px,
+            1.8vw,
+            11px
+        );
+
     font-weight:1000;
-    z-index:1
+
+    z-index:1;
+
+    text-shadow:
+        0 1px 0 #fff7;
+
+    transition:
+        filter .15s ease;
 }
 
 .cell:nth-child(odd){
-    background:#fff1c7
+    background:
+        linear-gradient(
+            145deg,
+            #fff2c8,
+            #e9cf92
+        );
 }
 
 .cell:nth-child(even){
-    background:#e5cc94
+    background:
+        linear-gradient(
+            145deg,
+            #e7cf96,
+            #c9aa67
+        );
+}
+
+.cell:hover{
+    filter:brightness(1.05);
 }
 
 .start{
-    background:#92e39a!important
+    background:
+        linear-gradient(
+            145deg,
+            #b9f7bd,
+            #6bdc83
+        )!important;
 }
 
 .finish{
-    background:#ffd84d!important
+    background:
+        linear-gradient(
+            145deg,
+            #fff28c,
+            #ffc928
+        )!important;
+
+    box-shadow:
+        inset 0 0 12px #fff8;
 }
+
+/* =========================
+   SVG
+========================= */
 
 .connections{
     position:absolute;
+
     inset:0;
+
     width:100%;
     height:100%;
+
     z-index:5;
-    pointer-events:none
+
+    pointer-events:none;
+
+    overflow:visible;
 }
+
+/* =========================
+   FICHAS
+========================= */
 
 .token{
     position:absolute;
-    width:6.5%;
-    height:6.5%;
-    max-width:22px;
-    max-height:22px;
-    min-width:12px;
-    min-height:12px;
-    border:1.5px solid white;
+
+    width:7%;
+
+    height:7%;
+
+    max-width:32px;
+    max-height:32px;
+
+    min-width:16px;
+    min-height:16px;
+
+    border:
+        2px solid #fff;
+
     border-radius:50%;
+
     z-index:20;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    font-size:clamp(7px,2.8vw,11px);
+
+    font-size:
+        clamp(
+            8px,
+            2.7vw,
+            16px
+        );
+
     line-height:1;
-    box-shadow:0 3px 5px #000b,inset 0 0 5px #fff8;
-    transform:translate(-50%,-50%);
-    transition:left .08s linear,top .08s linear
+
+    box-shadow:
+        0 4px 7px #000b,
+        inset 0 2px 4px #fff9,
+        inset 0 -4px 6px #0005;
+
+    transform:
+        translate(-50%,-50%);
+
+    transition:
+        left .12s cubic-bezier(.35,.75,.25,1),
+        top .12s cubic-bezier(.35,.75,.25,1);
+
+    will-change:left,top;
 }
+
+/* pequeño brillo de ficha */
+
+.token::after{
+    content:"";
+
+    position:absolute;
+
+    width:35%;
+    height:25%;
+
+    top:13%;
+    left:18%;
+
+    border-radius:50%;
+
+    background:#fff9;
+
+    filter:blur(1px);
+}
+
+/* =========================
+   PANEL INFERIOR
+========================= */
 
 .bottom{
     width:100%;
+
     flex:0 0 auto;
-    background:#151e2e;
-    border:1px solid #2e3b54;
-    border-radius:10px;
-    padding:3px
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c2940,
+            #111a2a
+        );
+
+    border:
+        1px solid #40516f;
+
+    border-radius:13px;
+
+    padding:4px;
+
+    box-shadow:
+        0 -5px 15px #0005,
+        inset 0 1px 0 #ffffff0c;
 }
 
 .players{
     width:100%;
+
     display:grid;
-    grid-template-columns:repeat(5,minmax(0,1fr));
-    gap:2px
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:3px;
 }
 
 .playerBox{
     min-width:0;
-    background:#202a3d;
-    border:1px solid transparent;
-    border-radius:6px;
-    padding:2px;
-    text-align:center
+
+    background:
+        linear-gradient(
+            180deg,
+            #293650,
+            #1b263a
+        );
+
+    border:
+        1px solid transparent;
+
+    border-radius:8px;
+
+    padding:3px;
+
+    text-align:center;
+
+    box-shadow:
+        inset 0 1px 0 #ffffff08;
 }
 
 .playerBox.active{
-    border-color:#ffd84d
+    border-color:#ffd84d;
+
+    box-shadow:
+        0 0 10px #ffd84d25,
+        inset 0 1px 0 #fff2;
 }
 
 .avatar{
-    font-size:11px;
-    line-height:12px
+    font-size:13px;
+    line-height:14px;
 }
 
 .playerName{
-    font-size:6px;
-    line-height:7px;
+    font-size:7px;
+
+    line-height:8px;
+
     font-weight:1000;
+
     overflow:hidden;
+
     white-space:nowrap;
-    text-overflow:ellipsis
+
+    text-overflow:ellipsis;
 }
 
 .position{
-    color:#98a5bb;
-    font-size:5px;
-    line-height:6px
+    color:#9eabc0;
+
+    font-size:6px;
+
+    line-height:7px;
 }
 
 .controls{
     display:flex;
-    gap:3px;
-    margin-top:3px
+
+    gap:4px;
+
+    margin-top:4px;
 }
 
 .dice{
-    width:37px;
-    height:37px;
-    flex:0 0 37px;
-    border-radius:8px;
-    background:white;
+    width:42px;
+    height:42px;
+
+    flex:0 0 42px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #e5e8ed
+        );
+
     color:#111;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:19px;
-    box-shadow:0 2px 0 #aeb3bd
+
+    font-size:22px;
+
+    box-shadow:
+        0 3px 0 #a4aab4,
+        0 5px 10px #0006,
+        inset 0 1px 0 #fff;
 }
 
 .roll{
     flex:1;
+
     margin:0;
-    padding:7px;
-    font-size:10px
+
+    padding:8px;
+
+    font-size:11px;
 }
 
 .status{
-    height:10px;
-    margin-top:1px;
+    height:11px;
+
+    margin-top:2px;
+
     text-align:center;
-    color:#aeb9cc;
+
+    color:#b4c0d4;
+
     font-size:7px;
+
     overflow:hidden;
+
     white-space:nowrap;
-    text-overflow:ellipsis
+
+    text-overflow:ellipsis;
 }
 
-/* GANADOR */
+/* =========================
+   GANADOR
+========================= */
 
 #win{
     align-items:center;
+
     justify-content:center;
-    padding:15px;
-    text-align:center
+
+    padding:20px;
+
+    text-align:center;
 }
 
 .trophy{
-    font-size:55px;
-    animation:bounce 1s infinite alternate
+    font-size:70px;
+
+    filter:
+        drop-shadow(0 8px 8px #0008);
+
+    animation:
+        trophyFloat 1.2s ease-in-out infinite alternate;
 }
 
-@keyframes bounce{
-    from{transform:translateY(0)}
-    to{transform:translateY(-8px)}
+@keyframes trophyFloat{
+
+    from{
+        transform:translateY(0) rotate(-2deg);
+    }
+
+    to{
+        transform:translateY(-10px) rotate(2deg);
+    }
+
 }
 
 .winTitle{
-    font-size:24px;
+    font-size:28px;
+
     font-weight:1000;
-    margin:5px 0
+
+    margin:7px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff59b,
+            #ffd84d
+        );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
 }
 
 .winText{
     color:#aeb9cc;
-    font-size:10px
+
+    font-size:11px;
 }
 
 .winButtons{
     width:100%;
-    max-width:280px;
-    margin-top:8px
+
+    max-width:320px;
+
+    margin-top:10px;
 }
 
-@media(max-height:600px){
+/* =========================
+   TABLETS / PC
+========================= */
+
+@media(min-width:600px){
 
     .logo .emoji{
-        font-size:24px
+        font-size:50px;
     }
 
     .logo h1{
-        font-size:17px
+        font-size:36px;
     }
 
     .logo p{
-        margin:2px 0 4px
+        font-size:11px;
+    }
+
+    #menu{
+        width:min(620px,100%);
+        margin:auto;
+    }
+
+}
+
+/* =========================
+   PANTALLAS BAJAS
+========================= */
+
+@media(max-height:650px){
+
+    .logo{
+        padding-bottom:4px;
+    }
+
+    .logo .emoji{
+        font-size:28px;
+    }
+
+    .logo h1{
+        font-size:22px;
+    }
+
+    .logo p{
+        margin:3px 0 5px;
+        font-size:8px;
     }
 
     .card{
-        padding:5px
+        padding:6px;
     }
 
     .setupPlayer{
-        padding:2px
+        padding:3px;
     }
 
     .setupAvatar{
-        width:29px;
-        height:29px;
-        flex-basis:29px;
-        font-size:16px
-    }
-
-    .avatarOptions{
-        height:28px
-    }
-
-    .avatarOption{
-        width:28px;
-        height:24px;
-        flex-basis:28px;
-        font-size:15px
-    }
-
-    .avatarArrow{
-        height:24px;
-        width:20px;
-        flex-basis:20px
+        width:30px;
+        height:30px;
+        flex-basis:30px;
+        font-size:17px;
     }
 
     .mainButton{
-        padding:6px
+        padding:7px;
     }
 
     .secondaryButton{
-        padding:5px
-    }
-}
-
-@media(min-width:500px){
-
-    .app{
-        max-width:390px
+        padding:6px;
     }
 
 }
+
+/* =========================
+   PANTALLAS MUY ANCHAS
+========================= */
+
+@media(
+    min-width:900px
+) and (
+    min-height:650px
+){
+
+    #game{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    #board{
+        width:min(
+            calc(100dvh - 150px),
+            680px
+        );
+    }
+
+}
+
+/* =========================
+   REDUCE MOVIMIENTO
+========================= */
+
+@media(
+    prefers-reduced-motion:reduce
+){
+
+    *{
+        scroll-behavior:auto!important;
+    }
+
+    .trophy{
+        animation:none;
+    }
+
+}
+
 </style>
 </head>
 
@@ -626,41 +1256,86 @@ button,input{
 
 <div class="app">
 
+<!-- =========================
+     MENÚ
+========================= -->
+
 <section id="menu" class="screen active">
 
     <div class="logo">
-        <div class="emoji">🐍🪜</div>
+
+        <div class="emoji">
+            🐍🪜
+        </div>
 
         <h1>
-            Serpientes & Escaleras
+            COMESERPIENTES
         </h1>
 
         <p>
-            El clásico juego donde una serpiente arruina tus planes.
+            Sube, baja y llega al 100.
         </p>
+
     </div>
+
 
     <div class="card">
 
-        <h2>👥 Jugadores</h2>
+        <h2>
+            👥 Número de jugadores
+        </h2>
+
 
         <div class="countOptions">
 
-            <button class="countButton selected" data-count="2">2</button>
-            <button class="countButton" data-count="3">3</button>
-            <button class="countButton" data-count="4">4</button>
-            <button class="countButton" data-count="5">5</button>
+            <button
+                class="countButton selected"
+                data-count="2">
+                2
+            </button>
+
+            <button
+                class="countButton"
+                data-count="3">
+                3
+            </button>
+
+            <button
+                class="countButton"
+                data-count="4">
+                4
+            </button>
+
+            <button
+                class="countButton"
+                data-count="5">
+                5
+            </button>
 
         </div>
 
-        <div id="playerSetup" class="playerSetup"></div>
 
-        <button id="startButton" class="mainButton">
-            🎲 EMPEZAR PARTIDA
+        <div
+            id="playerSetup"
+            class="playerSetup">
+        </div>
+
+
+        <button
+            id="startButton"
+            class="mainButton">
+
+            🐍 EMPEZAR COMESERPIENTES
+
         </button>
 
-        <button id="fullscreenButton" class="secondaryButton">
+
+        <button
+            id="fullscreenButton"
+            class="secondaryButton">
+
             ⛶ PANTALLA COMPLETA
+
         </button>
 
     </div>
@@ -668,13 +1343,25 @@ button,input{
 </section>
 
 
-<section id="game" class="screen">
+<!-- =========================
+     JUEGO
+========================= -->
+
+<section
+    id="game"
+    class="screen">
+
 
     <div class="top">
 
-        <button id="backMenu" class="icon">
+        <button
+            id="backMenu"
+            class="icon">
+
             ☰
+
         </button>
+
 
         <div class="turn">
 
@@ -688,36 +1375,61 @@ button,input{
 
         </div>
 
-        <button id="newMapButton" class="icon">
+
+        <button
+            id="newMapButton"
+            class="icon">
+
             🔄
+
         </button>
 
     </div>
 
 
     <div id="boardArea">
+
         <div id="board"></div>
+
     </div>
 
 
     <div class="bottom">
 
-        <div id="playersPanel" class="players"></div>
+        <div
+            id="playersPanel"
+            class="players">
+        </div>
+
 
         <div class="controls">
 
-            <div id="dice" class="dice">
+            <div
+                id="dice"
+                class="dice">
+
                 ⚀
+
             </div>
 
-            <button id="rollButton" class="mainButton roll">
+
+            <button
+                id="rollButton"
+                class="mainButton roll">
+
                 🎲 TIRAR DADO
+
             </button>
 
         </div>
 
-        <div id="status" class="status">
-            ¡Que empiece la partida!
+
+        <div
+            id="status"
+            class="status">
+
+            ¡Que empiece COMESERPIENTES!
+
         </div>
 
     </div>
@@ -725,28 +1437,55 @@ button,input{
 </section>
 
 
-<section id="win" class="screen">
+<!-- =========================
+     GANADOR
+========================= -->
+
+<section
+    id="win"
+    class="screen">
+
 
     <div class="trophy">
         🏆
     </div>
 
-    <div id="winTitle" class="winTitle">
+
+    <div
+        id="winTitle"
+        class="winTitle">
+
         ¡Ganaste!
+
     </div>
 
-    <div id="winText" class="winText">
+
+    <div
+        id="winText"
+        class="winText">
+
         Llegaste al 100.
+
     </div>
+
 
     <div class="winButtons">
 
-        <button id="playAgain" class="mainButton">
+        <button
+            id="playAgain"
+            class="mainButton">
+
             🎲 JUGAR OTRA VEZ
+
         </button>
 
-        <button id="winMenu" class="secondaryButton">
+
+        <button
+            id="winMenu"
+            class="secondaryButton">
+
             🏠 VOLVER AL MENÚ
+
         </button>
 
     </div>
@@ -757,6 +1496,10 @@ button,input{
 
 
 <script>
+
+/* =========================
+   DATOS
+========================= */
 
 const colors=[
     "#ff5368",
@@ -810,20 +1553,17 @@ const avatars=[
 "👑","🎩","🕶️","🥷","🧙","🧛","🧟","🧞",
 "🧜","🦸","🦹","👮","🕵️","👨‍🚀","💪",
 "👀","👋","👍","👎","👏","🙌","🤝","✌️",
-
 "❤️","🧡","💛","💚","💙","💜","🖤","🤍",
 "🤎","💖","💗","💓","💞","💕","💯","✨"
 ];
 
 
-let selectedAvatar=[0,1,2,3,4];
+let selectedAvatar=[
+    0,1,2,3,4
+];
 
 let botPlayers=[
-    false,
-    false,
-    false,
-    false,
-    false
+    false,false,false,false,false
 ];
 
 let playerCount=2;
@@ -841,17 +1581,25 @@ let rolling=false;
 let gameFinished=false;
 
 
+/* =========================
+   UTILIDADES
+========================= */
+
 function sleep(ms){
+
     return new Promise(
         resolve=>setTimeout(resolve,ms)
     );
+
 }
 
 
 function random(min,max){
+
     return Math.floor(
         Math.random()*(max-min+1)
     )+min;
+
 }
 
 
@@ -870,17 +1618,21 @@ function escapeHTML(text){
 function showScreen(id){
 
     document
-    .querySelectorAll(".screen")
-    .forEach(screen=>{
-        screen.classList.remove("active");
-    });
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.remove("active");
+        });
 
     document
-    .getElementById(id)
-    .classList.add("active");
+        .getElementById(id)
+        .classList.add("active");
 
 }
 
+
+/* =========================
+   JUGADORES
+========================= */
 
 document
 .querySelectorAll(".countButton")
@@ -896,10 +1648,14 @@ document
             document
             .querySelectorAll(".countButton")
             .forEach(x=>{
-                x.classList.remove("selected");
+                x.classList.remove(
+                    "selected"
+                );
             });
 
-            button.classList.add("selected");
+            button.classList.add(
+                "selected"
+            );
 
             createPlayerSetup();
 
@@ -919,7 +1675,11 @@ function createPlayerSetup(){
     container.innerHTML="";
 
 
-    for(let i=0;i<playerCount;i++){
+    for(
+        let i=0;
+        i<playerCount;
+        i++
+    ){
 
         const row=
             document.createElement("div");
@@ -930,7 +1690,8 @@ function createPlayerSetup(){
         const avatar=
             document.createElement("button");
 
-        avatar.className="setupAvatar";
+        avatar.className=
+            "setupAvatar";
 
         avatar.type="button";
 
@@ -1020,7 +1781,8 @@ function createPlayerSetup(){
                 option.className=
                     "avatarOption";
 
-                option.textContent=emoji;
+                option.textContent=
+                    emoji;
 
 
                 if(
@@ -1059,13 +1821,6 @@ function createPlayerSetup(){
                             "selected"
                         );
 
-
-                        option.scrollIntoView({
-                            behavior:"smooth",
-                            block:"nearest",
-                            inline:"center"
-                        });
-
                     }
                 );
 
@@ -1101,12 +1856,10 @@ function createPlayerSetup(){
         backArrow.addEventListener(
             "click",
             ()=>{
-
                 options.scrollBy({
-                    left:-150,
+                    left:-160,
                     behavior:"smooth"
                 });
-
             }
         );
 
@@ -1127,12 +1880,10 @@ function createPlayerSetup(){
         nextArrow.addEventListener(
             "click",
             ()=>{
-
                 options.scrollBy({
-                    left:150,
+                    left:160,
                     behavior:"smooth"
                 });
-
             }
         );
 
@@ -1181,6 +1932,10 @@ function createPlayerSetup(){
 }
 
 
+/* =========================
+   COORDENADAS
+========================= */
+
 function getRow(cell){
 
     return Math.floor(
@@ -1192,7 +1947,8 @@ function getRow(cell){
 
 function getCol(cell){
 
-    const row=getRow(cell);
+    const row=
+        getRow(cell);
 
     const pos=
         (cell-1)%10;
@@ -1205,9 +1961,29 @@ function getCol(cell){
 }
 
 
+function cellPosition(cell){
+
+    const row=
+        getRow(cell);
+
+    const col=
+        getCol(cell);
+
+
+    return{
+
+        x:col*10+5,
+
+        y:(9-row)*10+5
+
+    };
+
+}
+
+
 /* =========================
-   GENERAR MAPA
-   ========================= */
+   MAPA
+========================= */
 
 function generateMap(){
 
@@ -1219,16 +1995,6 @@ function generateMap(){
     let attempts=0;
 
 
-    /*
-       ESCALERAS
-
-       NO PUEDEN:
-       - ser horizontales
-       - ser casi horizontales
-       - ser verticales
-       - usar casillas ocupadas
-    */
-
     while(
         Object.keys(ladders).length<5 &&
         attempts<5000
@@ -1238,68 +2004,48 @@ function generateMap(){
 
 
         const from=
-            random(2,85);
-
+            random(2,84);
 
         const to=
             random(from+8,99);
 
 
-        if(to<=from)
-            continue;
+        const fr=
+            getRow(from);
 
+        const tr=
+            getRow(to);
 
-        if(to===100)
-            continue;
-
-
-        if(Math.abs(to-from)<8)
-            continue;
-
-
-        const fromCol=
+        const fc=
             getCol(from);
 
-        const toCol=
+        const tc=
             getCol(to);
 
 
-        const fromRow=
-            getRow(from);
-
-        const toRow=
-            getRow(to);
-
-
-        /* NUNCA HORIZONTAL */
-
-        if(fromRow===toRow)
+        if(fr===tr)
             continue;
 
 
-        /* NUNCA VERTICAL */
-
-        if(fromCol===toCol)
+        if(fc===tc)
             continue;
 
 
-        /* MÍNIMO 2 COLUMNAS */
+        /*
+          LAS ESCALERAS
+          SIEMPRE TIENEN
+          UNA DIFERENCIA
+          DIAGONAL CLARA
+        */
 
         if(
-            Math.abs(fromCol-toCol)<2
+            Math.abs(fr-tr)<2 ||
+            Math.abs(fc-tc)<2
         )
             continue;
 
 
-        /* MÍNIMO 2 FILAS */
-
-        if(
-            Math.abs(fromRow-toRow)<2
-        )
-            continue;
-
-
-        const values=[
+        const used=[
 
             ...Object.keys(ladders)
                 .map(Number),
@@ -1316,11 +2062,10 @@ function generateMap(){
         ];
 
 
-        if(values.includes(from))
-            continue;
-
-
-        if(values.includes(to))
+        if(
+            used.includes(from) ||
+            used.includes(to)
+        )
             continue;
 
 
@@ -1328,8 +2073,6 @@ function generateMap(){
 
     }
 
-
-    /* SERPIENTES */
 
     attempts=0;
 
@@ -1343,60 +2086,41 @@ function generateMap(){
 
 
         const from=
-            random(15,99);
-
+            random(16,99);
 
         const to=
             random(2,from-8);
 
 
-        if(from<=to)
-            continue;
+        const fr=
+            getRow(from);
 
+        const tr=
+            getRow(to);
 
-        if(from===100)
-            continue;
-
-
-        if(Math.abs(from-to)<8)
-            continue;
-
-
-        const fromCol=
+        const fc=
             getCol(from);
 
-        const toCol=
+        const tc=
             getCol(to);
 
 
-        const fromRow=
-            getRow(from);
-
-        const toRow=
-            getRow(to);
-
-
-        if(fromRow===toRow)
+        if(fr===tr)
             continue;
 
 
-        if(fromCol===toCol)
+        if(fc===tc)
             continue;
 
 
         if(
-            Math.abs(fromCol-toCol)<2
+            Math.abs(fr-tr)<2 ||
+            Math.abs(fc-tc)<2
         )
             continue;
 
 
-        if(
-            Math.abs(fromRow-toRow)<2
-        )
-            continue;
-
-
-        const values=[
+        const used=[
 
             ...Object.keys(ladders)
                 .map(Number),
@@ -1413,11 +2137,10 @@ function generateMap(){
         ];
 
 
-        if(values.includes(from))
-            continue;
-
-
-        if(values.includes(to))
+        if(
+            used.includes(from) ||
+            used.includes(to)
+        )
             continue;
 
 
@@ -1425,8 +2148,6 @@ function generateMap(){
 
     }
 
-
-    /* RESPALDO */
 
     if(
         Object.keys(ladders).length<5
@@ -1461,26 +2182,9 @@ function generateMap(){
 }
 
 
-function cellPosition(cell){
-
-    const row=
-        getRow(cell);
-
-    const col=
-        getCol(cell);
-
-
-    return{
-        x:col*10+5,
-        y:(9-row)*10+5
-    };
-
-}
-
-
 /* =========================
    TABLERO
-   ========================= */
+========================= */
 
 function buildBoard(){
 
@@ -1493,7 +2197,11 @@ function buildBoard(){
     board.innerHTML="";
 
 
-    for(let n=1;n<=100;n++){
+    for(
+        let n=1;
+        n<=100;
+        n++
+    ){
 
         const cell=
             document.createElement(
@@ -1504,22 +2212,12 @@ function buildBoard(){
         cell.className="cell";
 
 
-        if(n===1){
-
-            cell.classList.add(
-                "start"
-            );
-
-        }
+        if(n===1)
+            cell.classList.add("start");
 
 
-        if(n===100){
-
-            cell.classList.add(
-                "finish"
-            );
-
-        }
+        if(n===100)
+            cell.classList.add("finish");
 
 
         const p=
@@ -1529,7 +2227,6 @@ function buildBoard(){
         cell.style.left=
             (p.x-5)+"%";
 
-
         cell.style.top=
             (p.y-5)+"%";
 
@@ -1537,9 +2234,7 @@ function buildBoard(){
         cell.textContent=n;
 
 
-        board.appendChild(
-            cell
-        );
+        board.appendChild(cell);
 
     }
 
@@ -1598,15 +2293,14 @@ function buildBoard(){
                 );
 
 
-            token.className="token";
+            token.className=
+                "token";
 
             token.id=
                 `token-${i}`;
 
-
             token.style.background=
                 colors[i];
-
 
             token.textContent=
                 player.avatar;
@@ -1626,8 +2320,8 @@ function buildBoard(){
 
 
 /* =========================
-   ESCALERA
-   ========================= */
+   ESCALERAS
+========================= */
 
 function drawLadder(
     svg,
@@ -1661,11 +2355,67 @@ function drawLadder(
 
 
     const nx=
-        -dy/length*1.2;
+        -dy/length*1.35;
 
     const ny=
-        dx/length*1.2;
+        dx/length*1.35;
 
+
+    /*
+       SOMBRA
+    */
+
+    const shadow1=
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+
+    shadow1.setAttribute(
+        "x1",
+        a.x+nx+.6
+    );
+
+    shadow1.setAttribute(
+        "y1",
+        a.y+ny+.8
+    );
+
+    shadow1.setAttribute(
+        "x2",
+        b.x+nx+.6
+    );
+
+    shadow1.setAttribute(
+        "y2",
+        b.y+ny+.8
+    );
+
+    shadow1.setAttribute(
+        "stroke",
+        "#0007"
+    );
+
+    shadow1.setAttribute(
+        "stroke-width",
+        "2.3"
+    );
+
+    shadow1.setAttribute(
+        "stroke-linecap",
+        "round"
+    );
+
+
+    svg.appendChild(
+        shadow1
+    );
+
+
+    /*
+       RIELES
+    */
 
     const rails=[
 
@@ -1686,61 +2436,118 @@ function drawLadder(
     ];
 
 
-    rails.forEach(r=>{
+    rails.forEach(
+        r=>{
 
-        const line=
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "line"
+            const line=
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "line"
+                );
+
+
+            line.setAttribute(
+                "x1",
+                r[0]
+            );
+
+            line.setAttribute(
+                "y1",
+                r[1]
+            );
+
+            line.setAttribute(
+                "x2",
+                r[2]
+            );
+
+            line.setAttribute(
+                "y2",
+                r[3]
             );
 
 
-        line.setAttribute(
-            "x1",
-            r[0]
-        );
+            line.setAttribute(
+                "stroke",
+                "#553511"
+            );
 
-        line.setAttribute(
-            "y1",
-            r[1]
-        );
+            line.setAttribute(
+                "stroke-width",
+                "2"
+            );
 
-        line.setAttribute(
-            "x2",
-            r[2]
-        );
-
-        line.setAttribute(
-            "y2",
-            r[3]
-        );
+            line.setAttribute(
+                "stroke-linecap",
+                "round"
+            );
 
 
-        line.setAttribute(
-            "stroke",
-            "#754b18"
-        );
-
-        line.setAttribute(
-            "stroke-width",
-            "1.4"
-        );
-
-        line.setAttribute(
-            "stroke-linecap",
-            "round"
-        );
+            svg.appendChild(line);
 
 
-        svg.appendChild(line);
+            const highlight=
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "line"
+                );
 
-    });
 
+            highlight.setAttribute(
+                "x1",
+                r[0]-.35
+            );
+
+            highlight.setAttribute(
+                "y1",
+                r[1]-.45
+            );
+
+            highlight.setAttribute(
+                "x2",
+                r[2]-.35
+            );
+
+            highlight.setAttribute(
+                "y2",
+                r[3]-.45
+            );
+
+
+            highlight.setAttribute(
+                "stroke",
+                "#c8893c"
+            );
+
+            highlight.setAttribute(
+                "stroke-width",
+                ".65"
+            );
+
+            highlight.setAttribute(
+                "stroke-linecap",
+                "round"
+            );
+
+
+            svg.appendChild(
+                highlight
+            );
+
+        }
+    );
+
+
+    /*
+       ESCALONES
+    */
 
     const rungs=
         Math.max(
-            3,
-            Math.floor(length/7)
+            4,
+            Math.floor(
+                length/6
+            )
         );
 
 
@@ -1750,7 +2557,8 @@ function drawLadder(
         i++
     ){
 
-        const t=i/rungs;
+        const t=
+            i/rungs;
 
 
         const cx=
@@ -1790,12 +2598,12 @@ function drawLadder(
 
         rung.setAttribute(
             "stroke",
-            "#a96d21"
+            "#6d4319"
         );
 
         rung.setAttribute(
             "stroke-width",
-            "1"
+            "1.5"
         );
 
         rung.setAttribute(
@@ -1804,7 +2612,9 @@ function drawLadder(
         );
 
 
-        svg.appendChild(rung);
+        svg.appendChild(
+            rung
+        );
 
     }
 
@@ -1812,8 +2622,8 @@ function drawLadder(
 
 
 /* =========================
-   SERPIENTE
-   ========================= */
+   SERPIENTES
+========================= */
 
 function drawSnake(
     svg,
@@ -1844,12 +2654,11 @@ function drawSnake(
 
     const steps=
         Math.max(
-            8,
-            Math.floor(distance/3)
+            12,
+            Math.floor(
+                distance/2
+            )
         );
-
-
-    const points=[];
 
 
     const nx=
@@ -1861,12 +2670,15 @@ function drawSnake(
 
     const amplitude=
         Math.min(
-            1.5,
+            2,
             Math.max(
-                .7,
-                distance/22
+                .9,
+                distance/18
             )
         );
+
+
+    const points=[];
 
 
     for(
@@ -1875,12 +2687,17 @@ function drawSnake(
         i++
     ){
 
-        const t=i/steps;
+        const t=
+            i/steps;
 
+
+        /*
+           CURVA NATURAL
+        */
 
         const wave=
             Math.sin(
-                t*Math.PI*4
+                t*Math.PI*3.5
             )*
             amplitude;
 
@@ -1902,6 +2719,10 @@ function drawSnake(
     }
 
 
+    /*
+       SOMBRA
+    */
+
     const shadow=
         document.createElementNS(
             "http://www.w3.org/2000/svg",
@@ -1914,7 +2735,7 @@ function drawSnake(
         points
         .map(
             p=>
-                `${p.x+.35},${p.y+.55}`
+                `${p.x+.5},${p.y+.7}`
         )
         .join(" ")
     );
@@ -1925,18 +2746,15 @@ function drawSnake(
         "none"
     );
 
-
     shadow.setAttribute(
         "stroke",
-        "#0008"
+        "#0009"
     );
-
 
     shadow.setAttribute(
         "stroke-width",
-        "2.5"
+        "4"
     );
-
 
     shadow.setAttribute(
         "stroke-linecap",
@@ -1944,14 +2762,14 @@ function drawSnake(
     );
 
 
-    shadow.setAttribute(
-        "stroke-linejoin",
-        "round"
+    svg.appendChild(
+        shadow
     );
 
 
-    svg.appendChild(shadow);
-
+    /*
+       CUERPO
+    */
 
     const body=
         document.createElementNS(
@@ -1976,24 +2794,20 @@ function drawSnake(
         "none"
     );
 
-
     body.setAttribute(
         "stroke",
-        "#24732e"
+        "#174e27"
     );
-
 
     body.setAttribute(
         "stroke-width",
-        "1.8"
+        "3"
     );
-
 
     body.setAttribute(
         "stroke-linecap",
         "round"
     );
-
 
     body.setAttribute(
         "stroke-linejoin",
@@ -2001,8 +2815,62 @@ function drawSnake(
     );
 
 
-    svg.appendChild(body);
+    svg.appendChild(
+        body
+    );
 
+
+    /*
+       BRILLO
+    */
+
+    const highlight=
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "polyline"
+        );
+
+
+    highlight.setAttribute(
+        "points",
+        points
+        .map(
+            p=>
+                `${p.x-.3},${p.y-.4}`
+        )
+        .join(" ")
+    );
+
+
+    highlight.setAttribute(
+        "fill",
+        "none"
+    );
+
+    highlight.setAttribute(
+        "stroke",
+        "#65c85c"
+    );
+
+    highlight.setAttribute(
+        "stroke-width",
+        ".8"
+    );
+
+    highlight.setAttribute(
+        "stroke-linecap",
+        "round"
+    );
+
+
+    svg.appendChild(
+        highlight
+    );
+
+
+    /*
+       CABEZA
+    */
 
     const head=
         points[
@@ -2029,22 +2897,22 @@ function drawSnake(
 
     headCircle.setAttribute(
         "r",
-        "1.7"
+        "2.3"
     );
 
     headCircle.setAttribute(
         "fill",
-        "#24732e"
+        "#247d35"
     );
 
     headCircle.setAttribute(
         "stroke",
-        "#163d1b"
+        "#10391a"
     );
 
     headCircle.setAttribute(
         "stroke-width",
-        ".35"
+        ".5"
     );
 
 
@@ -2053,135 +2921,129 @@ function drawSnake(
     );
 
 
-    const eye1=
+    /*
+       OJOS
+    */
+
+    [-.7,.7].forEach(
+        offset=>{
+
+            const eye=
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "circle"
+                );
+
+
+            eye.setAttribute(
+                "cx",
+                head.x+
+                offset
+            );
+
+            eye.setAttribute(
+                "cy",
+                head.y-.65
+            );
+
+            eye.setAttribute(
+                "r",
+                ".55"
+            );
+
+            eye.setAttribute(
+                "fill",
+                "white"
+            );
+
+
+            svg.appendChild(
+                eye
+            );
+
+
+            const pupil=
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "circle"
+                );
+
+
+            pupil.setAttribute(
+                "cx",
+                head.x+
+                offset
+            );
+
+            pupil.setAttribute(
+                "cy",
+                head.y-.65
+            );
+
+            pupil.setAttribute(
+                "r",
+                ".25"
+            );
+
+            pupil.setAttribute(
+                "fill",
+                "black"
+            );
+
+
+            svg.appendChild(
+                pupil
+            );
+
+        }
+    );
+
+
+    /*
+       LENGUA
+    */
+
+    const tongue=
         document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "circle"
+            "polyline"
         );
 
 
-    eye1.setAttribute(
-        "cx",
-        head.x-.55
+    tongue.setAttribute(
+        "points",
+        `${head.x},${head.y+1}
+         ${head.x},${head.y+2.2}
+         ${head.x-.8},${head.y+3}`
     );
 
-    eye1.setAttribute(
-        "cy",
-        head.y-.55
-    );
 
-    eye1.setAttribute(
-        "r",
-        ".45"
-    );
-
-    eye1.setAttribute(
+    tongue.setAttribute(
         "fill",
-        "white"
+        "none"
+    );
+
+    tongue.setAttribute(
+        "stroke",
+        "#e33"
+    );
+
+    tongue.setAttribute(
+        "stroke-width",
+        ".35"
     );
 
 
-    svg.appendChild(eye1);
-
-
-    const eye2=
-        document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "circle"
-        );
-
-
-    eye2.setAttribute(
-        "cx",
-        head.x+.55
+    svg.appendChild(
+        tongue
     );
-
-    eye2.setAttribute(
-        "cy",
-        head.y-.55
-    );
-
-    eye2.setAttribute(
-        "r",
-        ".45"
-    );
-
-    eye2.setAttribute(
-        "fill",
-        "white"
-    );
-
-
-    svg.appendChild(eye2);
-
-
-    const pupil1=
-        document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "circle"
-        );
-
-
-    pupil1.setAttribute(
-        "cx",
-        head.x-.55
-    );
-
-    pupil1.setAttribute(
-        "cy",
-        head.y-.55
-    );
-
-    pupil1.setAttribute(
-        "r",
-        ".2"
-    );
-
-    pupil1.setAttribute(
-        "fill",
-        "black"
-    );
-
-
-    svg.appendChild(pupil1);
-
-
-    const pupil2=
-        document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "circle"
-        );
-
-
-    pupil2.setAttribute(
-        "cx",
-        head.x+.55
-    );
-
-    pupil2.setAttribute(
-        "cy",
-        head.y-.55
-    );
-
-    pupil2.setAttribute(
-        "r",
-        ".2"
-    );
-
-    pupil2.setAttribute(
-        "fill",
-        "black"
-    );
-
-
-    svg.appendChild(pupil2);
 
 }
 
 
 /* =========================
    FICHAS
-   ========================= */
+========================= */
 
 function placeToken(index){
 
@@ -2212,10 +3074,6 @@ function placeToken(index){
     token.style.top=
         pos.y+"%";
 
-
-    token.style.transform=
-        "translate(-50%,-50%)";
-
 }
 
 
@@ -2232,7 +3090,7 @@ function updateTokens(){
 
 /* =========================
    PANEL
-   ========================= */
+========================= */
 
 function updatePanel(){
 
@@ -2287,7 +3145,9 @@ function updatePanel(){
             `;
 
 
-            panel.appendChild(box);
+            panel.appendChild(
+                box
+            );
 
         }
     );
@@ -2297,10 +3157,12 @@ function updatePanel(){
 
 /* =========================
    INICIAR
-   ========================= */
+========================= */
 
 document
-.getElementById("startButton")
+.getElementById(
+    "startButton"
+)
 .addEventListener(
     "click",
     startGame
@@ -2331,14 +3193,13 @@ function startGame(){
                 input.value.trim();
 
 
-            if(!name){
+            if(!name)
                 name=`Jugador ${i+1}`;
-            }
 
 
             players.push({
 
-                name:name,
+                name,
 
                 avatar:
                     avatars[
@@ -2379,10 +3240,8 @@ function startGame(){
     if(players[0].bot){
 
         setTimeout(
-            ()=>{
-                botTurn();
-            },
-            500
+            botTurn,
+            600
         );
 
     }
@@ -2392,7 +3251,7 @@ function startGame(){
 
 /* =========================
    TURNO
-   ========================= */
+========================= */
 
 function updateTurn(){
 
@@ -2448,8 +3307,8 @@ function updateTurn(){
 
 
 /* =========================
-   MOVIMIENTO
-   ========================= */
+   MOVIMIENTO NORMAL
+========================= */
 
 async function movePlayer(
     index,
@@ -2466,6 +3325,15 @@ async function movePlayer(
         :-1;
 
 
+    /*
+       MOVIMIENTO CASILLA
+       POR CASILLA.
+
+       NO SE TELETRANSPORTA.
+       NO SE ACELERA.
+       NO HACE COSAS RARAS.
+    */
+
     for(
         let i=0;
         i<Math.abs(steps);
@@ -2476,12 +3344,22 @@ async function movePlayer(
             direction;
 
 
-        if(player.position<1)
+        if(
+            player.position<1
+        ){
+
             player.position=1;
 
+        }
 
-        if(player.position>100)
+
+        if(
+            player.position>100
+        ){
+
             player.position=100;
+
+        }
 
 
         updateTokens();
@@ -2489,12 +3367,7 @@ async function movePlayer(
         updatePanel();
 
 
-        /*
-           VELOCIDAD NORMAL
-           DE LA FICHA
-        */
-
-        await sleep(45);
+        await sleep(90);
 
     }
 
@@ -2502,8 +3375,143 @@ async function movePlayer(
 
 
 /* =========================
-   ESCALERAS Y SERPIENTES
-   ========================= */
+   ANIMACIÓN ESCALERA
+========================= */
+
+async function animateLadder(
+    index,
+    from,
+    to
+){
+
+    const player=
+        players[index];
+
+
+    const steps=18;
+
+
+    for(
+        let i=1;
+        i<=steps;
+        i++
+    ){
+
+        const t=
+            i/steps;
+
+
+        /*
+           EASE IN OUT
+           MÁS NATURAL
+        */
+
+        const smooth=
+            t<.5
+            ?4*t*t*t
+            :1-
+            Math.pow(
+                -2*t+2,
+                3
+            )/2;
+
+
+        player.position=
+            Math.round(
+                from+
+                (to-from)*
+                smooth
+            );
+
+
+        updateTokens();
+
+        updatePanel();
+
+
+        await sleep(40);
+
+    }
+
+
+    player.position=to;
+
+    updateTokens();
+
+    updatePanel();
+
+}
+
+
+/* =========================
+   ANIMACIÓN SERPIENTE
+========================= */
+
+async function animateSnake(
+    index,
+    from,
+    to
+){
+
+    const player=
+        players[index];
+
+
+    const steps=18;
+
+
+    for(
+        let i=1;
+        i<=steps;
+        i++
+    ){
+
+        const t=
+            i/steps;
+
+
+        /*
+           BAJADA SUAVE.
+        */
+
+        const smooth=
+            1-
+            Math.pow(
+                1-t,
+                3
+            );
+
+
+        player.position=
+            Math.round(
+                from+
+                (to-from)*
+                smooth
+            );
+
+
+        updateTokens();
+
+        updatePanel();
+
+
+        await sleep(45);
+
+    }
+
+
+    player.position=to;
+
+    updateTokens();
+
+    updatePanel();
+
+}
+
+
+/* =========================
+   SERPIENTES / ESCALERAS
+========================= */
 
 async function checkConnection(
     index
@@ -2512,8 +3520,6 @@ async function checkConnection(
     const player=
         players[index];
 
-
-    /* ESCALERA */
 
     if(
         ladders[
@@ -2536,55 +3542,11 @@ async function checkConnection(
             `🪜 ${player.name} está subiendo...`;
 
 
-        const steps=12;
-
-
-        for(
-            let i=1;
-            i<=steps;
-            i++
-        ){
-
-            const t=
-                i/steps;
-
-
-            const smooth=
-                t*t*(3-2*t);
-
-
-            player.position=
-                Math.round(
-                    from+
-                    (to-from)*
-                    smooth
-                );
-
-
-            updateTokens();
-
-            updatePanel();
-
-
-            /*
-               VELOCIDAD NORMAL
-               DE LA ESCALERA
-            */
-
-            await sleep(35);
-
-        }
-
-
-        player.position=to;
-
-
-        updateTokens();
-
-        updatePanel();
-
-
-        await sleep(100);
+        await animateLadder(
+            index,
+            from,
+            to
+        );
 
 
         document
@@ -2592,15 +3554,15 @@ async function checkConnection(
             "status"
         )
         .textContent=
-            `🪜 ¡${player.name} subió la escalera!`;
+            `🪜 ${player.name} subió hasta ${to}.`;
 
+
+        await sleep(180);
 
         return true;
 
     }
 
-
-    /* SERPIENTE */
 
     if(
         snakes[
@@ -2623,55 +3585,11 @@ async function checkConnection(
             `🐍 ¡${player.name} cayó por la serpiente!`;
 
 
-        const steps=12;
-
-
-        for(
-            let i=1;
-            i<=steps;
-            i++
-        ){
-
-            const t=
-                i/steps;
-
-
-            const smooth=
-                t*t;
-
-
-            player.position=
-                Math.round(
-                    from+
-                    (to-from)*
-                    smooth
-                );
-
-
-            updateTokens();
-
-            updatePanel();
-
-
-            /*
-               VELOCIDAD NORMAL
-               DE LA SERPIENTE
-            */
-
-            await sleep(30);
-
-        }
-
-
-        player.position=to;
-
-
-        updateTokens();
-
-        updatePanel();
-
-
-        await sleep(100);
+        await animateSnake(
+            index,
+            from,
+            to
+        );
 
 
         document
@@ -2679,8 +3597,10 @@ async function checkConnection(
             "status"
         )
         .textContent=
-            `🐍 ${player.name} terminó en ${to}.`;
+            `🐍 ${player.name} bajó hasta ${to}.`;
 
+
+        await sleep(180);
 
         return true;
 
@@ -2694,7 +3614,7 @@ async function checkConnection(
 
 /* =========================
    DADO
-   ========================= */
+========================= */
 
 const diceFaces=[
     "⚀",
@@ -2714,24 +3634,15 @@ async function animateDice(){
         );
 
 
-    /*
-       SOLAMENTE EL DADO
-       ES MÁS RÁPIDO
-    */
-
     for(
         let i=0;
         i<8;
         i++
     ){
 
-        const value=
-            random(1,6);
-
-
         dice.textContent=
             diceFaces[
-                value-1
+                random(1,6)-1
             ];
 
 
@@ -2743,11 +3654,13 @@ async function animateDice(){
 
 
 /* =========================
-   TIRADA
-   ========================= */
+   TIRAR
+========================= */
 
 document
-.getElementById("rollButton")
+.getElementById(
+    "rollButton"
+)
 .addEventListener(
     "click",
     rollDice
@@ -2771,8 +3684,13 @@ async function rollDice(){
 
     rolling=true;
 
-
     updateTurn();
+
+
+    const player=
+        players[
+            currentPlayer
+        ];
 
 
     document
@@ -2780,9 +3698,7 @@ async function rollDice(){
         "status"
     )
     .textContent=
-        `${players[
-            currentPlayer
-        ].name} está tirando...`;
+        `${player.name} está tirando...`;
 
 
     await animateDice();
@@ -2797,9 +3713,7 @@ async function rollDice(){
         "dice"
     )
     .textContent=
-        diceFaces[
-            value-1
-        ];
+        diceFaces[value-1];
 
 
     await executeMove(
@@ -2811,8 +3725,8 @@ async function rollDice(){
 
 
 /* =========================
-   EJECUTAR MOVIMIENTO
-   ========================= */
+   EJECUTAR
+========================= */
 
 async function executeMove(
     index,
@@ -2831,15 +3745,13 @@ async function executeMove(
         `${player.name} sacó ${value}.`;
 
 
-    await sleep(100);
+    await sleep(120);
 
 
     const target=
         player.position+
         value;
 
-
-    /* LLEGA A 100 */
 
     if(
         target===100
@@ -2851,7 +3763,7 @@ async function executeMove(
         );
 
 
-        await sleep(150);
+        await sleep(200);
 
 
         finishGame(index);
@@ -2860,8 +3772,6 @@ async function executeMove(
 
     }
 
-
-    /* SE PASA DE 100 */
 
     if(
         target>100
@@ -2899,7 +3809,6 @@ async function executeMove(
             `${player.name} se pasó y retrocede ${overshoot}.`;
 
     }
-
     else{
 
         await movePlayer(
@@ -2915,7 +3824,7 @@ async function executeMove(
     );
 
 
-    await sleep(100);
+    await sleep(150);
 
 
     nextTurn();
@@ -2924,8 +3833,8 @@ async function executeMove(
 
 
 /* =========================
-   SIGUIENTE TURNO
-   ========================= */
+   SIGUIENTE
+========================= */
 
 function nextTurn(){
 
@@ -2953,10 +3862,8 @@ function nextTurn(){
     ){
 
         setTimeout(
-            ()=>{
-                botTurn();
-            },
-            450
+            botTurn,
+            500
         );
 
     }
@@ -2980,7 +3887,7 @@ function nextTurn(){
 
 /* =========================
    BOT
-   ========================= */
+========================= */
 
 async function botTurn(){
 
@@ -2999,7 +3906,6 @@ async function botTurn(){
 
     rolling=true;
 
-
     updateTurn();
 
 
@@ -3017,7 +3923,7 @@ async function botTurn(){
         `🤖 ${player.name} está pensando...`;
 
 
-    await sleep(250);
+    await sleep(300);
 
 
     await animateDice();
@@ -3032,9 +3938,7 @@ async function botTurn(){
         "dice"
     )
     .textContent=
-        diceFaces[
-            value-1
-        ];
+        diceFaces[value-1];
 
 
     await executeMove(
@@ -3047,7 +3951,7 @@ async function botTurn(){
 
 /* =========================
    GANADOR
-   ========================= */
+========================= */
 
 function finishGame(index){
 
@@ -3073,7 +3977,7 @@ function finishGame(index){
         "winText"
     )
     .textContent=
-        `${player.avatar} llegó al casillero 100.`;
+        `${player.avatar} llegó al casillero 100 de COMESERPIENTES.`;
 
 
     showScreen("win");
@@ -3083,10 +3987,12 @@ function finishGame(index){
 
 /* =========================
    NUEVO MAPA
-   ========================= */
+========================= */
 
 document
-.getElementById("newMapButton")
+.getElementById(
+    "newMapButton"
+)
 .addEventListener(
     "click",
     ()=>{
@@ -3094,11 +4000,8 @@ document
         if(
             rolling||
             gameFinished
-        ){
-
+        )
             return;
-
-        }
 
 
         generateMap();
@@ -3111,7 +4014,7 @@ document
             "status"
         )
         .textContent=
-            "🔄 ¡Nuevo mapa generado!";
+            "🔄 ¡Nuevo tablero!";
 
     }
 );
@@ -3119,10 +4022,12 @@ document
 
 /* =========================
    MENÚ
-   ========================= */
+========================= */
 
 document
-.getElementById("backMenu")
+.getElementById(
+    "backMenu"
+)
 .addEventListener(
     "click",
     ()=>{
@@ -3138,23 +4043,25 @@ document
 
 
 document
-.getElementById("winMenu")
+.getElementById(
+    "winMenu"
+)
 .addEventListener(
     "click",
     ()=>{
-
         showScreen("menu");
-
     }
 );
 
 
 /* =========================
    OTRA PARTIDA
-   ========================= */
+========================= */
 
 document
-.getElementById("playAgain")
+.getElementById(
+    "playAgain"
+)
 .addEventListener(
     "click",
     ()=>{
@@ -3197,10 +4104,8 @@ document
         ){
 
             setTimeout(
-                ()=>{
-                    botTurn();
-                },
-                500
+                botTurn,
+                600
             );
 
         }
@@ -3210,8 +4115,8 @@ document
 
 
 /* =========================
-   PANTALLA COMPLETA
-   ========================= */
+   FULLSCREEN
+========================= */
 
 document
 .getElementById(
@@ -3229,14 +4134,12 @@ async function activarFullscreen(){
 
         if(
             !document.fullscreenElement &&
-            document
-            .documentElement
-            .requestFullscreen
+            document.documentElement.requestFullscreen
         ){
 
             await document
-            .documentElement
-            .requestFullscreen();
+                .documentElement
+                .requestFullscreen();
 
         }
 
@@ -3247,8 +4150,8 @@ async function activarFullscreen(){
 
 
 /* =========================
-   INICIO
-   ========================= */
+   INICIAR MENÚ
+========================= */
 
 createPlayerSetup();
 
